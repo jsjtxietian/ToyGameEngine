@@ -27,9 +27,15 @@
     <ClInclude Include="src\QAQ\EntryPoint.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\QAQ\Log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\QAQ\Application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QAQ\Log.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

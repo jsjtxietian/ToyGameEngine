@@ -4,7 +4,7 @@
 
 namespace QAQ
 {
-	class QAQ_API__ Application
+	class QAQ_API Application
 	{
 	public:
 		Application();
