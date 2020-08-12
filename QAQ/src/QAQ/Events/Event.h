@@ -1,9 +1,8 @@
 #pragma once
 
+#include "qaqpch.h"
 #include "QAQ/Core.h"
 
-#include <string>
-#include <functional>
 
 namespace QAQ {
 

@@ -18,6 +18,9 @@ project "QAQ"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "qaqpch.h"
+	pchsource "QAQ/src/qaqpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",

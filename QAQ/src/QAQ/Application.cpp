@@ -1,3 +1,5 @@
+#include "qaqpch.h"
+
 #include "Application.h"
 #include "QAQ/Events/ApplicationEvent.h"
 #include "QAQ/Log.h"

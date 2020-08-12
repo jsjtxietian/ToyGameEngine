@@ -4,6 +4,9 @@
     <Filter Include="QAQ">
       <UniqueIdentifier>{2814880B-941D-887C-1D99-9E7C89A1937C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="QAQ\Events">
+      <UniqueIdentifier>{0C83E89C-F83A-2AEA-6142-03464D19C5DA}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\QAQ.h" />
@@ -16,13 +19,22 @@
     <ClInclude Include="src\QAQ\EntryPoint.h">
       <Filter>QAQ</Filter>
     </ClInclude>
+    <ClInclude Include="src\QAQ\Events\ApplicationEvent.h">
+      <Filter>QAQ\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Events\Event.h">
+      <Filter>QAQ\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Events\KeyEvent.h">
+      <Filter>QAQ\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Events\MouseEvent.h">
+      <Filter>QAQ\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\QAQ\Log.h">
       <Filter>QAQ</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\Events\Event.h" />
-    <ClInclude Include="src\QAQ\Events\MouseEvent.h" />
-    <ClInclude Include="src\QAQ\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\QAQ\Events\KeyEvent.h" />
+    <ClInclude Include="src\qaqpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\QAQ\Application.cpp">
@@ -31,5 +43,6 @@
     <ClCompile Include="src\QAQ\Log.cpp">
       <Filter>QAQ</Filter>
     </ClCompile>
+    <ClCompile Include="src\qaqpch.cpp" />
   </ItemGroup>
 </Project>
