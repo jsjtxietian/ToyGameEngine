@@ -19,6 +19,10 @@
     <ClInclude Include="src\QAQ\Log.h">
       <Filter>QAQ</Filter>
     </ClInclude>
+    <ClInclude Include="src\QAQ\Events\Event.h" />
+    <ClInclude Include="src\QAQ\Events\MouseEvent.h" />
+    <ClInclude Include="src\QAQ\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\QAQ\Events\KeyEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\QAQ\Application.cpp">
