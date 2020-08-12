@@ -1,13 +1,14 @@
 #include "qaqpch.h"
-
 #include "Application.h"
 #include "QAQ/Events/ApplicationEvent.h"
 #include "QAQ/Log.h"
+#include <GLFW/glfw3.h>
 
 namespace QAQ
 {
 	Application::Application()
 	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application()
@@ -16,16 +17,15 @@ namespace QAQ
 
 	void Application::Run()
 	{
-		WindowResizeEvent e(1280, 720);
-		if (e.IsInCategory(EventCategoryApplication))
+		while (true)
 		{
-			QAQ_TRACE(e);
+			while (m_Running)
+			{
+				glClearColor(1, 0, 1, 1);
+				glClear(GL_COLOR_BUFFER_BIT);
+				m_Window->OnUpdate();
+			}
 		}
-		if (e.IsInCategory(EventCategoryInput))
-		{
-			QAQ_TRACE(e);
-		}
-		while (true);
 	}
 
 }

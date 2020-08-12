@@ -10,6 +10,10 @@ workspace "ToyEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "QAQ/vendor/GLFW/include"
+include "QAQ/vendor/GLFW"
+
 project "QAQ"
 	location "QAQ"
 	kind "SharedLib"
@@ -30,8 +34,16 @@ project "QAQ"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
 	}
+
+	links 
+	{ 
+		"GLFW",
+		"opengl32.lib"
+	}
+
 
 	filter "system:windows"
 		cppdialect "C++17"

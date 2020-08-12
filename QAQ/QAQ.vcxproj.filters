@@ -35,6 +35,11 @@
       <Filter>QAQ</Filter>
     </ClInclude>
     <ClInclude Include="src\qaqpch.h" />
+    <ClInclude Include="Window.h">
+      <Filter>QAQ</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\QAQ\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\QAQ\Application.cpp">
@@ -44,5 +49,6 @@
       <Filter>QAQ</Filter>
     </ClCompile>
     <ClCompile Include="src\qaqpch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>
