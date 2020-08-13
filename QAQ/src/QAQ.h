@@ -3,6 +3,7 @@
 //For use by apps
 
 #include "QAQ/Application.h"
+#include "QAQ/Layer.h"
 #include "QAQ/Log.h"
 
 //---Entry Point----------------------

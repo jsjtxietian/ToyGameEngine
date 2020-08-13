@@ -63,14 +63,17 @@ project "QAQ"
 
 	filter "configurations:Debug"
 		defines "QAQ_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "QAQ_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "QAQ_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 project "Sandbox"
@@ -110,12 +113,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "QAQ_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "QAQ_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "QAQ_DIST"
+		buildoptions "/MD"
 		optimize "On"
