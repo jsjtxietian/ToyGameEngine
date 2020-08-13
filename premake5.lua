@@ -12,7 +12,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "QAQ/vendor/GLFW/include"
+IncludeDir["GLAD"] = "QAQ/vendor/GLAD/include"
+
 include "QAQ/vendor/GLFW"
+include "QAQ/vendor/GLAD"
 
 project "QAQ"
 	location "QAQ"
@@ -35,13 +38,15 @@ project "QAQ"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}"
 	}
 
 	links 
 	{ 
 		"GLFW",
-		"opengl32.lib"
+		"opengl32.lib",
+		"GLAD"
 	}
 
 
@@ -53,7 +58,8 @@ project "QAQ"
 		defines
 		{
 			"QAQ_PLATFORM_WINDOWS",
-			"QAQ_BUILD_DLL"
+			"QAQ_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
