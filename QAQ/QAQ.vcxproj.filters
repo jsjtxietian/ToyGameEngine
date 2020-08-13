@@ -35,9 +35,6 @@
       <Filter>QAQ</Filter>
     </ClInclude>
     <ClInclude Include="src\qaqpch.h" />
-    <ClInclude Include="Window.h">
-      <Filter>QAQ</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\QAQ\Window.h" />
   </ItemGroup>

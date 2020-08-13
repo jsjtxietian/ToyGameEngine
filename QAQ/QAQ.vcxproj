@@ -162,7 +162,6 @@
     <ClInclude Include="src\QAQ\Log.h" />
     <ClInclude Include="src\qaqpch.h" />
     <ClInclude Include="src\QAQ\Window.h" />
-    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
