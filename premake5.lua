@@ -19,6 +19,8 @@ include "QAQ/vendor/GLFW"
 include "QAQ/vendor/GLAD"
 include "QAQ/vendor/imgui"
 
+startproject "Sandbox"
+
 project "QAQ"
 	location "QAQ"
 	kind "SharedLib"
