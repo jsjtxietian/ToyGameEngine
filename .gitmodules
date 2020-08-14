@@ -4,3 +4,6 @@
 [submodule "QAQ\\vendor\\GLFW"]
 	path = QAQ\\vendor\\GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "QAQ\\vendor\\imgui"]
+	path = QAQ\\vendor\\imgui
+	url = https://github.com/TheCherno/imgui

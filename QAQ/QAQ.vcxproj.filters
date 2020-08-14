@@ -53,6 +53,8 @@
       <Filter>QAQ</Filter>
     </ClInclude>
     <ClInclude Include="src\qaqpch.h" />
+    <ClInclude Include="src\QAQ\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
@@ -71,5 +73,7 @@
       <Filter>QAQ</Filter>
     </ClCompile>
     <ClCompile Include="src\qaqpch.cpp" />
+    <ClCompile Include="src\QAQ\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
   </ItemGroup>
 </Project>
