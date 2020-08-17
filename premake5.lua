@@ -1,5 +1,6 @@
 workspace "ToyEngine"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -15,16 +16,18 @@ IncludeDir["GLFW"] = "QAQ/vendor/GLFW/include"
 IncludeDir["GLAD"] = "QAQ/vendor/GLAD/include"
 IncludeDir["ImGui"] = "QAQ/vendor/imgui"
 
-include "QAQ/vendor/GLFW"
-include "QAQ/vendor/GLAD"
-include "QAQ/vendor/imgui"
+group "Dependencies"
+	include "QAQ/vendor/GLFW"
+	include "QAQ/vendor/Glad"
+	include "QAQ/vendor/imgui"
+group ""
 
-startproject "Sandbox"
 
 project "QAQ"
 	location "QAQ"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -58,7 +61,6 @@ project "QAQ"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -70,28 +72,29 @@ project "QAQ"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
 	filter "configurations:Debug"
 		defines "QAQ_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "QAQ_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "QAQ_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -115,7 +118,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -125,15 +127,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "QAQ_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "QAQ_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "QAQ_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"

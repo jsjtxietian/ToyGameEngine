@@ -10,6 +10,10 @@
 	#error Only Support Windows!
 #endif
 
+#ifdef QAQ_DEBUG
+	#define QAQ_ENABLE_ASSERTS
+#endif
+
 #ifdef QAQ_ENABLE_ASSERTS
 	#define QAQ_ASSERT(x, ...) { if(!(x)) { QAQ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define QAQ_CORE_ASSERT(x, ...) { if(!(x)) { QAQ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
