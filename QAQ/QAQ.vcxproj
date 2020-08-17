@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\QAQ.h" />
     <ClInclude Include="src\QAQ\Application.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="src\QAQ\Events\KeyEvent.h" />
     <ClInclude Include="src\QAQ\Events\MouseEvent.h" />
     <ClInclude Include="src\QAQ\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\QAQ\Input.h" />
     <ClInclude Include="src\QAQ\Layer.h" />
     <ClInclude Include="src\QAQ\LayerStack.h" />
     <ClInclude Include="src\QAQ\Log.h" />
@@ -169,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\QAQ\Application.cpp" />
     <ClCompile Include="src\QAQ\ImGui\ImGuiLayer.cpp" />
