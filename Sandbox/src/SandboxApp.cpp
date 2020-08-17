@@ -10,12 +10,21 @@ public:
 
 	void OnUpdate() override
 	{
-		QAQ_INFO("ExampleLayer::Update");
+		if (QAQ::Input::IsKeyPressed(QAQ_KEY_TAB)) 
+		{
+			QAQ_TRACE("Tab is pressed(poll)");
+		}
 	}
 
 	void OnEvent(QAQ::Event& event) override
 	{
-		QAQ_TRACE("{0}", event);
+		//QAQ_TRACE("{0}", event);
+		if (event.GetEventType() == QAQ::EventType::KeyPressed) {
+			QAQ::KeyPressedEvent& e = (QAQ::KeyPressedEvent&) event;
+			if(e.GetKeyCode() == QAQ_KEY_TAB)
+				QAQ_TRACE("Tab is pressed(event)");
+			QAQ_TRACE("{0}",(char)e.GetKeyCode());
+		}
 	}
 
 };

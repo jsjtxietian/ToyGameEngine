@@ -58,6 +58,9 @@
     <ClInclude Include="src\QAQ\Input.h">
       <Filter>QAQ</Filter>
     </ClInclude>
+    <ClInclude Include="src\QAQ\KeyCodes.h">
+      <Filter>QAQ</Filter>
+    </ClInclude>
     <ClInclude Include="src\QAQ\Layer.h">
       <Filter>QAQ</Filter>
     </ClInclude>
@@ -65,6 +68,9 @@
       <Filter>QAQ</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Log.h">
+      <Filter>QAQ</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\MouseButtonCodes.h">
       <Filter>QAQ</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Window.h">

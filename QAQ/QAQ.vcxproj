@@ -163,9 +163,11 @@
     <ClInclude Include="src\QAQ\Events\MouseEvent.h" />
     <ClInclude Include="src\QAQ\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\QAQ\Input.h" />
+    <ClInclude Include="src\QAQ\KeyCodes.h" />
     <ClInclude Include="src\QAQ\Layer.h" />
     <ClInclude Include="src\QAQ\LayerStack.h" />
     <ClInclude Include="src\QAQ\Log.h" />
+    <ClInclude Include="src\QAQ\MouseButtonCodes.h" />
     <ClInclude Include="src\QAQ\Window.h" />
     <ClInclude Include="src\qaqpch.h" />
   </ItemGroup>
@@ -196,4 +198,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-</Project>
+</Project> 
