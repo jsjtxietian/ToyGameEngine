@@ -7,3 +7,6 @@
 [submodule "QAQ\\vendor\\imgui"]
 	path = QAQ\\vendor\\imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "QAQ\\vendor\\glm"]
+	path = QAQ\\vendor\\glm
+	url = https://github.com/g-truc/glm

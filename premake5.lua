@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "QAQ/vendor/GLFW/include"
 IncludeDir["GLAD"] = "QAQ/vendor/GLAD/include"
 IncludeDir["ImGui"] = "QAQ/vendor/imgui"
+IncludeDir["glm"] = "QAQ/vendor/glm"
 
 group "Dependencies"
 	include "QAQ/vendor/GLFW"
@@ -38,7 +39,9 @@ project "QAQ"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -47,7 +50,8 @@ project "QAQ"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links 
@@ -108,7 +112,8 @@ project "Sandbox"
 	includedirs
 	{
 		"QAQ/vendor/spdlog/include",
-		"QAQ/src"
+		"QAQ/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links
