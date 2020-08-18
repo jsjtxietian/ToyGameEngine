@@ -113,7 +113,8 @@ project "Sandbox"
 	{
 		"QAQ/vendor/spdlog/include",
 		"QAQ/src",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"QAQ/vendor",
 	}
 
 	links
