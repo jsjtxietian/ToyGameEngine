@@ -27,11 +27,16 @@ namespace QAQ
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+
+		static Application* s_Instance;
+		
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-		static Application* s_Instance;
+		
+		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+
 	};
 
 	//to be defined in client
