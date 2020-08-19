@@ -4,6 +4,7 @@ bin
 bin-int
 
 .log
+*.ini
 
 # Visual Studio files and folder
 .vs
