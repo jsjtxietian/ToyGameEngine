@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef QAQ_PLATFORM_WINDOWS
-	#ifdef QAQ_BUILD_DLL
-		#define QAQ_API __declspec(dllexport)
-	#else
-		#define QAQ_API __declspec(dllimport)
-	#endif 
+#if QAQ_DYNAMIC_LINK
+#ifdef QAQ_BUILD_DLL
+	#define QAQ_API __declspec(dllexport)
+#else
+	#define QAQ_API __declspec(dllimport)
+#endif
+#else
+	#define QAQ_API
+#endif
 #else
 	#error Only Support Windows!
 #endif
