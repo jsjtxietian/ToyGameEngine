@@ -1,6 +1,6 @@
 #pragma once
 
-#include "QAQ/Render/GraphicsContext.h"
+#include "QAQ/Renderer/GraphicsContext.h"
 
 struct GLFWwindow;
 
