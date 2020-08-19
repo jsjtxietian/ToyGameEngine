@@ -7,6 +7,8 @@
 #include "QAQ/Events/ApplicationEvent.h"
 #include "QAQ/ImGui/ImGuiLayer.h"
 
+#include "QAQ/Render/Shader.h"
+
 namespace QAQ
 {
 	class QAQ_API Application
@@ -36,7 +38,7 @@ namespace QAQ
 		LayerStack m_LayerStack;
 		
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
-
+		std::unique_ptr<Shader> m_Shader;
 	};
 
 	//to be defined in client

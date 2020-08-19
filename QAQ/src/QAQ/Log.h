@@ -26,12 +26,12 @@ namespace QAQ {
 #define QAQ_CORE_INFO(...)		::QAQ::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define QAQ_CORE_WARN(...)		::QAQ::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define QAQ_CORE_ERROR(...)		::QAQ::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define QAQ_CORE_FATAL(...)		::QAQ::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define QAQ_CORE_FATAL(...)		::QAQ::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 //client log macros
 #define QAQ_TRACE(...)		::QAQ::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define QAQ_INFO(...)		::QAQ::Log::GetClientLogger()->info(__VA_ARGS__)
 #define QAQ_WARN(...)		::QAQ::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define QAQ_ERROR(...)		::QAQ::Log::GetClientLogger()->error(__VA_ARGS__)
-#define QAQ_FATAL(...)		::QAQ::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define QAQ_FATAL(...)		::QAQ::Log::GetClientLogger()->critical(__VA_ARGS__)
 

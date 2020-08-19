@@ -160,6 +160,7 @@
     <ClInclude Include="src\QAQ\LayerStack.h" />
     <ClInclude Include="src\QAQ\Log.h" />
     <ClInclude Include="src\QAQ\MouseButtonCodes.h" />
+    <ClInclude Include="src\QAQ\Render\Shader.h" />
     <ClInclude Include="src\QAQ\Window.h" />
     <ClInclude Include="src\qaqpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -584,6 +585,7 @@
     <ClCompile Include="src\qaqpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\QAQ\Render\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
