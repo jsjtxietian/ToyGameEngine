@@ -10,9 +10,4 @@ namespace QAQ {
 
 	}
 
-	Layer::~Layer()
-	{
-
-	}
-
 }

@@ -11,7 +11,7 @@ namespace QAQ
 	{
 	public:
 		ImGuiLayer();
-		~ImGuiLayer();
+		~ImGuiLayer() = default;
 
 		virtual void OnAttach();
 		virtual void OnDetach();

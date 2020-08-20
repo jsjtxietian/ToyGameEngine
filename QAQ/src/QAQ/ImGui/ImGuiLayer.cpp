@@ -17,11 +17,6 @@ namespace QAQ {
 
 	}
 
-	ImGuiLayer::~ImGuiLayer()
-	{
-
-	}
-
 
 	void ImGuiLayer::OnAttach()
 	{
