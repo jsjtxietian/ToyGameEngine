@@ -141,6 +141,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\QAQ\Renderer\Renderer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\QAQ\Renderer\Buffer.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="src\QAQ\Log.h" />
     <ClInclude Include="src\QAQ\MouseButtonCodes.h" />
     <ClInclude Include="src\QAQ\Renderer\Shader.h" />
+    <ClInclude Include="src\QAQ\Renderer\VertexArray.h" />
     <ClInclude Include="src\QAQ\Window.h" />
     <ClInclude Include="src\qaqpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -577,6 +579,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
@@ -592,6 +595,7 @@
     </ClCompile>
     <ClCompile Include="src\QAQ\Renderer\Renderer.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Shader.cpp" />
+    <ClCompile Include="src\QAQ\Renderer\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

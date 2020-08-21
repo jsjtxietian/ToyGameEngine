@@ -9,6 +9,7 @@
 
 #include "QAQ/Renderer/Shader.h"
 #include "QAQ/Renderer/Buffer.h"
+#include "QAQ/Renderer/VertexArray.h"
 
 namespace QAQ
 {
@@ -38,10 +39,11 @@ namespace QAQ
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		
-		unsigned int m_VertexArray;
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
+
+		std::shared_ptr<Shader> m_BlueShader;
+		std::shared_ptr<VertexArray> m_SquareVA;
 	};
 
 	//to be defined in client
