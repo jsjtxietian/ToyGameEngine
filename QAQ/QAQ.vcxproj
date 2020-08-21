@@ -143,6 +143,7 @@
   <ItemGroup>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\QAQ\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\QAQ\Renderer\RenderCommand.h" />
     <ClInclude Include="src\QAQ\Renderer\Renderer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
@@ -597,6 +598,7 @@
     <ClCompile Include="src\qaqpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\QAQ\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\QAQ\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Renderer.cpp" />
     <ClCompile Include="src\QAQ\Renderer\RendererAPI.cpp" />

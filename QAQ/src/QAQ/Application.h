@@ -11,6 +11,8 @@
 #include "QAQ/Renderer/Buffer.h"
 #include "QAQ/Renderer/VertexArray.h"
 
+#include "QAQ/Renderer/OrthographicCamera.h"
+
 namespace QAQ
 {
 	class QAQ_API Application
@@ -44,6 +46,8 @@ namespace QAQ
 
 		std::shared_ptr<Shader> m_BlueShader;
 		std::shared_ptr<VertexArray> m_SquareVA;
+
+		OrthographicCamera m_Camera;
 	};
 
 	//to be defined in client
