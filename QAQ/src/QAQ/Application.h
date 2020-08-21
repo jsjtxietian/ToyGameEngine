@@ -7,15 +7,9 @@
 #include "QAQ/Events/ApplicationEvent.h"
 #include "QAQ/ImGui/ImGuiLayer.h"
 
-#include "QAQ/Renderer/Shader.h"
-#include "QAQ/Renderer/Buffer.h"
-#include "QAQ/Renderer/VertexArray.h"
-
-#include "QAQ/Renderer/OrthographicCamera.h"
-
 namespace QAQ
 {
-	class QAQ_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -41,13 +35,7 @@ namespace QAQ
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
+		
 	};
 
 	//to be defined in client
