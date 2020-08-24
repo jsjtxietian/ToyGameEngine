@@ -6,6 +6,8 @@
 #include "QAQ/Layer.h"
 #include "QAQ/Log.h"
 
+#include "QAQ/Core/TimeStep.h"
+
 #include "QAQ/Input.h"
 #include "QAQ/KeyCodes.h"
 #include "QAQ/MouseButtonCodes.h"

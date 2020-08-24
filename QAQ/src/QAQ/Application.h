@@ -6,6 +6,7 @@
 #include "QAQ/Events/Event.h"
 #include "QAQ/Events/ApplicationEvent.h"
 #include "QAQ/ImGui/ImGuiLayer.h"
+#include "QAQ/Core/TimeStep.h"
 
 namespace QAQ
 {
@@ -29,12 +30,12 @@ namespace QAQ
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		static Application* s_Instance;
-		
+
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-		
+		float m_LastFrameTime = 0;
 		
 	};
 
