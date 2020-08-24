@@ -21,8 +21,6 @@ namespace QAQ
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverLay(m_ImGuiLayer);
-
-		
 	}
 
 
