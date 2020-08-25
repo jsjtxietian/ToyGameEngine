@@ -152,6 +152,7 @@ public:
 		m_TextureShader.reset(QAQ::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
 		m_Texture = QAQ::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_LogoTexture = QAQ::Texture2D::Create("assets/textures/Logo.png");
 		std::dynamic_pointer_cast<QAQ::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<QAQ::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
@@ -201,7 +202,8 @@ public:
 
 		m_Texture->Bind();
 		QAQ::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
+		m_LogoTexture->Bind();
+		QAQ::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		//render triangle
 		//QAQ::Renderer::Submit(m_Shader, m_VertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
@@ -227,7 +229,7 @@ private:
 	QAQ::Ref<QAQ::Shader>  m_FlatColorShader, m_TextureShader;
 	QAQ::Ref<QAQ::VertexArray> m_SquareVA;
 
-	QAQ::Ref<QAQ::Texture2D> m_Texture;
+	QAQ::Ref<QAQ::Texture2D> m_Texture,m_LogoTexture;
 
 
 	QAQ::OrthographicCamera m_Camera;
