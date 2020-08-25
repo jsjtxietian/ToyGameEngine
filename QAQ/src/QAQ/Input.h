@@ -5,6 +5,9 @@
 namespace QAQ{
 	class QAQ_API Input {
 	public:
+		Input(const Input&) = delete;
+		Input& operator=(const Input&) = delete;
+
 		inline static bool IsKeyPressed(int keycode) { return s_Instance->IsKeyPressedImpl(keycode); }
 		inline static bool IsMouseButtonPressed(int button) { return s_Instance->IsMouseButtonPressedImpl(button); }
 		inline static float GetMouseX() { return s_Instance->GetMouseXImpl(); }
@@ -13,6 +16,8 @@ namespace QAQ{
 
 
 	protected:
+		Input() = default;
+
 		virtual bool IsKeyPressedImpl(int keycode) = 0;
 		virtual bool IsMouseButtonPressedImpl(int button) = 0;
 		virtual float GetMouseXImpl() = 0;
