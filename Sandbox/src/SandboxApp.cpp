@@ -19,7 +19,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		std::shared_ptr<QAQ::VertexBuffer> vertexBuffer;
+		QAQ::Ref<QAQ::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(QAQ::VertexBuffer::Create(vertices, sizeof(vertices)));
 		QAQ::BufferLayout layout = {
 			{ QAQ::ShaderDataType::Float3, "a_Position" },
@@ -29,7 +29,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<QAQ::IndexBuffer> indexBuffer;
+		QAQ::Ref<QAQ::IndexBuffer> indexBuffer;
 		indexBuffer.reset(QAQ::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -75,7 +75,7 @@ public:
 			-0.5f,  0.5f, 0.0f
 		};
 
-		std::shared_ptr<QAQ::VertexBuffer> squareVB;
+		QAQ::Ref<QAQ::VertexBuffer> squareVB;
 		squareVB.reset(QAQ::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
 			{ QAQ::ShaderDataType::Float3, "a_Position" }
@@ -83,11 +83,11 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<QAQ::IndexBuffer> squareIB;
+		QAQ::Ref<QAQ::IndexBuffer> squareIB;
 		squareIB.reset(QAQ::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
-		std::string flatColorShaderVertexSrc  = R"(
+		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -115,7 +115,7 @@ public:
 			}
 		)";
 
-		 m_FlatColorShader.reset(QAQ::Shader::Create(flatColorShaderVertexSrc , flatColorShaderFragmentSrc));
+		m_FlatColorShader.reset(QAQ::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
 	}
 
 	void OnUpdate(QAQ::TimeStep ts) override
@@ -155,7 +155,7 @@ public:
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				QAQ::Renderer::Submit( m_FlatColorShader, m_SquareVA, transform);
+				QAQ::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
 
@@ -176,11 +176,11 @@ public:
 	}
 
 private:
-	std::shared_ptr<QAQ::Shader> m_Shader;
-	std::shared_ptr<QAQ::VertexArray> m_VertexArray;
+	QAQ::Ref<QAQ::Shader> m_Shader;
+	QAQ::Ref<QAQ::VertexArray> m_VertexArray;
 
-	std::shared_ptr<QAQ::Shader>  m_FlatColorShader;
-	std::shared_ptr<QAQ::VertexArray> m_SquareVA;
+	QAQ::Ref<QAQ::Shader>  m_FlatColorShader;
+	QAQ::Ref<QAQ::VertexArray> m_SquareVA;
 
 	QAQ::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
