@@ -1,21 +1,16 @@
 #pragma once
 #include <string.h>
-#include <glm/glm.hpp>
 
 namespace QAQ
 {
 	class Shader
 	{
 	public:
-		Shader(const std::string& vertexSrc, const std::string& fragmentSrc);
-		~Shader();
+		virtual ~Shader() = default;
 
-		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
+		virtual void Bind() const = 0;
+		virtual void Unbind() const = 0;
 
-		void Bind() const;
-		void UnBind() const;
-
-	private:
-		uint32_t m_RendererID;
+		static Shader* Create(const std::string& vertexSrc, const std::string& fragmentSrc);
 	};
 }
