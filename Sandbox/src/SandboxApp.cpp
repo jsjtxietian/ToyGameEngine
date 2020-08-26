@@ -64,7 +64,7 @@ public:
 		//	}
 		//)";
 
-		//m_Shader.reset(QAQ::Shader::Create(vertexSrc, fragmentSrc));
+		//m_Shader = QAQ::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 
 		m_SquareVA.reset(QAQ::VertexArray::Create());
@@ -116,14 +116,15 @@ public:
 			}
 		)";
 
-		m_FlatColorShader.reset(QAQ::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		m_FlatColorShader = QAQ::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
-		m_TextureShader.reset(QAQ::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = QAQ::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_LogoTexture = QAQ::Texture2D::Create("assets/textures/Logo.png");
-		std::dynamic_pointer_cast<QAQ::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<QAQ::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+
+		std::dynamic_pointer_cast<QAQ::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<QAQ::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(QAQ::TimeStep ts) override
@@ -167,12 +168,12 @@ public:
 			}
 		}
 
-		QAQ::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		auto textureShader = m_ShaderLibrary.Get("Texture");
 
 		m_Texture->Bind();
-		QAQ::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		QAQ::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		m_LogoTexture->Bind();
-		QAQ::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		QAQ::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		//render triangle
 		//QAQ::Renderer::Submit(m_Shader, m_VertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
@@ -192,10 +193,11 @@ public:
 	}
 
 private:
+	QAQ::ShaderLibrary m_ShaderLibrary;
 	QAQ::Ref<QAQ::Shader> m_Shader;
 	QAQ::Ref<QAQ::VertexArray> m_VertexArray;
 
-	QAQ::Ref<QAQ::Shader>  m_FlatColorShader, m_TextureShader;
+	QAQ::Ref<QAQ::Shader>  m_FlatColorShader;
 	QAQ::Ref<QAQ::VertexArray> m_SquareVA;
 
 	QAQ::Ref<QAQ::Texture2D> m_Texture,m_LogoTexture;

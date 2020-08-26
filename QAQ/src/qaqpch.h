@@ -4,6 +4,7 @@
 #include <string>
 #include <functional>
 #include <memory>
+#include <array>
 #include <utility>
 #include <sstream>
 #include <vector>
