@@ -24,6 +24,7 @@
 #include "QAQ/Renderer/Texture.h"
 
 #include "QAQ/Renderer/OrthographicCamera.h"
+#include "QAQ/OrthographicCameraController.h"
 
 
 //---Entry Point----------------------

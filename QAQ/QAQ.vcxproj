@@ -169,6 +169,7 @@
     <ClInclude Include="src\QAQ\LayerStack.h" />
     <ClInclude Include="src\QAQ\Log.h" />
     <ClInclude Include="src\QAQ\MouseButtonCodes.h" />
+    <ClInclude Include="src\QAQ\OrthographicCameraController.h" />
     <ClInclude Include="src\QAQ\Renderer\Buffer.h" />
     <ClInclude Include="src\QAQ\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\QAQ\Renderer\OrthographicCamera.h" />
@@ -605,6 +606,7 @@
     <ClCompile Include="src\QAQ\Layer.cpp" />
     <ClCompile Include="src\QAQ\LayerStack.cpp" />
     <ClCompile Include="src\QAQ\Log.cpp" />
+    <ClCompile Include="src\QAQ\OrthographicCameraController.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Buffer.cpp" />
     <ClCompile Include="src\QAQ\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\QAQ\Renderer\RenderCommand.cpp" />
