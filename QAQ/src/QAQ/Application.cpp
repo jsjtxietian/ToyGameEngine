@@ -35,8 +35,11 @@ namespace QAQ
 			m_LastFrameTime = time;
 
 
-			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate(timestep);
+			if (!m_Minimized)
+			{
+				for (Layer* layer : m_LayerStack)
+					layer->OnUpdate(timestep);
+			}
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
@@ -50,8 +53,9 @@ namespace QAQ
 
 	void Application::OnEvent(Event & e)
 	{
-		EventDispatcher dispather(e);
-		dispather.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 
 		//QAQ_CORE_TRACE("{0}", e);
 
@@ -77,6 +81,20 @@ namespace QAQ
 	{
 		m_Running = false;
 		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+		return false;
 	}
 
 }
