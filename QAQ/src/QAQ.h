@@ -26,7 +26,3 @@
 #include "QAQ/Renderer/OrthographicCamera.h"
 #include "QAQ/Renderer/OrthographicCameraController.h"
 
-
-//---Entry Point----------------------
-#include "QAQ/Core/EntryPoint.h"
-//------------------------------------

@@ -1,9 +1,13 @@
 #include <QAQ.h>
+#include <QAQ/Core/EntryPoint.h>
+
 #include "imgui/imgui.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "Platform/OpenGL/OpenGLShader.h"
 #include <glm/gtc/type_ptr.hpp>
+
+#include "Sandbox2D.h"
 
 class ExampleLayer : public QAQ::Layer
 {
@@ -11,7 +15,7 @@ public:
 	ExampleLayer()
 		: Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{
-		//m_VertexArray.reset(QAQ::VertexArray::Create());
+		//m_VertexArray = QAQ::VertexArray::Create();
 
 		//float vertices[3 * 7] = {
 		//	-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -67,7 +71,7 @@ public:
 		//m_Shader = QAQ::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 
-		m_SquareVA.reset(QAQ::VertexArray::Create());
+		m_SquareVA = QAQ::VertexArray::Create();
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
 			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
@@ -194,11 +198,11 @@ class Sandbox : public QAQ::Application
 {
 public:
 	Sandbox() {
-		PushLayer(new ExampleLayer());
+		// PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox() {
-
 	}
 };
 
