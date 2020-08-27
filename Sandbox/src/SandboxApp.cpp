@@ -197,7 +197,8 @@ private:
 class Sandbox : public QAQ::Application
 {
 public:
-	Sandbox() {
+	Sandbox() 
+	{
 		// PushLayer(new ExampleLayer());
 		PushLayer(new Sandbox2D());
 	}

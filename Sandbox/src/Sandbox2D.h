@@ -22,5 +22,7 @@ private:
 	QAQ::Ref<QAQ::VertexArray> m_SquareVA;
 	QAQ::Ref<QAQ::Shader> m_FlatColorShader;
 
+	QAQ::Ref<QAQ::Texture2D> m_CheckerboardTexture;
+
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 };

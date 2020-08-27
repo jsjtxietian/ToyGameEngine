@@ -175,6 +175,7 @@
     <ClInclude Include="src\QAQ\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\QAQ\Renderer\RenderCommand.h" />
     <ClInclude Include="src\QAQ\Renderer\Renderer.h" />
+    <ClInclude Include="src\QAQ\Renderer\Renderer2D.h" />
     <ClInclude Include="src\QAQ\Renderer\RendererAPI.h" />
     <ClInclude Include="src\QAQ\Renderer\Shader.h" />
     <ClInclude Include="src\QAQ\Renderer\Texture.h" />
@@ -610,6 +611,7 @@
     <ClCompile Include="src\QAQ\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\QAQ\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\QAQ\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\QAQ\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Shader.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Texture.cpp" />
@@ -633,4 +635,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-</Project>
+</Project> 

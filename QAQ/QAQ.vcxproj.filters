@@ -147,6 +147,9 @@
     <ClInclude Include="src\QAQ\Renderer\Renderer.h">
       <Filter>src\QAQ\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\QAQ\Renderer\Renderer2D.h">
+      <Filter>src\QAQ\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\QAQ\Renderer\RendererAPI.h">
       <Filter>src\QAQ\Renderer</Filter>
     </ClInclude>
@@ -1446,6 +1449,9 @@
       <Filter>src\QAQ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\QAQ\Renderer\Renderer.cpp">
+      <Filter>src\QAQ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QAQ\Renderer\Renderer2D.cpp">
       <Filter>src\QAQ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\QAQ\Renderer\RendererAPI.cpp">

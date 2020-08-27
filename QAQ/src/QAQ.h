@@ -17,6 +17,7 @@
 //--Renderer--------------------------
 #include "QAQ/Renderer/RenderCommand.h"
 #include "QAQ/Renderer/Renderer.h"
+#include "QAQ/Renderer/Renderer2D.h"
 
 #include "QAQ/Renderer/Buffer.h"
 #include "QAQ/Renderer/Shader.h"
