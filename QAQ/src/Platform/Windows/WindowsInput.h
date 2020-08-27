@@ -1,6 +1,6 @@
 #pragma once
 
-#include "QAQ/Input.h"
+#include "QAQ/Core/Input.h"
 
 namespace QAQ {
 

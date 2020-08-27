@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -19,27 +19,26 @@
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>QAQ</RootNamespace>
-    <LatestTargetPlatformVersion>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</LatestTargetPlatformVersion>
-    <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -77,7 +76,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>qaqpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;QAQ_PLATFORM_WINDOWS;QAQ_BUILD_DLL;GLFW_INCLUDE_NONE;QAQ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;QAQ_BUILD_DLL;GLFW_INCLUDE_NONE;QAQ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -99,7 +98,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>qaqpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;QAQ_PLATFORM_WINDOWS;QAQ_BUILD_DLL;GLFW_INCLUDE_NONE;QAQ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;QAQ_BUILD_DLL;GLFW_INCLUDE_NONE;QAQ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -124,7 +123,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>qaqpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;QAQ_PLATFORM_WINDOWS;QAQ_BUILD_DLL;GLFW_INCLUDE_NONE;QAQ_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;QAQ_BUILD_DLL;GLFW_INCLUDE_NONE;QAQ_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -154,32 +153,32 @@
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\QAQ.h" />
-    <ClInclude Include="src\QAQ\Application.h" />
-    <ClInclude Include="src\QAQ\Core.h" />
+    <ClInclude Include="src\QAQ\Core\Application.h" />
+    <ClInclude Include="src\QAQ\Core\Core.h" />
+    <ClInclude Include="src\QAQ\Core\EntryPoint.h" />
+    <ClInclude Include="src\QAQ\Core\Input.h" />
+    <ClInclude Include="src\QAQ\Core\KeyCodes.h" />
+    <ClInclude Include="src\QAQ\Core\Layer.h" />
+    <ClInclude Include="src\QAQ\Core\LayerStack.h" />
+    <ClInclude Include="src\QAQ\Core\Log.h" />
+    <ClInclude Include="src\QAQ\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\QAQ\Core\TimeStep.h" />
-    <ClInclude Include="src\QAQ\EntryPoint.h" />
+    <ClInclude Include="src\QAQ\Core\Window.h" />
     <ClInclude Include="src\QAQ\Events\ApplicationEvent.h" />
     <ClInclude Include="src\QAQ\Events\Event.h" />
     <ClInclude Include="src\QAQ\Events\KeyEvent.h" />
     <ClInclude Include="src\QAQ\Events\MouseEvent.h" />
     <ClInclude Include="src\QAQ\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\QAQ\Input.h" />
-    <ClInclude Include="src\QAQ\KeyCodes.h" />
-    <ClInclude Include="src\QAQ\Layer.h" />
-    <ClInclude Include="src\QAQ\LayerStack.h" />
-    <ClInclude Include="src\QAQ\Log.h" />
-    <ClInclude Include="src\QAQ\MouseButtonCodes.h" />
-    <ClInclude Include="src\QAQ\OrthographicCameraController.h" />
     <ClInclude Include="src\QAQ\Renderer\Buffer.h" />
     <ClInclude Include="src\QAQ\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\QAQ\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\QAQ\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\QAQ\Renderer\RenderCommand.h" />
     <ClInclude Include="src\QAQ\Renderer\Renderer.h" />
     <ClInclude Include="src\QAQ\Renderer\RendererAPI.h" />
     <ClInclude Include="src\QAQ\Renderer\Shader.h" />
     <ClInclude Include="src\QAQ\Renderer\Texture.h" />
     <ClInclude Include="src\QAQ\Renderer\VertexArray.h" />
-    <ClInclude Include="src\QAQ\Window.h" />
     <ClInclude Include="src\qaqpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
@@ -600,15 +599,15 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
-    <ClCompile Include="src\QAQ\Application.cpp" />
+    <ClCompile Include="src\QAQ\Core\Application.cpp" />
+    <ClCompile Include="src\QAQ\Core\Layer.cpp" />
+    <ClCompile Include="src\QAQ\Core\LayerStack.cpp" />
+    <ClCompile Include="src\QAQ\Core\Log.cpp" />
     <ClCompile Include="src\QAQ\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\QAQ\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\QAQ\Layer.cpp" />
-    <ClCompile Include="src\QAQ\LayerStack.cpp" />
-    <ClCompile Include="src\QAQ\Log.cpp" />
-    <ClCompile Include="src\QAQ\OrthographicCameraController.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Buffer.cpp" />
     <ClCompile Include="src\QAQ\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\QAQ\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\QAQ\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Renderer.cpp" />
     <ClCompile Include="src\QAQ\Renderer\RendererAPI.cpp" />

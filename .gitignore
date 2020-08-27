@@ -1,14 +1,13 @@
 # Binaries
-bin
-!vendorbinpremake
-bin-int
+**/bin/
+!vendor/bin/premake/
+bin-int/
 
-.log
-*.ini
+*.log
 
 # Visual Studio files and folder
-.vs
-.sln
-.vcxproj
-.vcxproj.filters
-.vcxproj.user
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user

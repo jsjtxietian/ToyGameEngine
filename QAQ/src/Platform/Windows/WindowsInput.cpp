@@ -1,13 +1,13 @@
 #include "qaqpch.h"
 #include "WindowsInput.h"
 
-#include "QAQ/Application.h"
+#include "QAQ/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 
 namespace QAQ{
 
-	Input* Input::s_Instance = new WindowsInput();
+	Scope<Input> Input::s_Instance = CreateScope<WindowsInput>();
 
 	bool WindowsInput::IsKeyPressedImpl(int keycode)
 	{

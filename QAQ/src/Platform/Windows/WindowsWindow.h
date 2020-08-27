@@ -1,7 +1,7 @@
 #pragma once
 #pragma once
 
-#include "QAQ/Window.h"
+#include "QAQ/Core/Window.h"
 #include <GLFW/glfw3.h>
 #include "QAQ/Renderer/GraphicsContext.h"
 
@@ -29,7 +29,7 @@ namespace QAQ {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
-		GraphicsContext* m_Context;
+		Scope<GraphicsContext> m_Context;
 
 		struct WindowData
 		{

@@ -81,17 +81,38 @@
     <ClInclude Include="src\QAQ.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\Application.h">
-      <Filter>src\QAQ</Filter>
+    <ClInclude Include="src\QAQ\Core\Application.h">
+      <Filter>src\QAQ\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\Core.h">
-      <Filter>src\QAQ</Filter>
+    <ClInclude Include="src\QAQ\Core\Core.h">
+      <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Core\EntryPoint.h">
+      <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Core\Input.h">
+      <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Core\KeyCodes.h">
+      <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Core\Layer.h">
+      <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Core\LayerStack.h">
+      <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Core\Log.h">
+      <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Core\MouseButtonCodes.h">
+      <Filter>src\QAQ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Core\TimeStep.h">
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\EntryPoint.h">
-      <Filter>src\QAQ</Filter>
+    <ClInclude Include="src\QAQ\Core\Window.h">
+      <Filter>src\QAQ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Events\ApplicationEvent.h">
       <Filter>src\QAQ\Events</Filter>
@@ -108,24 +129,6 @@
     <ClInclude Include="src\QAQ\ImGui\ImGuiLayer.h">
       <Filter>src\QAQ\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\Input.h">
-      <Filter>src\QAQ</Filter>
-    </ClInclude>
-    <ClInclude Include="src\QAQ\KeyCodes.h">
-      <Filter>src\QAQ</Filter>
-    </ClInclude>
-    <ClInclude Include="src\QAQ\Layer.h">
-      <Filter>src\QAQ</Filter>
-    </ClInclude>
-    <ClInclude Include="src\QAQ\LayerStack.h">
-      <Filter>src\QAQ</Filter>
-    </ClInclude>
-    <ClInclude Include="src\QAQ\Log.h">
-      <Filter>src\QAQ</Filter>
-    </ClInclude>
-    <ClInclude Include="src\QAQ\MouseButtonCodes.h">
-      <Filter>src\QAQ</Filter>
-    </ClInclude>
     <ClInclude Include="src\QAQ\Renderer\Buffer.h">
       <Filter>src\QAQ\Renderer</Filter>
     </ClInclude>
@@ -133,6 +136,9 @@
       <Filter>src\QAQ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Renderer\OrthographicCamera.h">
+      <Filter>src\QAQ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Renderer\OrthographicCameraController.h">
       <Filter>src\QAQ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Renderer\RenderCommand.h">
@@ -152,9 +158,6 @@
     </ClInclude>
     <ClInclude Include="src\QAQ\Renderer\VertexArray.h">
       <Filter>src\QAQ\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\QAQ\Window.h">
-      <Filter>src\QAQ</Filter>
     </ClInclude>
     <ClInclude Include="src\qaqpch.h">
       <Filter>src</Filter>
@@ -1386,7 +1389,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\OrthographicCameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1413,8 +1415,17 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\QAQ\Application.cpp">
-      <Filter>src\QAQ</Filter>
+    <ClCompile Include="src\QAQ\Core\Application.cpp">
+      <Filter>src\QAQ\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QAQ\Core\Layer.cpp">
+      <Filter>src\QAQ\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QAQ\Core\LayerStack.cpp">
+      <Filter>src\QAQ\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QAQ\Core\Log.cpp">
+      <Filter>src\QAQ\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\QAQ\ImGui\ImGuiBuild.cpp">
       <Filter>src\QAQ\ImGui</Filter>
@@ -1422,19 +1433,13 @@
     <ClCompile Include="src\QAQ\ImGui\ImGuiLayer.cpp">
       <Filter>src\QAQ\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\QAQ\Layer.cpp">
-      <Filter>src\QAQ</Filter>
-    </ClCompile>
-    <ClCompile Include="src\QAQ\LayerStack.cpp">
-      <Filter>src\QAQ</Filter>
-    </ClCompile>
-    <ClCompile Include="src\QAQ\Log.cpp">
-      <Filter>src\QAQ</Filter>
-    </ClCompile>
     <ClCompile Include="src\QAQ\Renderer\Buffer.cpp">
       <Filter>src\QAQ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\QAQ\Renderer\OrthographicCamera.cpp">
+      <Filter>src\QAQ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QAQ\Renderer\OrthographicCameraController.cpp">
       <Filter>src\QAQ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\QAQ\Renderer\RenderCommand.cpp">
@@ -1461,6 +1466,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\QAQ\OrthographicCameraController.cpp" />
   </ItemGroup>
 </Project>

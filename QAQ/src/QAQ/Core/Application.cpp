@@ -1,6 +1,6 @@
 #include "qaqpch.h"
 #include "Application.h"
-#include "QAQ/Log.h"
+#include "QAQ/Core/Log.h"
 #include "Input.h"
 #include "QAQ/Renderer/Renderer.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "QAQ/Core.h"
+#include "QAQ/Core/Core.h"
 
 namespace QAQ{
 	class QAQ_API Input {
@@ -25,6 +25,6 @@ namespace QAQ{
 		virtual std::pair<float, float> GetMousePositionImpl() = 0;
 
 	private:
-		static Input* s_Instance;
+		static Scope<Input> s_Instance;
 	};
 }

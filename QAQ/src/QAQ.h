@@ -2,15 +2,15 @@
 
 //For use by apps
 
-#include "QAQ/Application.h"
-#include "QAQ/Layer.h"
-#include "QAQ/Log.h"
+#include "QAQ/Core/Application.h"
+#include "QAQ/Core/Layer.h"
+#include "QAQ/Core/Log.h"
 
 #include "QAQ/Core/TimeStep.h"
 
-#include "QAQ/Input.h"
-#include "QAQ/KeyCodes.h"
-#include "QAQ/MouseButtonCodes.h"
+#include "QAQ/Core/Input.h"
+#include "QAQ/Core/KeyCodes.h"
+#include "QAQ/Core/MouseButtonCodes.h"
 
 #include "QAQ/ImGui/ImGuiLayer.h"
 
@@ -24,9 +24,9 @@
 #include "QAQ/Renderer/Texture.h"
 
 #include "QAQ/Renderer/OrthographicCamera.h"
-#include "QAQ/OrthographicCameraController.h"
+#include "QAQ/Renderer/OrthographicCameraController.h"
 
 
 //---Entry Point----------------------
-#include "QAQ/EntryPoint.h"
+#include "QAQ/Core/EntryPoint.h"
 //------------------------------------
