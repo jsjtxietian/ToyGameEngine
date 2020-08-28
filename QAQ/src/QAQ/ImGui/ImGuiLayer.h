@@ -15,7 +15,6 @@ namespace QAQ
 
 		virtual void OnAttach();
 		virtual void OnDetach();
-		virtual void OnImGuiRender();
 		void Begin();
 		void End();
 
