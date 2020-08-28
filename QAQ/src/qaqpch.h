@@ -13,6 +13,8 @@
 
 #include "QAQ/Core/Log.h"
 
+#include "QAQ/Debug/Instrumentor.h"
+
 #ifdef QAQ_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif 

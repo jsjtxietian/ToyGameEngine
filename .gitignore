@@ -3,6 +3,8 @@
 !vendor/bin/premake/
 bin-int/
 
+Sandbox/*.json
+
 *.log
 
 # Visual Studio files and folder

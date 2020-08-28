@@ -164,6 +164,7 @@
     <ClInclude Include="src\QAQ\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\QAQ\Core\TimeStep.h" />
     <ClInclude Include="src\QAQ\Core\Window.h" />
+    <ClInclude Include="src\QAQ\Debug\Instrumentor.h" />
     <ClInclude Include="src\QAQ\Events\ApplicationEvent.h" />
     <ClInclude Include="src\QAQ\Events\Event.h" />
     <ClInclude Include="src\QAQ\Events\KeyEvent.h" />
