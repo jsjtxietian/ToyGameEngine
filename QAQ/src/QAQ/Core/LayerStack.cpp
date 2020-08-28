@@ -1,11 +1,7 @@
 #include "qaqpch.h"
-#include "LayerStack.h"
+#include "QAQ/Core/LayerStack.h"
 
 namespace QAQ {
-
-	LayerStack::LayerStack()
-	{
-	}
 
 	LayerStack::~LayerStack()
 	{

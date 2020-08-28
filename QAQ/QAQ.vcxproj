@@ -607,6 +607,7 @@
     <ClCompile Include="src\QAQ\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\QAQ\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\QAQ\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\QAQ\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\QAQ\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\QAQ\Renderer\RenderCommand.cpp" />
@@ -635,4 +636,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-</Project> 
+</Project>

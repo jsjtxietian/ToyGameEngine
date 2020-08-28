@@ -1,7 +1,7 @@
 #include "qaqpch.h"
-#include "Shader.h"
+#include "QAQ/Renderer/Shader.h"
 
-#include "Renderer.h"
+#include "QAQ/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace QAQ {
@@ -11,7 +11,7 @@ namespace QAQ {
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:    QAQ_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(filepath);
+		case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(filepath);
 		}
 
 		QAQ_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -23,7 +23,7 @@ namespace QAQ {
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:    QAQ_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+		case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
 		}
 		QAQ_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;

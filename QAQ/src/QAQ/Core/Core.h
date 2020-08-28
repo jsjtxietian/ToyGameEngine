@@ -43,20 +43,6 @@
 	#error "Unknown platform!"
 #endif // End of platform detection
 
-// DLL support
-#ifdef QAQ_PLATFORM_WINDOWS
-	#if QAQ_DYNAMIC_LINK
-		#ifdef QAQ_BUILD_DLL
-			#define QAQ_API __declspec(dllexport)
-		#else
-			#define QAQ_API __declspec(dllimport)
-		#endif
-	#else
-		#define QAQ_API
-	#endif
-#else
-	#error QAQ only supports Windows!
-#endif // End of DLL support
 
 #ifdef QAQ_DEBUG
 	#define QAQ_ENABLE_ASSERTS

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Event.h"
+#include "QAQ/Events/Event.h"
 
 namespace QAQ {
 
-	class QAQ_API KeyEvent : public Event
+	class  KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -17,7 +17,7 @@ namespace QAQ {
 		int m_KeyCode;
 	};
 
-	class QAQ_API KeyPressedEvent : public KeyEvent
+	class  KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
@@ -37,7 +37,7 @@ namespace QAQ {
 		int m_RepeatCount;
 	};
 
-	class QAQ_API KeyReleasedEvent : public KeyEvent
+	class  KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keycode)
@@ -53,7 +53,7 @@ namespace QAQ {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
-	class QAQ_API KeyTypedEvent : public KeyEvent
+	class  KeyTypedEvent : public KeyEvent
 	{
 	public:
 		KeyTypedEvent(int keycode)

@@ -1,16 +1,16 @@
 #pragma once
 
 #include "QAQ/Core/Core.h"
-#include "Layer.h"
+#include "QAQ/Core/Layer.h"
 
 #include <vector>
 
 namespace QAQ {
 
-	class QAQ_API LayerStack
+	class  LayerStack
 	{
 	public:
-		LayerStack();
+		LayerStack() = default;
 		~LayerStack();
 
 		void PushLayer(Layer* layer);

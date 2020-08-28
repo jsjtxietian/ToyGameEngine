@@ -1,10 +1,9 @@
 #include <QAQ.h>
 #include <QAQ/Core/EntryPoint.h>
 
-#include "imgui/imgui.h"
+#include <imgui/imgui.h>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "Platform/OpenGL/OpenGLShader.h"
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Sandbox2D.h"
@@ -15,60 +14,58 @@ public:
 	ExampleLayer()
 		: Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{
-		//m_VertexArray = QAQ::VertexArray::Create();
+		m_VertexArray = QAQ::VertexArray::Create();
 
-		//float vertices[3 * 7] = {
-		//	-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
-		//	 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
-		//	 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
-		//};
+		float vertices[3 * 7] = {
+			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
+			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
+		};
 
-		//QAQ::Ref<QAQ::VertexBuffer> vertexBuffer;
-		//vertexBuffer.reset(QAQ::VertexBuffer::Create(vertices, sizeof(vertices)));
-		//QAQ::BufferLayout layout = {
-		//	{ QAQ::ShaderDataType::Float3, "a_Position" },
-		//	{ QAQ::ShaderDataType::Float4, "a_Color" }
-		//};
-		//vertexBuffer->SetLayout(layout);
-		//m_VertexArray->AddVertexBuffer(vertexBuffer);
+		QAQ::Ref<QAQ::VertexBuffer> vertexBuffer = QAQ::VertexBuffer::Create(vertices, sizeof(vertices));
+		QAQ::BufferLayout layout = {
+			{ QAQ::ShaderDataType::Float3, "a_Position" },
+			{ QAQ::ShaderDataType::Float4, "a_Color" }
+		};
+		vertexBuffer->SetLayout(layout);
+		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
-		//uint32_t indices[3] = { 0, 1, 2 };
-		//QAQ::Ref<QAQ::IndexBuffer> indexBuffer;
-		//indexBuffer.reset(QAQ::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-		//m_VertexArray->SetIndexBuffer(indexBuffer);
+		uint32_t indices[3] = { 0, 1, 2 };
+		QAQ::Ref<QAQ::IndexBuffer> indexBuffer = QAQ::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
+		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		//std::string vertexSrc = R"(
-		//	#version 330 core
-		//	
-		//	layout(location = 0) in vec3 a_Position;
-		//	layout(location = 1) in vec4 a_Color;
-		//	uniform mat4 u_ViewProjection;
-		//	uniform mat4 u_Transform;
-		//	out vec3 v_Position;
-		//	out vec4 v_Color;
-		//	void main()
-		//	{
-		//		v_Position = a_Position;
-		//		v_Color = a_Color;
-		//		gl_Position = vec4(a_Position, 1.0);
-		//		gl_Position = u_ViewProjection  * u_Transform * vec4(a_Position, 1.0);		
-		//	}
-		//)";
+		std::string vertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec4 a_Color;
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+			out vec3 v_Position;
+			out vec4 v_Color;
+			void main()
+			{
+				v_Position = a_Position;
+				v_Color = a_Color;
+				gl_Position = vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection  * u_Transform * vec4(a_Position, 1.0);		
+			}
+		)";
 
-		//std::string fragmentSrc = R"(
-		//	#version 330 core
-		//	
-		//	layout(location = 0) out vec4 color;
-		//	in vec3 v_Position;
-		//	in vec4 v_Color;
-		//	void main()
-		//	{
-		//		color = vec4(v_Position * 0.5 + 0.5, 1.0);
-		//		color = v_Color;
-		//	}
-		//)";
+		std::string fragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+			in vec3 v_Position;
+			in vec4 v_Color;
+			void main()
+			{
+				color = vec4(v_Position * 0.5 + 0.5, 1.0);
+				color = v_Color;
+			}
+		)";
 
-		//m_Shader = QAQ::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
+		m_Shader = QAQ::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 
 		m_SquareVA = QAQ::VertexArray::Create();
@@ -79,8 +76,7 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		QAQ::Ref<QAQ::VertexBuffer> squareVB;
-		squareVB.reset(QAQ::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		QAQ::Ref<QAQ::VertexBuffer> squareVB = QAQ::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVB->SetLayout({
 			{QAQ::ShaderDataType::Float3, "a_Position" },
 			{QAQ::ShaderDataType::Float2, "a_TexCoord" }
@@ -88,8 +84,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		QAQ::Ref<QAQ::IndexBuffer> squareIB;
-		squareIB.reset(QAQ::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		QAQ::Ref<QAQ::IndexBuffer> squareIB = QAQ::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string flatColorShaderVertexSrc = R"(
@@ -127,8 +122,8 @@ public:
 		m_Texture = QAQ::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_LogoTexture = QAQ::Texture2D::Create("assets/textures/Logo.png");
 
-		std::dynamic_pointer_cast<QAQ::OpenGLShader>(textureShader)->Bind();
-		std::dynamic_pointer_cast<QAQ::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+		textureShader->Bind();
+		textureShader->SetInt("u_Texture", 0);
 	}
 
 	void OnUpdate(QAQ::TimeStep ts) override
@@ -142,8 +137,8 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		std::dynamic_pointer_cast<QAQ::OpenGLShader>(m_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<QAQ::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		m_FlatColorShader->Bind();
+		m_FlatColorShader->SetFloat3("u_Color", m_SquareColor);
 
 		for (int y = 0; y < 20; y++)
 		{

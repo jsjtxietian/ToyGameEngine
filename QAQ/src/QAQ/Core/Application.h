@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Core.h"
-#include "Window.h"
+#include "QAQ/Core/Core.h"
+#include "QAQ/Core/Window.h"
 #include "QAQ/Core/LayerStack.h"
 #include "QAQ/Events/Event.h"
 #include "QAQ/Events/ApplicationEvent.h"
@@ -14,7 +14,7 @@ namespace QAQ
 	{
 	public:
 		Application();
-		virtual ~Application() = default;
+		virtual ~Application();
 
 		void Run();
 

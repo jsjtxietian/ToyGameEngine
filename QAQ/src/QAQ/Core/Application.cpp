@@ -1,28 +1,32 @@
 #include "qaqpch.h"
-#include "Application.h"
+
+#include "QAQ/Core/Application.h"
 #include "QAQ/Core/Log.h"
-#include "Input.h"
+#include "QAQ/Core/Input.h"
 #include "QAQ/Renderer/Renderer.h"
 
 #include <glfw/glfw3.h>
 
 namespace QAQ
 {
-#define BIND_EVENT_FN(x) std::bind(&Application::x,this,std::placeholders::_1)
-
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
 	{
 		QAQ_CORE_ASSERT(!s_Instance, "App already exists");
 		s_Instance = this;
-		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window = Window::Create();
+		m_Window->SetEventCallback(QAQ_BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverLay(m_ImGuiLayer);
+	}
+
+	Application::~Application()
+	{
+		Renderer::Shutdown();
 	}
 
 
@@ -54,8 +58,8 @@ namespace QAQ
 	void Application::OnEvent(Event & e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
+		dispatcher.Dispatch<WindowCloseEvent>(QAQ_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(QAQ_BIND_EVENT_FN(Application::OnWindowResize));
 
 		//QAQ_CORE_TRACE("{0}", e);
 

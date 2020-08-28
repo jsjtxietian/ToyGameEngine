@@ -1,7 +1,7 @@
 #pragma once
 
-#include "OrthographicCamera.h"
-#include "Texture.h"
+#include "QAQ/Renderer/OrthographicCamera.h"
+#include "QAQ/Renderer/Texture.h"
 
 namespace QAQ {
 

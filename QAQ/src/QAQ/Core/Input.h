@@ -3,7 +3,7 @@
 #include "QAQ/Core/Core.h"
 
 namespace QAQ{
-	class QAQ_API Input {
+	class  Input {
 	public:
 		Input(const Input&) = delete;
 		Input& operator=(const Input&) = delete;

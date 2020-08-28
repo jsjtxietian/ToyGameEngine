@@ -1,8 +1,8 @@
 #pragma once
 
-#include "RenderCommand.h"
-#include "OrthographicCamera.h"
-#include "Shader.h"
+#include "QAQ/Renderer/RenderCommand.h"
+#include "QAQ/Renderer/OrthographicCamera.h"
+#include "QAQ/Renderer/Shader.h"
 
 namespace QAQ {
 
@@ -10,6 +10,7 @@ namespace QAQ {
 	{
 	public:
 		static void Init();
+		static void Shutdown();
 		static void OnWindowResize(uint32_t width, uint32_t height);
 
 		static void BeginScene(OrthographicCamera& camera);

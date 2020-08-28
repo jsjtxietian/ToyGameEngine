@@ -1,7 +1,7 @@
 #include "qaqpch.h"
-#include "Texture.h"
+#include "QAQ/Renderer/Texture.h"
 
-#include "Renderer.h"
+#include "QAQ/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace QAQ {
