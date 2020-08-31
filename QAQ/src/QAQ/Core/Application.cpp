@@ -7,6 +7,7 @@
 
 #include <glfw/glfw3.h>
 
+
 namespace QAQ
 {
 	Application* Application::s_Instance = nullptr;

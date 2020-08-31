@@ -8,6 +8,8 @@
 #include "QAQ/ImGui/ImGuiLayer.h"
 #include "QAQ/Core/TimeStep.h"
 
+int main(int argc, char** argv);
+
 namespace QAQ
 {
 	class Application
@@ -16,7 +18,6 @@ namespace QAQ
 		Application();
 		virtual ~Application();
 
-		void Run();
 
 		void OnEvent(Event& e);
 
@@ -29,6 +30,7 @@ namespace QAQ
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
+		void Run();
 
 		static Application* s_Instance;
 
@@ -38,7 +40,8 @@ namespace QAQ
 		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0;
-		
+
+		friend int ::main(int argc, char** argv);
 	};
 
 	//to be defined in client
