@@ -19,6 +19,9 @@
     <Filter Include="src\QAQ\Core">
       <UniqueIdentifier>{7714F6B8-6377-855D-0CFD-BD13F83E51E0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\QAQ\Debug">
+      <UniqueIdentifier>{75FEC4D7-E1BE-400E-AAF9-898B167985EA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\QAQ\Events">
       <UniqueIdentifier>{C31FEFD3-AFED-E2D9-9881-530084EEBE3E}</UniqueIdentifier>
     </Filter>
@@ -105,14 +108,14 @@
     <ClInclude Include="src\QAQ\Core\Log.h">
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\Core\MouseButtonCodes.h">
-      <Filter>src\QAQ\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\QAQ\Core\TimeStep.h">
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Core\Window.h">
       <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Debug\Instrumentor.h">
+      <Filter>src\QAQ\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Events\ApplicationEvent.h">
       <Filter>src\QAQ\Events</Filter>
@@ -1392,7 +1395,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\Debug\Instrumentor.h" />
+    <ClInclude Include="src\QAQ\Core\MouseCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1440,6 +1443,9 @@
     <ClCompile Include="src\QAQ\Renderer\Buffer.cpp">
       <Filter>src\QAQ\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\QAQ\Renderer\GraphicsContext.cpp">
+      <Filter>src\QAQ\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\QAQ\Renderer\OrthographicCamera.cpp">
       <Filter>src\QAQ\Renderer</Filter>
     </ClCompile>
@@ -1473,6 +1479,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\QAQ\Renderer\GraphicsContext.cpp" />
   </ItemGroup>
 </Project>

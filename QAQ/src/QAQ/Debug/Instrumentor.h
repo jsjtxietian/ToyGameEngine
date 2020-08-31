@@ -122,7 +122,7 @@ namespace QAQ {
 	};
 }
 
-#define QAQ_PROFILE 1
+#define QAQ_PROFILE 0
 
 #if QAQ_PROFILE
 // Resolve which function signature macro will be used. Note that this only

@@ -10,7 +10,7 @@
 
 #include "QAQ/Core/Input.h"
 #include "QAQ/Core/KeyCodes.h"
-#include "QAQ/Core/MouseButtonCodes.h"
+#include "QAQ/Core/MouseCodes.h"
 
 #include "QAQ/ImGui/ImGuiLayer.h"
 
