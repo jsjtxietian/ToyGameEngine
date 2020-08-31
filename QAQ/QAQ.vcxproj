@@ -602,9 +602,11 @@
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\QAQ\Core\Application.cpp" />
+    <ClCompile Include="src\QAQ\Core\Input.cpp" />
     <ClCompile Include="src\QAQ\Core\Layer.cpp" />
     <ClCompile Include="src\QAQ\Core\LayerStack.cpp" />
     <ClCompile Include="src\QAQ\Core\Log.cpp" />
+    <ClCompile Include="src\QAQ\Core\Windows.cpp" />
     <ClCompile Include="src\QAQ\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\QAQ\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Buffer.cpp" />
