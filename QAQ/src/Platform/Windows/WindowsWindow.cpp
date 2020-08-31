@@ -4,8 +4,10 @@
 #include "QAQ//Events/ApplicationEvent.h"
 #include "QAQ//Events/MouseEvent.h"
 #include "QAQ//Events/KeyEvent.h"
+#include "QAQ/Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLContext.h"
+
 
 namespace QAQ {
 
@@ -55,6 +57,10 @@ namespace QAQ {
 
 		{
 			QAQ_PROFILE_SCOPE("glfwCreateWindow");
+		#ifdef QAQ_DEBUG
+			if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+				glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+		#endif
 			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 			++s_GLFWWindowCount;
 		}
