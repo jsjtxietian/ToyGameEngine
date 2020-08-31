@@ -16,6 +16,8 @@ namespace QAQ {
 
 	void OpenGLContext::Init()
 	{
+		QAQ_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		QAQ_CORE_ASSERT(status, "Failed to init Glad!");
@@ -37,6 +39,8 @@ namespace QAQ {
 
 	void OpenGLContext::SwapBuffers()
 	{
+		QAQ_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		glfwSwapBuffers(m_WindowHandle);
 	}

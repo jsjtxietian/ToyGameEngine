@@ -123,6 +123,7 @@ namespace QAQ {
 }
 
 #define QAQ_PROFILE 1
+
 #if QAQ_PROFILE
 #define QAQ_PROFILE_BEGIN_SESSION(name, filepath) ::QAQ::Instrumentor::Get().BeginSession(name, filepath)
 #define QAQ_PROFILE_END_SESSION() ::QAQ::Instrumentor::Get().EndSession()

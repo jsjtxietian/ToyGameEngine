@@ -10,6 +10,8 @@ namespace QAQ {
 
 	void Renderer::Init()
 	{
+		QAQ_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}
