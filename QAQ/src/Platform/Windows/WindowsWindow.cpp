@@ -46,7 +46,7 @@ namespace QAQ {
 			QAQ_PROFILE_SCOPE("glfwInit");
 			// TODO: glfwTerminate on system shutdown
 			int success = glfwInit();
-			QAQ_CORE_ASSERT(success, "Could not intialize GLFW!");
+			QAQ_CORE_ASSERT(success, "Could not init GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 		}
 
