@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "QAQ/Core/Core.h"
+#include "QAQ/Core/Base.h"
 
 namespace QAQ {
 

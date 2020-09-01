@@ -2,7 +2,7 @@
 
 #include "qaqpch.h"
 
-#include "QAQ/Core/Core.h"
+#include "QAQ/Core/Base.h"
 #include "QAQ/Events/Event.h"
 
 namespace QAQ {

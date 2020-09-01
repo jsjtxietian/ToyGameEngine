@@ -1,6 +1,6 @@
 #pragma once
 
-#include "QAQ/Core/Core.h"
+#include "QAQ/Core/Base.h"
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
 

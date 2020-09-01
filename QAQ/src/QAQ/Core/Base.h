@@ -45,12 +45,22 @@
 
 
 #ifdef QAQ_DEBUG
+	#if defined(QAQ_PLATFORM_WINDOWS)
+		#define QAQ_DEBUGBREAK() __debugbreak()
+	#elif defined(QAQ_PLATFORM_LINUX)
+		#include <signal.h>
+		#define QAQ_DEBUGBREAK() raise(SIGTRAP)
+	#else
+		#error "Platform doesn't support debugbreak yet!"
+	#endif
 	#define QAQ_ENABLE_ASSERTS
+#else
+	#define QAQ_DEBUGBREAK()
 #endif
 
 #ifdef QAQ_ENABLE_ASSERTS
-	#define QAQ_ASSERT(x, ...) { if(!(x)) { QAQ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define QAQ_CORE_ASSERT(x, ...) { if(!(x)) { QAQ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define QAQ_ASSERT(x, ...) { if(!(x)) { QAQ_ERROR("Assertion Failed: {0}", __VA_ARGS__);  QAQ_DEBUGBREAK(); } }
+	#define QAQ_CORE_ASSERT(x, ...) { if(!(x)) { QAQ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__);  QAQ_DEBUGBREAK(); } }
 #else
 	#define QAQ_ASSERT(x, ...)
 	#define QAQ_CORE_ASSERT(x, ...)

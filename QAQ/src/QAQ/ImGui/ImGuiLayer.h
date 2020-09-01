@@ -15,6 +15,8 @@ namespace QAQ
 
 		virtual void OnAttach();
 		virtual void OnDetach();
+		virtual void OnEvent(Event& e) override;
+
 		void Begin();
 		void End();
 

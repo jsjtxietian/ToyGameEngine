@@ -1,6 +1,6 @@
 #pragma once
 
-#include "QAQ/Core/Core.h"
+#include "QAQ/Core/Base.h"
 #include "QAQ/Core/Layer.h"
 
 #include <vector>

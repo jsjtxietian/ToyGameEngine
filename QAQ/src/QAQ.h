@@ -1,7 +1,7 @@
 #pragma once
 
 //For use by apps
-#include "QAQ/Core/Core.h"
+#include "QAQ/Core/Base.h"
 #include "QAQ/Core/Application.h"
 #include "QAQ/Core/Layer.h"
 #include "QAQ/Core/Log.h"

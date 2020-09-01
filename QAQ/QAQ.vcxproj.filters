@@ -87,9 +87,6 @@
     <ClInclude Include="src\QAQ\Core\Application.h">
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\Core\Core.h">
-      <Filter>src\QAQ\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\QAQ\Core\EntryPoint.h">
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
@@ -1396,6 +1393,9 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Core\MouseCodes.h" />
+    <ClInclude Include="src\QAQ\Core\Base.h">
+      <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
