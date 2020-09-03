@@ -4,6 +4,25 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+static const uint32_t s_MapWidth = 24;
+
+static const char* s_MapTiles =
+"WWWWWWWWWWWWWWWWWWWWWWWW"
+"WWWWWWWDDDDDDDDDDDWWWWWW"
+"WWWWWDDDDDDDDDDDDDDWWWWW"
+"WWWDDDDDDDDDDDDDDDDDWWWW"
+"WWDDDDDDDDDDDDDDDDDDDWWW"
+"WWDDDDDDDDDDDDDDDDDDDWWW"
+"WWWWDDDDDDDDDDDDDDWWWWWW"
+"WWWWWDDDDDDDDDDWWWWWWWWW"
+"WWWWWWDDDDDDDDWWWWDDDWWW"
+"WWWWWDDDDDDDDDWWWWWWWWWW"
+"WWWWDDDDDDDDDDDWWWWWWWWW"
+"WWWWWDDDDDDDDDWWWWWWWWWW"
+"WWWWWWWDDDDDWWWWWWWWWWWW"
+"WWWWWWWWWWWWWWWWWWWWWWWW"
+;
+
 
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f), m_SquareColor({ 0.2f, 0.3f, 0.8f, 1.0f })
@@ -18,10 +37,16 @@ void Sandbox2D::OnAttach()
 	m_CheckerboardTexture = QAQ::Texture2D::Create("assets/textures/Checkerboard.png");
 	m_SpriteSheet = QAQ::Texture2D::Create("assets/game/textures/rpgsheet.png");
 
+	m_TextureTree = QAQ::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 2,1 }, { 128,256 }, { 1,2 });
 	m_TextureStairs = QAQ::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 7,6 }, { 128,128 });
 	m_TextureBarriers = QAQ::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 8,2 }, { 128,128 });
-	m_TextureTree = QAQ::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 2,1 }, { 128,256 }, { 1,2 });
-	
+
+	s_TextureMap['D'] = QAQ::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 6,11 }, { 128,128 });
+	s_TextureMap['W'] = QAQ::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 11,11 }, { 128,128 });
+
+	m_MapWidth = s_MapWidth;
+	m_MapHeight = strlen(s_MapTiles) / s_MapWidth;
+
 	m_Particle.ColorBegin = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
 	m_Particle.ColorEnd = { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f, 1.0f };
 	m_Particle.SizeBegin = 0.5f, m_Particle.SizeVariation = 0.3f, m_Particle.SizeEnd = 0.0f;
@@ -29,6 +54,8 @@ void Sandbox2D::OnAttach()
 	m_Particle.Velocity = { 0.0f, 0.0f };
 	m_Particle.VelocityVariation = { 3.0f, 1.0f };
 	m_Particle.Position = { 0.0f, 0.0f };
+
+	m_CameraController.SetZoomLevel(5);
 }
 
 void Sandbox2D::OnDetach()
@@ -58,13 +85,13 @@ void Sandbox2D::OnUpdate(QAQ::TimeStep ts)
 
 		QAQ_PROFILE_SCOPE("Renderer Draw");
 		QAQ::Renderer2D::BeginScene(m_CameraController.GetCamera());
-		
+
 		QAQ::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
 		QAQ::Renderer2D::DrawRotatedQuad({ 1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
 		QAQ::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_SquareColor);
 		QAQ::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 20.0f, 20.0f }, m_CheckerboardTexture, 10.0f);
 		QAQ::Renderer2D::DrawRotatedQuad({ -2.0f, 0.0f, 0.0f }, { 1.0f, 1.0f }, glm::radians(rotation), m_CheckerboardTexture, 20.0f);
-		
+
 		QAQ::Renderer2D::EndScene();
 
 		QAQ::Renderer2D::BeginScene(m_CameraController.GetCamera());
@@ -77,7 +104,7 @@ void Sandbox2D::OnUpdate(QAQ::TimeStep ts)
 			}
 		}
 		QAQ::Renderer2D::EndScene();
-	}
+}
 #endif
 
 	if (QAQ::Input::IsMouseButtonPressed(QAQ_MOUSE_BUTTON_LEFT))
@@ -99,9 +126,23 @@ void Sandbox2D::OnUpdate(QAQ::TimeStep ts)
 	m_ParticleSystem.OnRender(m_CameraController.GetCamera());
 
 	QAQ::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	QAQ::Renderer2D::DrawQuad({ 0.0f, 0.0f,0.5f }, { 1.0f, 1.0f }, m_TextureStairs);
-	QAQ::Renderer2D::DrawQuad({ 1.0f, 0.0f,0.5f }, { 1.0f, 1.0f }, m_TextureBarriers);
-	QAQ::Renderer2D::DrawQuad({ -1.0f, 0.0f,0.5f }, { 1.0f, 2.0f }, m_TextureTree);
+
+	for (uint32_t y = 0; y < m_MapHeight; y++)
+	{
+		for (uint32_t x = 0; x < m_MapWidth; x++)
+		{
+			char tileType = s_MapTiles[x + y * m_MapWidth];
+			QAQ::Ref<QAQ::SubTexture2D> texture;
+			if (s_TextureMap.find(tileType) != s_TextureMap.end())
+				texture = s_TextureMap[tileType];
+			else
+				texture = m_TextureBarriers;
+
+			QAQ::Renderer2D::DrawQuad({ x - m_MapWidth / 2.0f , m_MapHeight / 2.0f  - y  ,0.5f }, { 1,1 }, texture);
+			//QAQ::Renderer2D::DrawQuad({ x , y ,0.5f }, { 1,1 }, texture);
+		}
+	}
+
 	QAQ::Renderer2D::EndScene();
 }
 
