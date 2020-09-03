@@ -23,6 +23,7 @@
 #include "QAQ/Renderer/Shader.h"
 #include "QAQ/Renderer/VertexArray.h"
 #include "QAQ/Renderer/Texture.h"
+#include "QAQ/Renderer/SubTexture2D.h"
 
 #include "QAQ/Renderer/OrthographicCamera.h"
 #include "QAQ/Renderer/OrthographicCameraController.h"

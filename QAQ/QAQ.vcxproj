@@ -179,6 +179,7 @@
     <ClInclude Include="src\QAQ\Renderer\Renderer2D.h" />
     <ClInclude Include="src\QAQ\Renderer\RendererAPI.h" />
     <ClInclude Include="src\QAQ\Renderer\Shader.h" />
+    <ClInclude Include="src\QAQ\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\QAQ\Renderer\Texture.h" />
     <ClInclude Include="src\QAQ\Renderer\VertexArray.h" />
     <ClInclude Include="src\qaqpch.h" />
@@ -618,6 +619,7 @@
     <ClCompile Include="src\QAQ\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\QAQ\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Shader.cpp" />
+    <ClCompile Include="src\QAQ\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\QAQ\Renderer\Texture.cpp" />
     <ClCompile Include="src\QAQ\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\qaqpch.cpp">

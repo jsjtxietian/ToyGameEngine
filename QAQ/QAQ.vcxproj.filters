@@ -1396,6 +1396,7 @@
     <ClInclude Include="src\QAQ\Core\Base.h">
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\QAQ\Renderer\SubTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1481,5 +1482,6 @@
     </ClCompile>
     <ClCompile Include="src\QAQ\Core\Input.cpp" />
     <ClCompile Include="src\QAQ\Core\Windows.cpp" />
+    <ClCompile Include="src\QAQ\Renderer\SubTexture2D.cpp" />
   </ItemGroup>
 </Project>

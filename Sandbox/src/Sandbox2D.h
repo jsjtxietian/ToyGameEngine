@@ -25,6 +25,7 @@ private:
 
 	QAQ::Ref<QAQ::Texture2D> m_CheckerboardTexture;
 	QAQ::Ref<QAQ::Texture2D> m_SpriteSheet;
+	QAQ::Ref<QAQ::SubTexture2D> m_TextureStairs, m_TextureBarriers , m_TextureTree;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 
