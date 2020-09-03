@@ -18,7 +18,6 @@ namespace QAQ
 		Application();
 		virtual ~Application();
 
-
 		void OnEvent(Event& e);
 
 		void PushLayer(Layer* layer);
@@ -26,6 +25,8 @@ namespace QAQ
 
 		inline  Window& GetWindow() { return *m_Window; }
 		inline static Application& Get() { return *s_Instance; }
+
+		void Close();
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);

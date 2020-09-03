@@ -68,6 +68,11 @@ namespace QAQ
 		}
 	}
 
+	void Application::Close()
+	{
+		m_Running = false;
+	}
+
 	void Application::OnEvent(Event & e)
 	{
 		QAQ_PROFILE_FUNCTION();
