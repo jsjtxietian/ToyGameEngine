@@ -56,6 +56,11 @@ void Sandbox2D::OnAttach()
 	m_Particle.Position = { 0.0f, 0.0f };
 
 	m_CameraController.SetZoomLevel(5);
+
+	QAQ::FramebufferSpecification fbSpec;
+	fbSpec.Width = 1280;
+	fbSpec.Height = 720;
+	m_Framebuffer = QAQ::Framebuffer::Create(fbSpec);
 }
 
 void Sandbox2D::OnDetach()
@@ -74,6 +79,7 @@ void Sandbox2D::OnUpdate(QAQ::TimeStep ts)
 
 	{
 		QAQ_PROFILE_SCOPE("Renderer Prep");
+		m_Framebuffer->Bind();
 		QAQ::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		QAQ::RenderCommand::Clear();
 	}
@@ -144,6 +150,7 @@ void Sandbox2D::OnUpdate(QAQ::TimeStep ts)
 	}
 
 	QAQ::Renderer2D::EndScene();
+	m_Framebuffer->Unbind();
 }
 
 void Sandbox2D::OnImGuiRender()
@@ -222,8 +229,8 @@ void Sandbox2D::OnImGuiRender()
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-		uint32_t textureID = m_CheckerboardTexture->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image((void*)textureID, ImVec2{ 1280, 720 });
 		ImGui::End();
 
 		ImGui::End();
@@ -242,7 +249,7 @@ void Sandbox2D::OnImGuiRender()
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
 		uint32_t textureID = m_CheckerboardTexture->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		ImGui::Image((void*)textureID, ImVec2{ 1280, 720 });
 		ImGui::End();
 	}
 

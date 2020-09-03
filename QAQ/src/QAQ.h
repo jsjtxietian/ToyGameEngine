@@ -21,6 +21,7 @@
 
 #include "QAQ/Renderer/Buffer.h"
 #include "QAQ/Renderer/Shader.h"
+#include "QAQ/Renderer/Framebuffer.h"
 #include "QAQ/Renderer/VertexArray.h"
 #include "QAQ/Renderer/Texture.h"
 #include "QAQ/Renderer/SubTexture2D.h"

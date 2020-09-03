@@ -22,6 +22,7 @@ private:
 	// Temp
 	QAQ::Ref<QAQ::VertexArray> m_SquareVA;
 	QAQ::Ref<QAQ::Shader> m_FlatColorShader;
+	QAQ::Ref<QAQ::Framebuffer> m_Framebuffer;
 
 	QAQ::Ref<QAQ::Texture2D> m_CheckerboardTexture;
 	QAQ::Ref<QAQ::Texture2D> m_SpriteSheet;
