@@ -1,13 +1,14 @@
 #include "qaqpch.h"
-#include "Platform/Windows/WindowsInput.h"
 
 #include "QAQ/Core/Application.h"
+#include "QAQ/Core/Input.h"
+
 #include <GLFW/glfw3.h>
 
 
 namespace QAQ{
 
-	bool WindowsInput::IsKeyPressedImpl(KeyCode key)
+	bool Input::IsKeyPressed(KeyCode key)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetKey(window, static_cast<int32_t>(key));
@@ -15,7 +16,7 @@ namespace QAQ{
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	bool WindowsInput::IsMouseButtonPressedImpl(MouseCode button)
+	bool Input::IsMouseButtonPressed(MouseCode button)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetMouseButton(window, static_cast<int32_t>(button));
@@ -23,18 +24,19 @@ namespace QAQ{
 		return state == GLFW_PRESS;
 	}
 
-	float WindowsInput::GetMouseXImpl()
+	float Input::GetMouseX()
 	{
 		auto[x, y] = GetMousePosition();
 		return y;
 	}
-	float WindowsInput::GetMouseYImpl()
+
+	float Input::GetMouseY()
 	{
 		auto[x, y] = GetMousePosition();
 		return x;
 	}
 
-	std::pair<float, float> WindowsInput::GetMousePositionImpl()
+	std::pair<float, float> Input::GetMousePosition()
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		double xpos, ypos;
