@@ -63,6 +63,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -87,6 +90,9 @@
     <ClInclude Include="src\QAQ\Core\Application.h">
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\QAQ\Core\Base.h">
+      <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\QAQ\Core\EntryPoint.h">
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
@@ -103,6 +109,9 @@
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Core\Log.h">
+      <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Core\MouseCodes.h">
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Core\TimeStep.h">
@@ -132,6 +141,9 @@
     <ClInclude Include="src\QAQ\Renderer\Buffer.h">
       <Filter>src\QAQ\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\QAQ\Renderer\Framebuffer.h">
+      <Filter>src\QAQ\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\QAQ\Renderer\GraphicsContext.h">
       <Filter>src\QAQ\Renderer</Filter>
     </ClInclude>
@@ -154,6 +166,9 @@
       <Filter>src\QAQ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Renderer\Shader.h">
+      <Filter>src\QAQ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Renderer\SubTexture2D.h">
       <Filter>src\QAQ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Renderer\Texture.h">
@@ -1392,19 +1407,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\Core\MouseCodes.h" />
-    <ClInclude Include="src\QAQ\Core\Base.h">
-      <Filter>src\QAQ\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\QAQ\Renderer\SubTexture2D.h" />
-    <ClInclude Include="src\QAQ\Renderer\Framebuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
@@ -1428,6 +1439,9 @@
     <ClCompile Include="src\QAQ\Core\Application.cpp">
       <Filter>src\QAQ\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\QAQ\Core\Input.cpp">
+      <Filter>src\QAQ\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\QAQ\Core\Layer.cpp">
       <Filter>src\QAQ\Core</Filter>
     </ClCompile>
@@ -1437,6 +1451,9 @@
     <ClCompile Include="src\QAQ\Core\Log.cpp">
       <Filter>src\QAQ\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\QAQ\Core\Windows.cpp">
+      <Filter>src\QAQ\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\QAQ\ImGui\ImGuiBuild.cpp">
       <Filter>src\QAQ\ImGui</Filter>
     </ClCompile>
@@ -1444,6 +1461,9 @@
       <Filter>src\QAQ\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\QAQ\Renderer\Buffer.cpp">
+      <Filter>src\QAQ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QAQ\Renderer\Framebuffer.cpp">
       <Filter>src\QAQ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\QAQ\Renderer\GraphicsContext.cpp">
@@ -1470,6 +1490,9 @@
     <ClCompile Include="src\QAQ\Renderer\Shader.cpp">
       <Filter>src\QAQ\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\QAQ\Renderer\SubTexture2D.cpp">
+      <Filter>src\QAQ\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\QAQ\Renderer\Texture.cpp">
       <Filter>src\QAQ\Renderer</Filter>
     </ClCompile>
@@ -1482,10 +1505,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\QAQ\Core\Input.cpp" />
-    <ClCompile Include="src\QAQ\Core\Windows.cpp" />
-    <ClCompile Include="src\QAQ\Renderer\SubTexture2D.cpp" />
-    <ClCompile Include="src\QAQ\Renderer\Framebuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
   </ItemGroup>
 </Project>

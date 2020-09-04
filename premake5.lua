@@ -1,6 +1,6 @@
 workspace "ToyEngine"
 	architecture "x86_64"
-	startproject "Sandbox"
+	startproject "QAQNut"
 
 	configurations
 	{
@@ -137,6 +137,53 @@ project "Sandbox"
 	filter "system:windows"
 		systemversion "latest"
 
+
+	filter "configurations:Debug"
+		defines "QAQ_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "QAQ_RELEASE"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		defines "QAQ_DIST"
+		runtime "Release"
+		optimize "on"
+
+project "QAQNut"
+	location "QAQNut"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs
+	{
+		"QAQ/vendor/spdlog/include",
+		"QAQ/src",
+		"QAQ/vendor",
+		"%{IncludeDir.glm}"
+	}
+
+	links
+	{
+		"QAQ"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
 
 	filter "configurations:Debug"
 		defines "QAQ_DEBUG"

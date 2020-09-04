@@ -6,7 +6,7 @@
 #include "Platform/OpenGL/OpenGLFramebuffer.h"
 
 namespace QAQ {
-
+	
 	Ref<Framebuffer> Framebuffer::Create(const FramebufferSpecification& spec)
 	{
 		switch (Renderer::GetAPI())
