@@ -50,6 +50,12 @@ namespace QAQ {
 
 	void OpenGLFramebuffer::Resize(uint32_t width, uint32_t height)
 	{
+		if (width == 0 || height == 0 || width > 8192 || height > 8192)
+		{
+			QAQ_CORE_WARN("Attempt to resize frame buffer to {0} , {1}", width, height);
+			return;  
+		}
+
 		m_Specification.Width = width;
 		m_Specification.Height = height;
 

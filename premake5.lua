@@ -22,6 +22,7 @@ IncludeDir["GLAD"] = "QAQ/vendor/GLAD/include"
 IncludeDir["ImGui"] = "QAQ/vendor/imgui"
 IncludeDir["glm"] = "QAQ/vendor/glm"
 IncludeDir["stb_image"] = "QAQ/vendor/stb_image"
+IncludeDir["entt"] = "QAQ/vendor/entt/include"
 
 group "Dependencies"
 	include "QAQ/vendor/GLFW"
@@ -67,7 +68,8 @@ project "QAQ"
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}",
 	}
 
 	links 
@@ -127,6 +129,7 @@ project "Sandbox"
 		"QAQ/src",
 		"%{IncludeDir.glm}",
 		"QAQ/vendor",
+		"%{IncludeDir.entt}"
 	}
 
 	links
@@ -174,7 +177,8 @@ project "QAQNut"
 		"QAQ/vendor/spdlog/include",
 		"QAQ/src",
 		"QAQ/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
