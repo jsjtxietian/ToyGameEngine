@@ -3,6 +3,7 @@
 #include "QAQ/Renderer/OrthographicCamera.h"
 #include "QAQ/Renderer/Texture.h"
 #include "QAQ/Renderer/SubTexture2D.h"
+#include "QAQ/Renderer/Camera.h"
 
 namespace QAQ {
 
@@ -12,7 +13,8 @@ namespace QAQ {
 		static void Init();
 		static void Shutdown();
 
-		static void BeginScene(const OrthographicCamera& camera);
+		static void BeginScene(const OrthographicCamera& camera); //todo remove
+		static void BeginScene(const Camera& camera,const glm::mat4& transform);
 		static void EndScene();
 		static void Flush();
 

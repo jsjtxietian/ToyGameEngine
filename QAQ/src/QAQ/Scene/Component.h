@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include "QAQ/Renderer/Camera.h"
 
 namespace QAQ {
 
@@ -34,5 +35,14 @@ namespace QAQ {
 			: Color(color) {}
 	};
 
+	struct CameraComponent
+	{
+		Camera Camera;
+		bool Primary = true; //todo move to scene
 
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent&) = default;
+		CameraComponent(const glm::mat4 & projection)
+			: Camera(projection) {}
+	};
 }

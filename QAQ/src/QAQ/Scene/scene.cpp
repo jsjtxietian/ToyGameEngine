@@ -72,11 +72,37 @@ namespace QAQ {
 
 	void Scene::OnUpdate(TimeStep ts)
 	{
-		auto group = m_Registry.group<TranformComponent>(entt::get<SpriteRendererComponent>);
+		//render 2D
+		Camera* mainCamera = nullptr;
+		glm::mat4* cameraTransform = nullptr;
+
+		auto group = m_Registry.view<TranformComponent, CameraComponent >();
 		for (auto entity : group)
 		{
-			auto& [transform, sprite] = group.get<TranformComponent, SpriteRendererComponent>(entity);
-			Renderer2D::DrawQuad(transform, sprite.Color);
+			auto& [transform, camera] = group.get<TranformComponent, CameraComponent>(entity);
+			if (camera.Primary)
+			{
+				mainCamera = &camera.Camera;
+				cameraTransform = &transform.Tranform;
+				break;
+			}
 		}
+
+		if (mainCamera)
+		{
+			Renderer2D::BeginScene(mainCamera->GetProjection(),*cameraTransform);
+
+
+			auto group = m_Registry.group<TranformComponent>(entt::get<SpriteRendererComponent>);
+			for (auto entity : group)
+			{
+				auto& [transform, sprite] = group.get<TranformComponent, SpriteRendererComponent>(entity);
+				Renderer2D::DrawQuad(transform, sprite.Color);
+			}
+
+			Renderer2D::EndScene();
+		}
+
+
 	}
 }

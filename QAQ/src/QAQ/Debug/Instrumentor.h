@@ -28,10 +28,8 @@ namespace QAQ {
 	{
 
 	public:
-		Instrumentor()
-			: m_CurrentSession(nullptr)
-		{
-		}
+		Instrumentor(const Instrumentor&) = delete;
+		Instrumentor(Instrumentor&&) = delete;
 
 		void BeginSession(const std::string& name, const std::string& filepath = "results.json")
 		{
@@ -97,6 +95,16 @@ namespace QAQ {
 		std::mutex m_Mutex;
 		InstrumentationSession* m_CurrentSession;
 		std::ofstream m_OutputStream;
+
+		Instrumentor()
+			: m_CurrentSession(nullptr)
+		{
+		}
+
+		~Instrumentor()
+		{
+			EndSession();
+		}
 
 		// Note: you must already own lock on m_Mutex before
 		// calling InternalEndSession()
@@ -186,35 +194,37 @@ namespace QAQ {
 #define QAQ_PROFILE 0
 
 #if QAQ_PROFILE
-// Resolve which function signature macro will be used. Note that this only
-// is resolved when the (pre)compiler starts, so the syntax highlighting
-// could mark the wrong one in your editor!
-#if defined(__GNUC__) || (defined(__MWERKS__) && (__MWERKS__ >= 0x3000)) || (defined(__ICC) && (__ICC >= 600)) || defined(__ghs__)
-	#define QAQ_FUNC_SIG __PRETTY_FUNCTION__
-#elif defined(__DMC__) && (__DMC__ >= 0x810)
-	#define QAQ_FUNC_SIG __PRETTY_FUNCTION__
-#elif (defined(__FUNCSIG__) || (_MSC_VER))
-	#define QAQ_FUNC_SIG __FUNCSIG__
-#elif (defined(__INTEL_COMPILER) && (__INTEL_COMPILER >= 600)) || (defined(__IBMCPP__) && (__IBMCPP__ >= 500))
-	#define QAQ_FUNC_SIG __FUNCTION__
-#elif defined(__BORLANDC__) && (__BORLANDC__ >= 0x550)
-	#define QAQ_FUNC_SIG __FUNC__
-#elif defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901)
-	#define QAQ_FUNC_SIG __func__
-#elif defined(__cplusplus) && (__cplusplus >= 201103)
-	#define QAQ_FUNC_SIG __func__
-#else
-	#define QAQ_FUNC_SIG "QAQ_FUNC_SIG unknown!"
-#endif
+	// Resolve which function signature macro will be used. Note that this only
+	// is resolved when the (pre)compiler starts, so the syntax highlighting
+	// could mark the wrong one in your editor!
+	#if defined(__GNUC__) || (defined(__MWERKS__) && (__MWERKS__ >= 0x3000)) || (defined(__ICC) && (__ICC >= 600)) || defined(__ghs__)
+		#define QAQ_FUNC_SIG __PRETTY_FUNCTION__
+	#elif defined(__DMC__) && (__DMC__ >= 0x810)
+		#define QAQ_FUNC_SIG __PRETTY_FUNCTION__
+	#elif (defined(__FUNCSIG__) || (_MSC_VER))
+		#define QAQ_FUNC_SIG __FUNCSIG__
+	#elif (defined(__INTEL_COMPILER) && (__INTEL_COMPILER >= 600)) || (defined(__IBMCPP__) && (__IBMCPP__ >= 500))
+		#define QAQ_FUNC_SIG __FUNCTION__
+	#elif defined(__BORLANDC__) && (__BORLANDC__ >= 0x550)
+		#define QAQ_FUNC_SIG __FUNC__
+	#elif defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901)
+		#define QAQ_FUNC_SIG __func__
+	#elif defined(__cplusplus) && (__cplusplus >= 201103)
+		#define QAQ_FUNC_SIG __func__
+	#else
+		#define QAQ_FUNC_SIG "QAQ_FUNC_SIG unknown!"
+	#endif
 
-#define QAQ_PROFILE_BEGIN_SESSION(name, filepath) ::QAQ::Instrumentor::Get().BeginSession(name, filepath)
-#define QAQ_PROFILE_END_SESSION() ::QAQ::Instrumentor::Get().EndSession()
-#define QAQ_PROFILE_SCOPE(name) constexpr auto fixedName = ::QAQ::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
-									::QAQ::InstrumentationTimer timer##__LINE__(fixedName.Data)
-#define QAQ_PROFILE_FUNCTION() QAQ_PROFILE_SCOPE(QAQ_FUNC_SIG)
+	#define QAQ_PROFILE_BEGIN_SESSION(name, filepath) ::QAQ::Instrumentor::Get().BeginSession(name, filepath)
+	#define QAQ_PROFILE_END_SESSION() ::QAQ::Instrumentor::Get().EndSession()
+	#define HZ_PROFILE_SCOPE_LINE2(name, line) constexpr auto fixedName##line = ::Hazel::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
+												   ::Hazel::InstrumentationTimer timer##line(fixedName##line.Data)
+	#define HZ_PROFILE_SCOPE_LINE(name, line) HZ_PROFILE_SCOPE_LINE2(name, line)
+	#define HZ_PROFILE_SCOPE(name) HZ_PROFILE_SCOPE_LINE(name, __LINE__)
+	#define QAQ_PROFILE_FUNCTION() QAQ_PROFILE_SCOPE(QAQ_FUNC_SIG)
 #else
-#define QAQ_PROFILE_BEGIN_SESSION(name, filepath)
-#define QAQ_PROFILE_END_SESSION()
-#define QAQ_PROFILE_SCOPE(name)
-#define QAQ_PROFILE_FUNCTION()
+	#define QAQ_PROFILE_BEGIN_SESSION(name, filepath)
+	#define QAQ_PROFILE_END_SESSION()
+	#define QAQ_PROFILE_SCOPE(name)
+	#define QAQ_PROFILE_FUNCTION()
 #endif 

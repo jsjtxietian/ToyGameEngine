@@ -1407,6 +1407,7 @@
     <ClInclude Include="src\QAQ\Scene\Component.h" />
     <ClInclude Include="src\QAQ\Scene\Entity.h" />
     <ClInclude Include="src\QAQ\Scene\Scene.h" />
+    <ClInclude Include="src\QAQ\Renderer\Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">

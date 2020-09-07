@@ -171,6 +171,7 @@
     <ClInclude Include="src\QAQ\Events\MouseEvent.h" />
     <ClInclude Include="src\QAQ\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\QAQ\Renderer\Buffer.h" />
+    <ClInclude Include="src\QAQ\Renderer\Camera.h" />
     <ClInclude Include="src\QAQ\Renderer\Framebuffer.h" />
     <ClInclude Include="src\QAQ\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\QAQ\Renderer\OrthographicCamera.h" />
