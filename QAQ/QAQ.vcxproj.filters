@@ -1404,8 +1404,9 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\Scene\scene.h" />
     <ClInclude Include="src\QAQ\Scene\Component.h" />
+    <ClInclude Include="src\QAQ\Scene\Entity.h" />
+    <ClInclude Include="src\QAQ\Scene\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1501,6 +1502,7 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\QAQ\Scene\scene.cpp" />
+    <ClCompile Include="src\QAQ\Scene\Entity.cpp" />
+    <ClCompile Include="src\QAQ\Scene\Scene.cpp" />
   </ItemGroup>
 </Project>

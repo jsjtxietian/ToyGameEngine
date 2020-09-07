@@ -1,9 +1,10 @@
 #include "qaqpch.h"
 
 #include <glm/glm.hpp>
-#include "QAQ/Scene/scene.h"
+#include "QAQ/Scene/Scene.h"
 #include "QAQ/Scene/Component.h"
 #include "QAQ/Renderer/Renderer2D.h"
+#include "QAQ/Scene/Entity.h"
 
 namespace QAQ {
 
@@ -20,7 +21,7 @@ namespace QAQ {
 	Scene::Scene()
 	{
 #if 0 // example
-		struct MeshComponent 
+		struct MeshComponent
 		{
 			float value;
 			MeshComponent() = default;
@@ -58,9 +59,15 @@ namespace QAQ {
 
 	}
 
-	entt::entity Scene::CreateEntity()
+	Entity Scene::CreateEntity(const std::string& name)
 	{
-		return m_Registry.create();
+		Entity entity = { m_Registry.create(),this };
+		entity.AddComponent<TranformComponent>();
+
+		auto& tag = entity.AddComponent<TagComponent>();
+		tag.Tag = name.empty() ? "Entity" : name;
+
+		return entity;
 	}
 
 	void Scene::OnUpdate(TimeStep ts)

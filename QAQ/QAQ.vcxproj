@@ -185,7 +185,8 @@
     <ClInclude Include="src\QAQ\Renderer\VertexArray.h" />
     <ClInclude Include="src\qaqpch.h" />
     <ClInclude Include="src\QAQ\Scene\Component.h" />
-    <ClInclude Include="src\QAQ\Scene\scene.h" />
+    <ClInclude Include="src\QAQ\Scene\Entity.h" />
+    <ClInclude Include="src\QAQ\Scene\Scene.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -629,7 +630,8 @@
     <ClCompile Include="src\qaqpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\QAQ\Scene\scene.cpp" />
+    <ClCompile Include="src\QAQ\Scene\Entity.cpp" />
+    <ClCompile Include="src\QAQ\Scene\Scene.cpp" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>

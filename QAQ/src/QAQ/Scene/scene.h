@@ -4,13 +4,16 @@
 #include "QAQ/Core/TimeStep.h"
 
 namespace QAQ {
+
+	class Entity;
+
 	class Scene
 	{
 	public:
 		Scene();
 		~Scene();
 
-		entt::entity CreateEntity();
+		Entity CreateEntity(const std::string& name = std::string());
 
 		//temp
 		entt::registry& Reg() { return m_Registry; }
@@ -19,5 +22,7 @@ namespace QAQ {
 
 	private:
 		entt::registry m_Registry;
+
+		friend class Entity;
 	};
 }

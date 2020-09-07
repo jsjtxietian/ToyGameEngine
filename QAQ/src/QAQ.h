@@ -14,7 +14,8 @@
 
 #include "QAQ/ImGui/ImGuiLayer.h"
 
-#include "QAQ/Scene/scene.h"
+#include "QAQ/Scene/Scene.h"
+#include "QAQ/Scene/Entity.h"
 #include "QAQ/Scene/Component.h"
 
 //--Renderer--------------------------
