@@ -6,7 +6,7 @@
 #include "QAQ/Core/Layer.h"
 #include "QAQ/Core/Log.h"
 
-#include "QAQ/Core/TimeStep.h"
+#include "QAQ/Core/Timestep.h"
 
 #include "QAQ/Core/Input.h"
 #include "QAQ/Core/KeyCodes.h"
@@ -17,6 +17,7 @@
 #include "QAQ/Scene/Scene.h"
 #include "QAQ/Scene/Entity.h"
 #include "QAQ/Scene/Component.h"
+#include "QAQ/Scene/ScriptableEntity.h"
 
 //--Renderer--------------------------
 #include "QAQ/Renderer/RenderCommand.h"

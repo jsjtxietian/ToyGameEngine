@@ -11,7 +11,7 @@ public:
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
 
-	void OnUpdate(QAQ::TimeStep ts) override;
+	void OnUpdate(QAQ::Timestep ts) override;
 	virtual void OnImGuiRender() override;
 	void OnEvent(QAQ::Event& e) override;
 private:

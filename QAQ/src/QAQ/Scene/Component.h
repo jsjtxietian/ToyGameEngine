@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include "QAQ/Scene/SceneCamera.h"
+#include "QAQ/Scene/ScriptableEntity.h"
 
 namespace QAQ {
 
@@ -14,15 +15,15 @@ namespace QAQ {
 			: Tag(tag) {}
 	};
 
-	struct TranformComponent
+	struct TransformComponent
 	{
-		glm::mat4 Tranform{ 1.0f };
-		TranformComponent() = default;
-		TranformComponent(const glm::mat4& transform)
-			: Tranform(transform) {}
+		glm::mat4 Transform{ 1.0f };
+		TransformComponent() = default;
+		TransformComponent(const glm::mat4& transform)
+			: Transform(transform) {}
 
-		operator const glm::mat4& () const { return Tranform; }
-		operator glm::mat4& () { return Tranform; }
+		operator const glm::mat4& () const { return Transform; }
+		operator glm::mat4& () { return Transform; }
 	};
 
 	struct SpriteRendererComponent
@@ -43,5 +44,31 @@ namespace QAQ {
 
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent&) = default;
+	};
+
+	struct NativeScriptComponent
+	{
+		ScriptableEntity* Instance = nullptr;
+
+		std::function<void()> InstantiateFunction;
+		std::function<void()> DestroyInstanceFunction;
+
+		std::function<void(ScriptableEntity*)> OnCreateFunction;
+		std::function<void(ScriptableEntity*)> OnDestroyFunction;
+		std::function<void(ScriptableEntity*, Timestep)> OnUpdateFunction;
+
+		template<typename T>
+		void Bind()
+		{
+			InstantiateFunction = [&]() {Instance = new T(); };
+			DestroyInstanceFunction = [&]() { delete (T*)Instance; Instance = nullptr; };
+
+			OnCreateFunction = [](ScriptableEntity* instance) {((T*)instance)->OnCreate(); };
+			OnDestroyFunction = [](ScriptableEntity* instance) { ((T*)instance)->OnDestroy(); };
+			OnUpdateFunction = [](ScriptableEntity* instance, Timestep ts) { ((T*)instance)->OnUpdate(ts); };
+		}
+
+		NativeScriptComponent() = default;
+		NativeScriptComponent(const NativeScriptComponent&) = default;
 	};
 }

@@ -6,7 +6,7 @@
 #include "QAQ/Events/Event.h"
 #include "QAQ/Events/ApplicationEvent.h"
 #include "QAQ/ImGui/ImGuiLayer.h"
-#include "QAQ/Core/TimeStep.h"
+#include "QAQ/Core/Timestep.h"
 
 int main(int argc, char** argv);
 

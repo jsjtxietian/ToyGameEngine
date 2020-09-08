@@ -126,7 +126,7 @@ void ExampleLayer::OnDetach()
 {
 }
 
-void ExampleLayer::OnUpdate(QAQ::TimeStep ts)
+void ExampleLayer::OnUpdate(QAQ::Timestep ts)
 {
 	// Update
 	m_CameraController.OnUpdate(ts);

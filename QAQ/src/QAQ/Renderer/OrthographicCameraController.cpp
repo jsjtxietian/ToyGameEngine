@@ -11,7 +11,7 @@ namespace QAQ {
 	{
 	}
 
-	void OrthographicCameraController::OnUpdate(TimeStep ts)
+	void OrthographicCameraController::OnUpdate(Timestep ts)
 	{
 		QAQ_PROFILE_FUNCTION();
 

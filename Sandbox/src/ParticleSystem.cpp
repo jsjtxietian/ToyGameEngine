@@ -33,7 +33,7 @@ ParticleSystem::ParticleSystem(uint32_t maxParticles) : m_PoolIndex(maxParticles
 	m_ParticlePool.resize(maxParticles);
 }
 
-void ParticleSystem::OnUpdate(QAQ::TimeStep ts)
+void ParticleSystem::OnUpdate(QAQ::Timestep ts)
 {
 	for (auto& particle : m_ParticlePool)
 	{

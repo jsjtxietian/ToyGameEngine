@@ -65,7 +65,7 @@ void Sandbox2D::OnDetach()
 
 }
 
-void Sandbox2D::OnUpdate(QAQ::TimeStep ts)
+void Sandbox2D::OnUpdate(QAQ::Timestep ts)
 {
 	QAQ_PROFILE_FUNCTION();
 

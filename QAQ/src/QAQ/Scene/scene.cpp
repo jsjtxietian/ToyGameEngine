@@ -62,7 +62,7 @@ namespace QAQ {
 	Entity Scene::CreateEntity(const std::string& name)
 	{
 		Entity entity = { m_Registry.create(),this };
-		entity.AddComponent<TranformComponent>();
+		entity.AddComponent<TransformComponent>();
 
 		auto& tag = entity.AddComponent<TagComponent>();
 		tag.Tag = name.empty() ? "Entity" : name;
@@ -70,20 +70,36 @@ namespace QAQ {
 		return entity;
 	}
 
-	void Scene::OnUpdate(TimeStep ts)
+	void Scene::OnUpdate(Timestep ts)
 	{
+		//Update scripts
+		{
+			m_Registry.view<NativeScriptComponent>().each([=](auto entity, auto& nsc)
+			{
+				if (!nsc.Instance)
+				{
+					nsc.InstantiateFunction();
+					nsc.Instance->m_Entity = Entity{ entity, this };
+					if (nsc.OnCreateFunction)
+						nsc.OnCreateFunction(nsc.Instance);
+				}
+				if (nsc.OnUpdateFunction)
+					nsc.OnUpdateFunction(nsc.Instance, ts);
+			});
+		}
+
 		//render 2D
 		SceneCamera* mainCamera = nullptr;
 		glm::mat4* cameraTransform = nullptr;
 
-		auto view = m_Registry.view<TranformComponent, CameraComponent >();
+		auto view = m_Registry.view<TransformComponent, CameraComponent >();
 		for (auto entity : view)
 		{
-			auto& [transform, camera] = view.get<TranformComponent, CameraComponent>(entity);
+			auto& [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
 			if (camera.Primary)
 			{
 				mainCamera = &camera.Camera;
-				cameraTransform = &transform.Tranform;
+				cameraTransform = &transform.Transform;
 				break;
 			}
 		}
@@ -93,10 +109,10 @@ namespace QAQ {
 			Renderer2D::BeginScene(mainCamera->GetProjection(),*cameraTransform);
 
 
-			auto group = m_Registry.group<TranformComponent>(entt::get<SpriteRendererComponent>);
+			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 			for (auto entity : group)
 			{
-				auto& [transform, sprite] = group.get<TranformComponent, SpriteRendererComponent>(entity);
+				auto& [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 				Renderer2D::DrawQuad(transform, sprite.Color);
 			}
 

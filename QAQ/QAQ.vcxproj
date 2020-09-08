@@ -162,7 +162,7 @@
     <ClInclude Include="src\QAQ\Core\LayerStack.h" />
     <ClInclude Include="src\QAQ\Core\Log.h" />
     <ClInclude Include="src\QAQ\Core\MouseCodes.h" />
-    <ClInclude Include="src\QAQ\Core\TimeStep.h" />
+    <ClInclude Include="src\QAQ\Core\Timestep.h" />
     <ClInclude Include="src\QAQ\Core\Window.h" />
     <ClInclude Include="src\QAQ\Debug\Instrumentor.h" />
     <ClInclude Include="src\QAQ\Events\ApplicationEvent.h" />
@@ -189,6 +189,7 @@
     <ClInclude Include="src\QAQ\Scene\Entity.h" />
     <ClInclude Include="src\QAQ\Scene\Scene.h" />
     <ClInclude Include="src\QAQ\Scene\SceneCamera.h" />
+    <ClInclude Include="src\QAQ\Scene\ScriptableEntity.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />

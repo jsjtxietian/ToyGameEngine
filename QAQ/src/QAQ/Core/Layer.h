@@ -2,7 +2,7 @@
 
 #include "QAQ/Core/Base.h"
 #include "QAQ/Events/Event.h"
-#include "QAQ/Core/TimeStep.h"
+#include "QAQ/Core/Timestep.h"
 
 namespace QAQ {
 
@@ -14,7 +14,7 @@ namespace QAQ {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate(TimeStep ts) {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

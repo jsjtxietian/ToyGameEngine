@@ -1,7 +1,7 @@
 #pragma once
 
 #include <entt.hpp>
-#include "QAQ/Core/TimeStep.h"
+#include "QAQ/Core/Timestep.h"
 
 namespace QAQ {
 
@@ -15,7 +15,7 @@ namespace QAQ {
 
 		Entity CreateEntity(const std::string& name = std::string());
 
-		void OnUpdate(TimeStep ts);
+		void OnUpdate(Timestep ts);
 		void OnViewportResize(uint32_t width, uint32_t height);
 
 	private:

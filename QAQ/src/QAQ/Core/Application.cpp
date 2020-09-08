@@ -44,7 +44,7 @@ namespace QAQ
 			QAQ_PROFILE_SCOPE("RunLoop");
 
 			float time = (float)glfwGetTime();
-			TimeStep timestep = time - m_LastFrameTime;
+			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 

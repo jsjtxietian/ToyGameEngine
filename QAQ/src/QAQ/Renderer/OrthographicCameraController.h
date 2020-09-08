@@ -1,7 +1,7 @@
 #pragma once
 
 #include "QAQ/Renderer/OrthographicCamera.h"
-#include "QAQ/Core/TimeStep.h"
+#include "QAQ/Core/Timestep.h"
 
 #include "QAQ/Events/ApplicationEvent.h"
 #include "QAQ/Events/MouseEvent.h"
@@ -22,7 +22,7 @@ namespace QAQ {
 	public:
 		OrthographicCameraController(float aspectRatio, bool rotation = true);
 
-		void OnUpdate(TimeStep ts);
+		void OnUpdate(Timestep ts);
 		void OnEvent(Event& e);
 
 		void OnResize(float width, float height);

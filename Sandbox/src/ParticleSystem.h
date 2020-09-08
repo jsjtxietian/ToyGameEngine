@@ -17,7 +17,7 @@ class ParticleSystem
 public:
 	ParticleSystem(uint32_t maxParticles = 999);
 
-	void OnUpdate(QAQ::TimeStep ts);
+	void OnUpdate(QAQ::Timestep ts);
 	void OnRender(QAQ::OrthographicCamera& camera);
 
 	void Emit(const ParticleProps& particleProps);
