@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include "QAQ/Renderer/Camera.h"
+#include "QAQ/Scene/SceneCamera.h"
 
 namespace QAQ {
 
@@ -37,12 +37,11 @@ namespace QAQ {
 
 	struct CameraComponent
 	{
-		Camera Camera;
+		SceneCamera Camera;
 		bool Primary = true; //todo move to scene
+		bool FixAspectRatio = false;
 
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent&) = default;
-		CameraComponent(const glm::mat4 & projection)
-			: Camera(projection) {}
 	};
 }

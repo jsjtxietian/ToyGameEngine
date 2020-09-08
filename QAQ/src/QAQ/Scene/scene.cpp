@@ -73,13 +73,13 @@ namespace QAQ {
 	void Scene::OnUpdate(TimeStep ts)
 	{
 		//render 2D
-		Camera* mainCamera = nullptr;
+		SceneCamera* mainCamera = nullptr;
 		glm::mat4* cameraTransform = nullptr;
 
-		auto group = m_Registry.view<TranformComponent, CameraComponent >();
-		for (auto entity : group)
+		auto view = m_Registry.view<TranformComponent, CameraComponent >();
+		for (auto entity : view)
 		{
-			auto& [transform, camera] = group.get<TranformComponent, CameraComponent>(entity);
+			auto& [transform, camera] = view.get<TranformComponent, CameraComponent>(entity);
 			if (camera.Primary)
 			{
 				mainCamera = &camera.Camera;
@@ -104,5 +104,23 @@ namespace QAQ {
 		}
 
 
+	}
+
+	void Scene::OnViewportResize(uint32_t width, uint32_t height)
+	{
+		m_ViewportWidth = width;
+		m_ViewportHeight = height;
+
+		//resize non-FixedAspectRatio Camera
+
+		auto view = m_Registry.view<CameraComponent >();
+		for (auto entity : view)
+		{
+			auto& camera = view.get<CameraComponent>(entity);
+			if (!camera.FixAspectRatio)
+			{
+				camera.Camera.SetViewportSize(width, height);
+			}
+		}
 	}
 }
