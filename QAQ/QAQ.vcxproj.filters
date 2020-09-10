@@ -31,6 +31,9 @@
     <Filter Include="src\QAQ\Renderer">
       <UniqueIdentifier>{452B3183-3124-50D5-5A56-355A46AE2FE1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\QAQ\Scene">
+      <UniqueIdentifier>{1C61D3D8-8821-4F0F-515C-988CBDDB93EB}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
@@ -111,6 +114,9 @@
     <ClInclude Include="src\QAQ\Core\MouseCodes.h">
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\QAQ\Core\Timestep.h">
+      <Filter>src\QAQ\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\QAQ\Core\Window.h">
       <Filter>src\QAQ\Core</Filter>
     </ClInclude>
@@ -133,6 +139,9 @@
       <Filter>src\QAQ\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Renderer\Buffer.h">
+      <Filter>src\QAQ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Renderer\Camera.h">
       <Filter>src\QAQ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\QAQ\Renderer\Framebuffer.h">
@@ -170,6 +179,21 @@
     </ClInclude>
     <ClInclude Include="src\QAQ\Renderer\VertexArray.h">
       <Filter>src\QAQ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Scene\Component.h">
+      <Filter>src\QAQ\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Scene\Entity.h">
+      <Filter>src\QAQ\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Scene\Scene.h">
+      <Filter>src\QAQ\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Scene\SceneCamera.h">
+      <Filter>src\QAQ\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Scene\ScriptableEntity.h">
+      <Filter>src\QAQ\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\qaqpch.h">
       <Filter>src</Filter>
@@ -1401,15 +1425,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\Scene\Component.h" />
-    <ClInclude Include="src\QAQ\Scene\Entity.h" />
-    <ClInclude Include="src\QAQ\Scene\Scene.h" />
-    <ClInclude Include="src\QAQ\Renderer\Camera.h" />
-    <ClInclude Include="src\QAQ\Scene\SceneCamera.h" />
-    <ClInclude Include="src\QAQ\Scene\ScriptableEntity.h" />
-    <ClInclude Include="src\QAQ\Core\Timestep.h">
-      <Filter>src\QAQ\Core</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1499,14 +1514,20 @@
     <ClCompile Include="src\QAQ\Renderer\VertexArray.cpp">
       <Filter>src\QAQ\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\QAQ\Scene\Entity.cpp">
+      <Filter>src\QAQ\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QAQ\Scene\Scene.cpp">
+      <Filter>src\QAQ\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QAQ\Scene\SceneCamera.cpp">
+      <Filter>src\QAQ\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\qaqpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\QAQ\Scene\Entity.cpp" />
-    <ClCompile Include="src\QAQ\Scene\Scene.cpp" />
-    <ClCompile Include="src\QAQ\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>
