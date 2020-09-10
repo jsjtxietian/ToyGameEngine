@@ -184,7 +184,7 @@
     <ClInclude Include="src\QAQ\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\QAQ\Renderer\Texture.h" />
     <ClInclude Include="src\QAQ\Renderer\VertexArray.h" />
-    <ClInclude Include="src\QAQ\Scene\Component.h" />
+    <ClInclude Include="src\QAQ\Scene\Components.h" />
     <ClInclude Include="src\QAQ\Scene\Entity.h" />
     <ClInclude Include="src\QAQ\Scene\Scene.h" />
     <ClInclude Include="src\QAQ\Scene\SceneCamera.h" />

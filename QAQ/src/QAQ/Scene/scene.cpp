@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 #include "QAQ/Scene/Scene.h"
-#include "QAQ/Scene/Component.h"
+#include "QAQ/Scene/Components.h"
 #include "QAQ/Renderer/Renderer2D.h"
 #include "QAQ/Scene/Entity.h"
 

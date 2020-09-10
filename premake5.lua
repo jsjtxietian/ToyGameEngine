@@ -1,6 +1,6 @@
 include "./vendor/premake/premake_customization/solution_items.lua"
 
-workspace "QAQ"
+workspace "ToyEngine"
 	architecture "x86_64"
 	startproject "QAQnut"
 

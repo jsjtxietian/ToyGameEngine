@@ -16,7 +16,7 @@
 
 #include "QAQ/Scene/Scene.h"
 #include "QAQ/Scene/Entity.h"
-#include "QAQ/Scene/Component.h"
+#include "QAQ/Scene/Components.h"
 #include "QAQ/Scene/ScriptableEntity.h"
 
 //--Renderer--------------------------

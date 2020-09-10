@@ -180,9 +180,6 @@
     <ClInclude Include="src\QAQ\Renderer\VertexArray.h">
       <Filter>src\QAQ\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\QAQ\Scene\Component.h">
-      <Filter>src\QAQ\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="src\QAQ\Scene\Entity.h">
       <Filter>src\QAQ\Scene</Filter>
     </ClInclude>
@@ -1424,6 +1421,9 @@
     </ClInclude>
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="src\QAQ\Scene\Components.h">
+      <Filter>src\QAQ\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
