@@ -7,6 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "EditorLayer.h"
+#include "LuaTestLayer.h"
 
 namespace QAQ {
 	class QAQNut : public Application
@@ -15,7 +16,8 @@ namespace QAQ {
 		QAQNut()
 			:Application("QAQ Nut")
 		{
-			PushLayer(new EditorLayer());
+			// PushLayer(new EditorLayer());
+			PushLayer(new LuaTestLayer());
 		}
 
 		~QAQNut() {

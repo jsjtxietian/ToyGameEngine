@@ -34,3 +34,7 @@
 #include "QAQ/Renderer/OrthographicCamera.h"
 #include "QAQ/Renderer/OrthographicCameraController.h"
 
+//scripts
+
+#include <lua.hpp>
+#include <sol.hpp>

@@ -18,6 +18,8 @@ project "QAQ"
 		"vendor/stb_image/**.cpp",
 		"vendor/glm/glm/**.hpp",
 		"vendor/glm/glm/**.inl",
+		"vendor/lua535/include/**.h",
+		"vendor/lua535/include/**.hpp"
 	}
 
 	defines
@@ -35,7 +37,8 @@ project "QAQ"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.lua}",
 	}
 
 	links
@@ -43,7 +46,8 @@ project "QAQ"
 		"GLFW",
 		"Glad",
 		"ImGui",
-		"opengl32.lib"
+		"opengl32.lib",
+		"vendor/lua535/lua53.lib"
 	}
 
 	filter "system:windows"

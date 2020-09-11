@@ -18,6 +18,9 @@ namespace QAQ {
 		void OnEvent(Event& e) override;
 
 	private:
+		void EnableDock() const;
+		void EnableTopBar() const;
+
 		OrthographicCameraController m_CameraController;
 
 		// Temp
