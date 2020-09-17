@@ -19,7 +19,8 @@ project "QAQ"
 		"vendor/glm/glm/**.hpp",
 		"vendor/glm/glm/**.inl",
 		"vendor/lua535/include/**.h",
-		"vendor/lua535/include/**.hpp"
+		"vendor/lua535/include/**.hpp",
+		"vendor/sol/include/**.hpp"
 	}
 
 	defines
@@ -39,6 +40,7 @@ project "QAQ"
 		"%{IncludeDir.stb_image}",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.lua}",
+		"%{IncludeDir.luabind}",
 	}
 
 	links

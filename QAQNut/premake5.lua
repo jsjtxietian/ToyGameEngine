@@ -20,7 +20,8 @@ project "QAQnut"
 		"%{wks.location}/QAQ/vendor",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}",
-		"%{IncludeDir.lua}"
+		"%{IncludeDir.lua}",
+		"%{IncludeDir.luabind}"
 	}
 
 	links

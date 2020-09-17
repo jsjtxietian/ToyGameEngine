@@ -13,16 +13,14 @@ namespace QAQ
         virtual void OnAttach() override;
         virtual void OnDetach() override;
 
-        void OnUpdate(Timestep ts) override {};
-        virtual void OnImGuiRender() override {};
-        void OnEvent(Event &e) override {};
+        void OnUpdate(Timestep ts) override { ScriptOnUpdate(ts); };
+        virtual void OnImGuiRender() override{};
+        void OnEvent(Event &e) override{};
 
     private:
-		void RawLuaTest();
-
-        bool CheckLua(lua_State *L, int r);// Little error checking utility function
-        void LuaBindTest();
-
-        lua_State *L;
+        
+		void LuaBindTest();
+        std::function<void(Timestep)> ScriptOnUpdate = [](Timestep ts) { QAQ_CORE_INFO("Before Init"); };
+		sol::state lua;
     };
 } // namespace QAQ

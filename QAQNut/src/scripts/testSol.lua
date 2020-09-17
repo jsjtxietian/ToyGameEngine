@@ -9,7 +9,6 @@
 --end
 
 
-
-function OnUpdate()
+function OnUpdate(ts)
 	print(ts:get())
 end
