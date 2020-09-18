@@ -20,6 +20,7 @@ namespace QAQ {
 
 	private:
 		void DrawEntityNode(Entity entity);
+		void DrawComponents(Entity entity);
 		
 		Ref<Scene> m_Context;
 		Entity m_SelectionContext;

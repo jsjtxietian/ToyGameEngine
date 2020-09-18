@@ -33,7 +33,7 @@ namespace QAQ {
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
 		m_CameraEntity.AddComponent<CameraComponent>();
 
-		m_SecondCamera = m_ActiveScene->CreateEntity("Clip Space Entity");
+		m_SecondCamera = m_ActiveScene->CreateEntity("Clip Space Camera Entity");
 		auto&cc = m_SecondCamera.AddComponent<CameraComponent>();
 		cc.Primary = false;
 
