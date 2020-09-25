@@ -40,7 +40,7 @@ namespace QAQ {
 	{
 		SceneCamera Camera;
 		bool Primary = true; //todo move to scene
-		bool FixAspectRatio = false;
+		bool FixedAspectRatio = false;
 
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent&) = default;

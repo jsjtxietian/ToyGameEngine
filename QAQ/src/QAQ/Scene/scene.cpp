@@ -101,7 +101,7 @@ namespace QAQ {
 		for (auto entity : view)
 		{
 			auto& camera = view.get<CameraComponent>(entity);
-			if (!camera.FixAspectRatio)
+			if (!camera.FixedAspectRatio)
 			{
 				camera.Camera.SetViewportSize(width, height);
 			}
