@@ -40,14 +40,18 @@ namespace QAQ {
 		m_SecondCamera = m_ActiveScene->CreateEntity("Second Camera");
 		auto&cc = m_SecondCamera.AddComponent<CameraComponent>();
 		cc.Primary = false;
+		
 
-		class CameraController : public ScriptableEntity
+		class RectBoxController : public ScriptableEntity
 		{
 		public:
 			void OnCreate()
 			{
-				auto& transform = GetComponent<TransformComponent>().Transform;
-				transform[3][0] = rand() % 10 - 5.0f;
+			}
+
+			void OnEnterCollider2D()
+			{
+				QAQ_TRACE("Detected!");
 			}
 
 			void OnDestroy()
@@ -70,8 +74,10 @@ namespace QAQ {
 			}
 		};
 
-		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-		m_SecondCamera.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+		m_SquareEntity.AddComponent<NativeScriptComponent>().Bind<RectBoxController>();
+
+		m_SquareEntity.AddComponent<BoxCollider>();
+		redSquare.AddComponent<BoxCollider>();
 
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
