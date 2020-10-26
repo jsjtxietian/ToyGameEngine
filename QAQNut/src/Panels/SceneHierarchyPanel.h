@@ -2,7 +2,6 @@
 #pragma once
 
 #include "QAQ/Core/Base.h"
-#include "QAQ/Core/Log.h"
 #include "QAQ/Scene/Scene.h"
 #include "QAQ/Scene/Entity.h"
 

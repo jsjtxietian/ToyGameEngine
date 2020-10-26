@@ -8,16 +8,6 @@
 
 namespace QAQ {
 
-	static void DoMath(const glm::mat4& transform)
-	{
-
-	}
-
-	static void OnTransformConstruct(entt::registry& r, entt::entity e)
-	{
-
-	}
-
 	Scene::Scene()
 	{
 	}
@@ -74,7 +64,7 @@ namespace QAQ {
 
 		if (mainCamera)
 		{
-			Renderer2D::BeginScene(mainCamera->GetProjection(), *cameraTransform);
+			Renderer2D::BeginScene(*mainCamera, *cameraTransform);
 
 
 			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);

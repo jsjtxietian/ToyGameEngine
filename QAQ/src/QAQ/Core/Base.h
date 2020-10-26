@@ -58,14 +58,8 @@
 	#define QAQ_DEBUGBREAK()
 #endif
 
-#ifdef QAQ_ENABLE_ASSERTS
-	#define QAQ_ASSERT(x, ...) { if(!(x)) { QAQ_ERROR("Assertion Failed: {0}", __VA_ARGS__);  QAQ_DEBUGBREAK(); } }
-	#define QAQ_CORE_ASSERT(x, ...) { if(!(x)) { QAQ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__);  QAQ_DEBUGBREAK(); } }
-#else
-	#define QAQ_ASSERT(x, ...)
-	#define QAQ_CORE_ASSERT(x, ...)
-#endif
-
+#define QAQ_EXPAND_MACRO(x) x
+#define QAQ_STRINGIFY_MACRO(x) #x
 
 #define BIT(x) (1 << x) 
 
@@ -90,5 +84,7 @@ namespace QAQ {
 	{
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
-
 }
+
+#include "QAQ/Core/Log.h"
+#include "QAQ/Core/Assert.h"

@@ -33,7 +33,7 @@ namespace QAQ {
 
 		stbi_uc* data = nullptr;
 		{
-			QAQ_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(const std:string&)");
+			QAQ_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(const std::string&)");
 			data = stbi_load(path.c_str(), &width, &height, &channels, 0);
 		}
 
