@@ -24,7 +24,9 @@ namespace QAQ {
 		T& AddComponent(Args&&... args)
 		{
 			QAQ_CORE_ASSERT(!HasComponent<T>(), "Entity Already has one component!");
-			return m_Scene->m_Registry.emplace<T>(m_EntityHandle, std::forward<Args>(args)...);
+			T& component = m_Scene->m_Registry.emplace<T>(m_EntityHandle, std::forward<Args>(args)...);
+			m_Scene->OnComponentAdded<T>(*this, component);
+			return component;
 		}
 
 		template<typename T>
@@ -35,7 +37,7 @@ namespace QAQ {
 		}
 
 		template<typename T>
-		T& RemoveComponent()
+		void RemoveComponent()
 		{
 			QAQ_CORE_ASSERT(HasComponent<T>(), "Entity do not have one component!");
 			return m_Scene->m_Registry.remove<T>(m_EntityHandle);
@@ -54,6 +56,8 @@ namespace QAQ {
 		{
 			return !(*this == other);
 		}
+
+		operator entt::entity() const { return m_EntityHandle; }
 
 	private:
 		entt::entity m_EntityHandle{ entt::null };
