@@ -19,6 +19,6 @@
 	#define QAQ_ASSERT(...) QAQ_EXPAND_MACRO( QAQ_INTERNAL_ASSERT_GET_MACRO(__VA_ARGS__)(_, __VA_ARGS__) )
 	#define QAQ_CORE_ASSERT(...) QAQ_EXPAND_MACRO( QAQ_INTERNAL_ASSERT_GET_MACRO(__VA_ARGS__)(_CORE_, __VA_ARGS__) )
 #else
-#define QAQ_ASSERT(...)
-#define QAQ_CORE_ASSERT(...)
+	#define QAQ_ASSERT(...)
+	#define QAQ_CORE_ASSERT(...)
 #endif

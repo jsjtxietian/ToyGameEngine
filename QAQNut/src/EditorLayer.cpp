@@ -46,8 +46,8 @@ namespace QAQ {
 		public:
 			void OnCreate()
 			{
-				auto& transform = GetComponent<TransformComponent>().Transform;
-				transform[3][0] = rand() % 10 - 5.0f;
+				auto& translation = GetComponent<TransformComponent>().Translation;
+				translation.x = rand() % 10 - 5.0f;
 			}
 
 			void OnDestroy()
@@ -56,17 +56,17 @@ namespace QAQ {
 
 			void OnUpdate(Timestep ts)
 			{
-				auto& transform = GetComponent<TransformComponent>().Transform;
+				auto& translation = GetComponent<TransformComponent>().Translation;
 				float speed = 5.0f;
 
 				if (Input::IsKeyPressed(KeyCode::A))
-					transform[3][0] -= speed * ts;
+					translation.x -= speed * ts;
 				if (Input::IsKeyPressed(KeyCode::D))
-					transform[3][0] += speed * ts;
+					translation.x += speed * ts;
 				if (Input::IsKeyPressed(KeyCode::W))
-					transform[3][1] += speed * ts;
+					translation.y += speed * ts;
 				if (Input::IsKeyPressed(KeyCode::S))
-					transform[3][1] -= speed * ts;
+					translation.y -= speed * ts;
 			}
 		};
 

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "QAQ/Scene/Scene.h"
+#include "QAQ/Core/Assert.h"
+
 #include <entt.hpp>
 
 namespace QAQ {
