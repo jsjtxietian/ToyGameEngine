@@ -10,6 +10,7 @@ namespace QAQ {
 
 	Scene::Scene()
 	{
+		//m_Registry.on_construct<CameraComponent>().connect<&Function>();
 	}
 
 	Scene::~Scene()
