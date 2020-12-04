@@ -44,6 +44,7 @@ namespace QAQ {
 		glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 		glm::vec2 m_ViewportSize = { 0,0 };
 
+		int m_GizmoType = -1;
 		SceneHierarchyPanel m_SceneHierarchyPanel;
 
 		std::unordered_map<char, Ref<SubTexture2D>> s_TextureMap;

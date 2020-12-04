@@ -10,6 +10,9 @@
 [submodule "QAQ/vendor/spdlog"]
 	path = QAQ/vendor/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "QAQ\\vendor\\yaml-cpp"]
-	path = QAQ\\vendor\\yaml-cpp
+[submodule "QAQ/vendor/yaml-cpp"]
+	path = QAQ/vendor/yaml-cpp
 	url = https://github.com/jsjtxietian/yaml-cpp.git
+[submodule "QAQ\\vendor\\ImGuizmo"]
+	path = QAQ\\vendor\\ImGuizmo
+	url = https://github.com/thecherno/imguizmo
