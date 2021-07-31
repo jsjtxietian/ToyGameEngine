@@ -1,9 +1,8 @@
 #pragma once
 
-#include "QAQ/Scene/Scene.h"
-#include "QAQ/Core/Assert.h"
+#include "Scene.h"
 
-#include <entt.hpp>
+#include "entt.hpp"
 
 namespace QAQ {
 
@@ -14,16 +13,10 @@ namespace QAQ {
 		Entity(entt::entity handle, Scene* scene);
 		Entity(const Entity& other) = default;
 
-		template<typename T>
-		bool HasComponent()
-		{
-			return m_Scene->m_Registry.has<T>(m_EntityHandle);
-		}
-
 		template<typename T, typename... Args>
 		T& AddComponent(Args&&... args)
 		{
-			QAQ_CORE_ASSERT(!HasComponent<T>(), "Entity Already has one component!");
+			QAQ_CORE_ASSERT(!HasComponent<T>(), "Entity already has component!");
 			T& component = m_Scene->m_Registry.emplace<T>(m_EntityHandle, std::forward<Args>(args)...);
 			m_Scene->OnComponentAdded<T>(*this, component);
 			return component;
@@ -32,19 +25,25 @@ namespace QAQ {
 		template<typename T>
 		T& GetComponent()
 		{
-			QAQ_CORE_ASSERT(HasComponent<T>(), "Entity do not have component!");
+			QAQ_CORE_ASSERT(HasComponent<T>(), "Entity does not have component!");
 			return m_Scene->m_Registry.get<T>(m_EntityHandle);
+		}
+
+		template<typename T>
+		bool HasComponent()
+		{
+			return m_Scene->m_Registry.has<T>(m_EntityHandle);
 		}
 
 		template<typename T>
 		void RemoveComponent()
 		{
-			QAQ_CORE_ASSERT(HasComponent<T>(), "Entity do not have one component!");
-			return m_Scene->m_Registry.remove<T>(m_EntityHandle);
+			QAQ_CORE_ASSERT(HasComponent<T>(), "Entity does not have component!");
+			m_Scene->m_Registry.remove<T>(m_EntityHandle);
 		}
 
 		operator bool() const { return m_EntityHandle != entt::null; }
-
+		operator entt::entity() const { return m_EntityHandle; }
 		operator uint32_t() const { return (uint32_t)m_EntityHandle; }
 
 		bool operator==(const Entity& other) const
@@ -56,9 +55,6 @@ namespace QAQ {
 		{
 			return !(*this == other);
 		}
-
-		operator entt::entity() const { return m_EntityHandle; }
-
 	private:
 		entt::entity m_EntityHandle{ entt::null };
 		Scene* m_Scene = nullptr;

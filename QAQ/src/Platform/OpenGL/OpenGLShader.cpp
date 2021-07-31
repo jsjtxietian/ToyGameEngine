@@ -36,7 +36,7 @@ namespace QAQ {
 	}
 
 	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
-		:m_Name(name)
+		: m_Name(name)
 	{
 		QAQ_PROFILE_FUNCTION();
 
@@ -58,7 +58,7 @@ namespace QAQ {
 		QAQ_PROFILE_FUNCTION();
 
 		std::string result;
-		std::ifstream in(filepath, std::ios::in | std::ios::binary);
+		std::ifstream in(filepath, std::ios::in | std::ios::binary); // ifstream closes itself due to RAII
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
@@ -68,7 +68,6 @@ namespace QAQ {
 				result.resize(size);
 				in.seekg(0, std::ios::beg);
 				in.read(&result[0], size);
-				in.close();
 			}
 			else
 			{
@@ -115,11 +114,9 @@ namespace QAQ {
 		QAQ_PROFILE_FUNCTION();
 
 		GLuint program = glCreateProgram();
-		
 		QAQ_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
 		std::array<GLenum, 2> glShaderIDs;
 		int glShaderIDIndex = 0;
-		
 		for (auto& kv : shaderSources)
 		{
 			GLenum type = kv.first;
@@ -152,7 +149,7 @@ namespace QAQ {
 			glAttachShader(program, shader);
 			glShaderIDs[glShaderIDIndex++] = shader;
 		}
-
+		
 		m_RendererID = program;
 
 		// Link our program
@@ -172,7 +169,7 @@ namespace QAQ {
 
 			// We don't need the program anymore.
 			glDeleteProgram(program);
-
+			
 			for (auto id : glShaderIDs)
 				glDeleteShader(id);
 
@@ -241,7 +238,6 @@ namespace QAQ {
 
 		UploadUniformMat4(name, value);
 	}
-
 
 	void OpenGLShader::UploadUniformInt(const std::string& name, int value)
 	{

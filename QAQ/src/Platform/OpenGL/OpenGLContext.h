@@ -5,7 +5,8 @@
 struct GLFWwindow;
 
 namespace QAQ {
-	class OpenGLContext : public GraphicsContext 
+
+	class OpenGLContext : public GraphicsContext
 	{
 	public:
 		OpenGLContext(GLFWwindow* windowHandle);
@@ -15,4 +16,5 @@ namespace QAQ {
 	private:
 		GLFWwindow* m_WindowHandle;
 	};
+
 }

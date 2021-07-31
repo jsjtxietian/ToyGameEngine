@@ -15,10 +15,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5D4A857C-4981-860D-F26D-6C10DE83020F}</ProjectGuid>
+    <ProjectGuid>{BDD6857C-A90D-870D-52FA-6C103E10030F}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>GLAD</RootNamespace>
+    <RootNamespace>Glad</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -54,21 +54,21 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>bin\Debug-windows-x86_64\GLAD\</OutDir>
-    <IntDir>bin-int\Debug-windows-x86_64\GLAD\</IntDir>
-    <TargetName>GLAD</TargetName>
+    <OutDir>bin\Debug-windows-x86_64\Glad\</OutDir>
+    <IntDir>bin-int\Debug-windows-x86_64\Glad\</IntDir>
+    <TargetName>Glad</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>bin\Release-windows-x86_64\GLAD\</OutDir>
-    <IntDir>bin-int\Release-windows-x86_64\GLAD\</IntDir>
-    <TargetName>GLAD</TargetName>
+    <OutDir>bin\Release-windows-x86_64\Glad\</OutDir>
+    <IntDir>bin-int\Release-windows-x86_64\Glad\</IntDir>
+    <TargetName>Glad</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <OutDir>bin\Dist-windows-x86_64\GLAD\</OutDir>
-    <IntDir>bin-int\Dist-windows-x86_64\GLAD\</IntDir>
-    <TargetName>GLAD</TargetName>
+    <OutDir>bin\Dist-windows-x86_64\Glad\</OutDir>
+    <IntDir>bin-int\Dist-windows-x86_64\Glad\</IntDir>
+    <TargetName>Glad</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

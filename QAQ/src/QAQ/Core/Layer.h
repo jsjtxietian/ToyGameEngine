@@ -1,12 +1,12 @@
 #pragma once
 
 #include "QAQ/Core/Base.h"
-#include "QAQ/Events/Event.h"
 #include "QAQ/Core/Timestep.h"
+#include "QAQ/Events/Event.h"
 
 namespace QAQ {
 
-	class  Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");
@@ -18,7 +18,7 @@ namespace QAQ {
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 
-		inline const std::string& GetName() const { return m_DebugName; }
+		const std::string& GetName() const { return m_DebugName; }
 	protected:
 		std::string m_DebugName;
 	};

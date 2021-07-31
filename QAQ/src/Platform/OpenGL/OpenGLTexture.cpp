@@ -30,13 +30,11 @@ namespace QAQ {
 
 		int width, height, channels;
 		stbi_set_flip_vertically_on_load(1);
-
 		stbi_uc* data = nullptr;
 		{
 			QAQ_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(const std::string&)");
 			data = stbi_load(path.c_str(), &width, &height, &channels, 0);
 		}
-
 		QAQ_CORE_ASSERT(data, "Failed to load image!");
 		m_Width = width;
 		m_Height = height;
@@ -56,7 +54,7 @@ namespace QAQ {
 		m_InternalFormat = internalFormat;
 		m_DataFormat = dataFormat;
 
-		QAQ_CORE_ASSERT(internalFormat & dataFormat,"Format not supported!")
+		QAQ_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!");
 
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
 		glTextureStorage2D(m_RendererID, 1, internalFormat, m_Width, m_Height);
@@ -72,6 +70,13 @@ namespace QAQ {
 		stbi_image_free(data);
 	}
 
+	OpenGLTexture2D::~OpenGLTexture2D()
+	{
+		QAQ_PROFILE_FUNCTION();
+
+		glDeleteTextures(1, &m_RendererID);
+	}
+
 	void OpenGLTexture2D::SetData(void* data, uint32_t size)
 	{
 		QAQ_PROFILE_FUNCTION();
@@ -79,13 +84,6 @@ namespace QAQ {
 		uint32_t bpp = m_DataFormat == GL_RGBA ? 4 : 3;
 		QAQ_CORE_ASSERT(size == m_Width * m_Height * bpp, "Data must be entire texture!");
 		glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, data);
-	}
-
-	OpenGLTexture2D::~OpenGLTexture2D()
-	{
-		QAQ_PROFILE_FUNCTION();
-
-		glDeleteTextures(1, &m_RendererID);
 	}
 
 	void OpenGLTexture2D::Bind(uint32_t slot) const

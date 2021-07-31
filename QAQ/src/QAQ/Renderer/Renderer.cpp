@@ -2,8 +2,6 @@
 #include "QAQ/Renderer/Renderer.h"
 #include "QAQ/Renderer/Renderer2D.h"
 
-#include "Platform/OpenGL/OpenGLShader.h"
-
 namespace QAQ {
 
 	Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneData>();
@@ -33,7 +31,6 @@ namespace QAQ {
 
 	void Renderer::EndScene()
 	{
-
 	}
 
 	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform)
@@ -41,7 +38,9 @@ namespace QAQ {
 		shader->Bind();
 		shader->SetMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
 		shader->SetMat4("u_Transform", transform);
+
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);
 	}
+
 }

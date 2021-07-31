@@ -7,18 +7,18 @@
 
 #include "QAQ/Core/Application.h"
 
+// TEMPORARY
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
 #include "ImGuizmo.h"
 
 namespace QAQ {
+
 	ImGuiLayer::ImGuiLayer()
-		:Layer("ImGuiLayer")
+		: Layer("ImGuiLayer")
 	{
-
 	}
-
 
 	void ImGuiLayer::OnAttach()
 	{
@@ -60,7 +60,6 @@ namespace QAQ {
 		ImGui_ImplOpenGL3_Init("#version 410");
 	}
 
-
 	void ImGuiLayer::OnDetach()
 	{
 		QAQ_PROFILE_FUNCTION();
@@ -79,7 +78,7 @@ namespace QAQ {
 			e.Handled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
 		}
 	}
-
+	
 	void ImGuiLayer::Begin()
 	{
 		QAQ_PROFILE_FUNCTION();
@@ -120,7 +119,7 @@ namespace QAQ {
 		colors[ImGuiCol_Header] = ImVec4{ 0.2f, 0.205f, 0.21f, 1.0f };
 		colors[ImGuiCol_HeaderHovered] = ImVec4{ 0.3f, 0.305f, 0.31f, 1.0f };
 		colors[ImGuiCol_HeaderActive] = ImVec4{ 0.15f, 0.1505f, 0.151f, 1.0f };
-
+		
 		// Buttons
 		colors[ImGuiCol_Button] = ImVec4{ 0.2f, 0.205f, 0.21f, 1.0f };
 		colors[ImGuiCol_ButtonHovered] = ImVec4{ 0.3f, 0.305f, 0.31f, 1.0f };
@@ -145,4 +144,3 @@ namespace QAQ {
 	}
 
 }
-

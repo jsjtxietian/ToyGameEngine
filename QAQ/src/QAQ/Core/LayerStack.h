@@ -7,7 +7,7 @@
 
 namespace QAQ {
 
-	class  LayerStack
+	class LayerStack
 	{
 	public:
 		LayerStack() = default;

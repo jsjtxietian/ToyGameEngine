@@ -1,31 +1,29 @@
 #include "qaqpch.h"
+#include "Scene.h"
+
+#include "Components.h"
+#include "QAQ/Renderer/Renderer2D.h"
 
 #include <glm/glm.hpp>
-#include "QAQ/Scene/Scene.h"
-#include "QAQ/Scene/Components.h"
-#include "QAQ/Renderer/Renderer2D.h"
-#include "QAQ/Scene/Entity.h"
+
+#include "Entity.h"
 
 namespace QAQ {
 
 	Scene::Scene()
 	{
-		//m_Registry.on_construct<CameraComponent>().connect<&Function>();
 	}
 
 	Scene::~Scene()
 	{
-
 	}
 
 	Entity Scene::CreateEntity(const std::string& name)
 	{
-		Entity entity = { m_Registry.create(),this };
+		Entity entity = { m_Registry.create(), this };
 		entity.AddComponent<TransformComponent>();
-
 		auto& tag = entity.AddComponent<TagComponent>();
 		tag.Tag = name.empty() ? "Entity" : name;
-
 		return entity;
 	}
 
@@ -34,25 +32,13 @@ namespace QAQ {
 		m_Registry.destroy(entity);
 	}
 
-	Entity Scene::GetPrimaryCameraEntity()
-	{
-		auto view = m_Registry.view<CameraComponent>();
-		for (auto entity : view)
-		{
-			const auto& camera = view.get<CameraComponent>(entity);
-			if (camera.Primary)
-				return Entity{ entity, this };
-		}
-		return {};
-	}
-
 	void Scene::OnUpdate(Timestep ts)
 	{
-		//Update scripts
+		// Update scripts
 		{
 			m_Registry.view<NativeScriptComponent>().each([=](auto entity, auto& nsc)
 			{
-				//TODO : move to on scene play
+				// TODO: Move to Scene::OnScenePlay
 				if (!nsc.Instance)
 				{
 					nsc.Instance = nsc.InstantiateScript();
@@ -64,19 +50,21 @@ namespace QAQ {
 			});
 		}
 
-		//render 2D
-		SceneCamera* mainCamera = nullptr;
+		// Render 2D
+		Camera* mainCamera = nullptr;
 		glm::mat4 cameraTransform;
-
-		auto view = m_Registry.view<TransformComponent, CameraComponent >();
-		for (auto entity : view)
 		{
-			auto [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
-			if (camera.Primary)
+			auto view = m_Registry.view<TransformComponent, CameraComponent>();
+			for (auto entity : view)
 			{
-				mainCamera = &camera.Camera;
-				cameraTransform = transform.GetTransform();
-				break;
+				auto [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
+				
+				if (camera.Primary)
+				{
+					mainCamera = &camera.Camera;
+					cameraTransform = transform.GetTransform();
+					break;
+				}
 			}
 		}
 
@@ -88,12 +76,12 @@ namespace QAQ {
 			for (auto entity : group)
 			{
 				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+
 				Renderer2D::DrawQuad(transform.GetTransform(), sprite.Color);
 			}
 
 			Renderer2D::EndScene();
 		}
-
 
 	}
 
@@ -102,17 +90,27 @@ namespace QAQ {
 		m_ViewportWidth = width;
 		m_ViewportHeight = height;
 
-		//resize non-FixedAspectRatio Camera
-
-		auto view = m_Registry.view<CameraComponent >();
+		// Resize our non-FixedAspectRatio cameras
+		auto view = m_Registry.view<CameraComponent>();
 		for (auto entity : view)
 		{
-			auto& camera = view.get<CameraComponent>(entity);
-			if (!camera.FixedAspectRatio)
-			{
-				camera.Camera.SetViewportSize(width, height);
-			}
+			auto& cameraComponent = view.get<CameraComponent>(entity);
+			if (!cameraComponent.FixedAspectRatio)
+				cameraComponent.Camera.SetViewportSize(width, height);
 		}
+
+	}
+
+	Entity Scene::GetPrimaryCameraEntity()
+	{
+		auto view = m_Registry.view<CameraComponent>();
+		for (auto entity : view)
+		{
+			const auto& camera = view.get<CameraComponent>(entity);
+			if (camera.Primary)
+				return Entity{entity, this};
+		}
+		return {};
 	}
 
 	template<typename T>
@@ -146,4 +144,6 @@ namespace QAQ {
 	void Scene::OnComponentAdded<NativeScriptComponent>(Entity entity, NativeScriptComponent& component)
 	{
 	}
+
+
 }

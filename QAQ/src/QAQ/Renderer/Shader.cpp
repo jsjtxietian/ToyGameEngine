@@ -10,8 +10,8 @@ namespace QAQ {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::None:    QAQ_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(filepath);
+			case RendererAPI::API::None:    QAQ_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(filepath);
 		}
 
 		QAQ_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -22,13 +22,13 @@ namespace QAQ {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::None:    QAQ_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
+			case RendererAPI::API::None:    QAQ_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
 		}
+
 		QAQ_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
 	}
-
 
 	void ShaderLibrary::Add(const std::string& name, const Ref<Shader>& shader)
 	{
@@ -66,6 +66,5 @@ namespace QAQ {
 	{
 		return m_Shaders.find(name) != m_Shaders.end();
 	}
-
 
 }

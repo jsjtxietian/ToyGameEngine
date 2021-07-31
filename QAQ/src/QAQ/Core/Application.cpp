@@ -1,22 +1,23 @@
 #include "qaqpch.h"
-
 #include "QAQ/Core/Application.h"
+
 #include "QAQ/Core/Log.h"
-#include "QAQ/Core/Input.h"
+
 #include "QAQ/Renderer/Renderer.h"
 
-#include <glfw/glfw3.h>
+#include "QAQ/Core/Input.h"
 
+#include <GLFW/glfw3.h>
 
-namespace QAQ
-{
+namespace QAQ {
+
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application(const std::string& name)
 	{
 		QAQ_PROFILE_FUNCTION();
 
-		QAQ_CORE_ASSERT(!s_Instance, "App already exists");
+		QAQ_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 		m_Window = Window::Create(WindowProps(name));
 		m_Window->SetEventCallback(QAQ_BIND_EVENT_FN(Application::OnEvent));
@@ -24,7 +25,7 @@ namespace QAQ
 		Renderer::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
-		PushOverLay(m_ImGuiLayer);
+		PushOverlay(m_ImGuiLayer);
 	}
 
 	Application::~Application()
@@ -34,6 +35,42 @@ namespace QAQ
 		Renderer::Shutdown();
 	}
 
+	void Application::PushLayer(Layer* layer)
+	{
+		QAQ_PROFILE_FUNCTION();
+
+		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
+	}
+
+	void Application::PushOverlay(Layer* layer)
+	{
+		QAQ_PROFILE_FUNCTION();
+
+		m_LayerStack.PushOverlay(layer);
+		layer->OnAttach();
+	}
+
+	void Application::Close()
+	{
+		m_Running = false;
+	}
+
+	void Application::OnEvent(Event& e)
+	{
+		QAQ_PROFILE_FUNCTION();
+
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(QAQ_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(QAQ_BIND_EVENT_FN(Application::OnWindowResize));
+
+		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
+		{
+			if (e.Handled) 
+				break;
+			(*it)->OnEvent(e);
+		}
+	}
 
 	void Application::Run()
 	{
@@ -47,65 +84,30 @@ namespace QAQ
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-
 			if (!m_Minimized)
 			{
-				QAQ_PROFILE_SCOPE("LayerStack OnUpdate");
+				{
+					QAQ_PROFILE_SCOPE("LayerStack OnUpdate");
 
-				for (Layer* layer : m_LayerStack)
-					layer->OnUpdate(timestep);
-			}
+					for (Layer* layer : m_LayerStack)
+						layer->OnUpdate(timestep);
+				}
 
-			m_ImGuiLayer->Begin();
-			{
-				QAQ_PROFILE_SCOPE("ImGui OnUpdate");
-				for (Layer* layer : m_LayerStack)
-					layer->OnImGuiRender();
+				m_ImGuiLayer->Begin();
+				{
+					QAQ_PROFILE_SCOPE("LayerStack OnImGuiRender");
+
+					for (Layer* layer : m_LayerStack)
+						layer->OnImGuiRender();
+				}
+				m_ImGuiLayer->End();
 			}
-			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}
 	}
 
-	void Application::Close()
-	{
-		m_Running = false;
-	}
-
-	void Application::OnEvent(Event & e)
-	{
-		QAQ_PROFILE_FUNCTION();
-
-		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(QAQ_BIND_EVENT_FN(Application::OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(QAQ_BIND_EVENT_FN(Application::OnWindowResize));
-
-		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
-		{
-			if (e.Handled)
-				break;
-			(*it)->OnEvent(e);
-		}
-	}
-
-	void Application::PushLayer(Layer * layer)
-	{
-		QAQ_PROFILE_FUNCTION();
-
-		m_LayerStack.PushLayer(layer);
-		layer->OnAttach();
-	}
-
-	void Application::PushOverLay(Layer * layer)
-	{
-		QAQ_PROFILE_FUNCTION();
-
-		m_LayerStack.PushOverlay(layer);
-		layer->OnAttach();
-	}
-
-	bool Application::OnWindowClose(WindowCloseEvent & e)
+	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
 		m_Running = false;
 		return true;
@@ -128,4 +130,3 @@ namespace QAQ
 	}
 
 }
-

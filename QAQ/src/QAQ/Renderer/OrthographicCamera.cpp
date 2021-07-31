@@ -21,7 +21,6 @@ namespace QAQ {
 		m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
 	}
 
-
 	void OrthographicCamera::RecalculateViewMatrix()
 	{
 		QAQ_PROFILE_FUNCTION();

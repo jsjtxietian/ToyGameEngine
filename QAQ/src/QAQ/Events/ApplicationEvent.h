@@ -2,17 +2,16 @@
 
 #include "QAQ/Events/Event.h"
 
-
 namespace QAQ {
 
-	class  WindowResizeEvent : public Event
+	class WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
 			: m_Width(width), m_Height(height) {}
 
-		inline unsigned int GetWidth() const { return m_Width; }
-		inline unsigned int GetHeight() const { return m_Height; }
+		unsigned int GetWidth() const { return m_Width; }
+		unsigned int GetHeight() const { return m_Height; }
 
 		std::string ToString() const override
 		{
@@ -27,7 +26,7 @@ namespace QAQ {
 		unsigned int m_Width, m_Height;
 	};
 
-	class  WindowCloseEvent : public Event
+	class WindowCloseEvent : public Event
 	{
 	public:
 		WindowCloseEvent() = default;
@@ -36,7 +35,7 @@ namespace QAQ {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class  AppTickEvent : public Event
+	class AppTickEvent : public Event
 	{
 	public:
 		AppTickEvent() = default;
@@ -45,7 +44,7 @@ namespace QAQ {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class  AppUpdateEvent : public Event
+	class AppUpdateEvent : public Event
 	{
 	public:
 		AppUpdateEvent() = default;
@@ -54,7 +53,7 @@ namespace QAQ {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class  AppRenderEvent : public Event
+	class AppRenderEvent : public Event
 	{
 	public:
 		AppRenderEvent() = default;

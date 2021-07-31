@@ -9,12 +9,12 @@ namespace QAQ
 {
 	Scope<Window> Window::Create(const WindowProps& props)
 	{
-#ifdef QAQ_PLATFORM_WINDOWS
+	#ifdef QAQ_PLATFORM_WINDOWS
 		return CreateScope<WindowsWindow>(props);
-#else
+	#else
 		QAQ_CORE_ASSERT(false, "Unknown platform!");
 		return nullptr;
-#endif
+	#endif
 	}
 
 }

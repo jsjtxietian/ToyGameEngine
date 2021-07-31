@@ -2,40 +2,26 @@
 
 namespace QAQ
 {
-	typedef enum class MouseCode : uint16_t
-	{
-		// From glfw3.h
-		Button0 = 0,
-		Button1 = 1,
-		Button2 = 2,
-		Button3 = 3,
-		Button4 = 4,
-		Button5 = 5,
-		Button6 = 6,
-		Button7 = 7,
+	using MouseCode = uint16_t;
 
-		ButtonLast = Button7,
-		ButtonLeft = Button0,
-		ButtonRight = Button1,
-		ButtonMiddle = Button2
-	} Mouse;
-
-	inline std::ostream& operator<<(std::ostream& os, MouseCode mouseCode)
+	namespace Mouse
 	{
-		os << static_cast<int32_t>(mouseCode);
-		return os;
+		enum : MouseCode
+		{
+			// From glfw3.h
+			Button0                = 0,
+			Button1                = 1,
+			Button2                = 2,
+			Button3                = 3,
+			Button4                = 4,
+			Button5                = 5,
+			Button6                = 6,
+			Button7                = 7,
+
+			ButtonLast             = Button7,
+			ButtonLeft             = Button0,
+			ButtonRight            = Button1,
+			ButtonMiddle           = Button2
+		};
 	}
 }
-
-#define QAQ_MOUSE_BUTTON_0      ::QAQ::Mouse::Button0
-#define QAQ_MOUSE_BUTTON_1      ::QAQ::Mouse::Button1
-#define QAQ_MOUSE_BUTTON_2      ::QAQ::Mouse::Button2
-#define QAQ_MOUSE_BUTTON_3      ::QAQ::Mouse::Button3
-#define QAQ_MOUSE_BUTTON_4      ::QAQ::Mouse::Button4
-#define QAQ_MOUSE_BUTTON_5      ::QAQ::Mouse::Button5
-#define QAQ_MOUSE_BUTTON_6      ::QAQ::Mouse::Button6
-#define QAQ_MOUSE_BUTTON_7      ::QAQ::Mouse::Button7
-#define QAQ_MOUSE_BUTTON_LAST   ::QAQ::Mouse::ButtonLast
-#define QAQ_MOUSE_BUTTON_LEFT   ::QAQ::Mouse::ButtonLeft
-#define QAQ_MOUSE_BUTTON_RIGHT  ::QAQ::Mouse::ButtonRight
-#define QAQ_MOUSE_BUTTON_MIDDLE ::QAQ::Mouse::ButtonMiddle

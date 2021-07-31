@@ -1,19 +1,24 @@
 #pragma once
 
-#include <string>
-#include <chrono>
 #include <algorithm>
+#include <chrono>
 #include <fstream>
-#include <thread>
 #include <iomanip>
+#include <string>
+#include <thread>
+#include <mutex>
+#include <sstream>
+
+#include "QAQ/Core/Log.h"
 
 namespace QAQ {
-	
+
 	using FloatingPointMicroseconds = std::chrono::duration<double, std::micro>;
 
 	struct ProfileResult
 	{
 		std::string Name;
+
 		FloatingPointMicroseconds Start;
 		std::chrono::microseconds ElapsedTime;
 		std::thread::id ThreadID;
@@ -26,7 +31,6 @@ namespace QAQ {
 
 	class Instrumentor
 	{
-
 	public:
 		Instrumentor(const Instrumentor&) = delete;
 		Instrumentor(Instrumentor&&) = delete;
@@ -34,23 +38,29 @@ namespace QAQ {
 		void BeginSession(const std::string& name, const std::string& filepath = "results.json")
 		{
 			std::lock_guard lock(m_Mutex);
-			if (m_CurrentSession) {
+			if (m_CurrentSession)
+			{
 				// If there is already a current session, then close it before beginning new one.
 				// Subsequent profiling output meant for the original session will end up in the
 				// newly opened session instead.  That's better than having badly formatted
 				// profiling output.
-				if (Log::GetCoreLogger()) { // Edge case: BeginSession() might be before Log::Init()
+				if (Log::GetCoreLogger()) // Edge case: BeginSession() might be before Log::Init()
+				{
 					QAQ_CORE_ERROR("Instrumentor::BeginSession('{0}') when session '{1}' already open.", name, m_CurrentSession->Name);
 				}
 				InternalEndSession();
 			}
 			m_OutputStream.open(filepath);
-			if (m_OutputStream.is_open()) {
-				m_CurrentSession = new InstrumentationSession({ name });
+
+			if (m_OutputStream.is_open())
+			{
+				m_CurrentSession = new InstrumentationSession({name});
 				WriteHeader();
 			}
-			else {
-				if (Log::GetCoreLogger()) { // Edge case: BeginSession() might be before Log::Init()
+			else
+			{
+				if (Log::GetCoreLogger()) // Edge case: BeginSession() might be before Log::Init()
+				{
 					QAQ_CORE_ERROR("Instrumentor could not open results file '{0}'.", filepath);
 				}
 			}
@@ -66,7 +76,6 @@ namespace QAQ {
 		{
 			std::stringstream json;
 
-
 			json << std::setprecision(3) << std::fixed;
 			json << ",{";
 			json << "\"cat\":\"function\",";
@@ -79,7 +88,8 @@ namespace QAQ {
 			json << "}";
 
 			std::lock_guard lock(m_Mutex);
-			if (m_CurrentSession) {
+			if (m_CurrentSession)
+			{
 				m_OutputStream << json.str();
 				m_OutputStream.flush();
 			}
@@ -90,12 +100,7 @@ namespace QAQ {
 			static Instrumentor instance;
 			return instance;
 		}
-
 	private:
-		std::mutex m_Mutex;
-		InstrumentationSession* m_CurrentSession;
-		std::ofstream m_OutputStream;
-
 		Instrumentor()
 			: m_CurrentSession(nullptr)
 		{
@@ -104,18 +109,7 @@ namespace QAQ {
 		~Instrumentor()
 		{
 			EndSession();
-		}
-
-		// Note: you must already own lock on m_Mutex before
-		// calling InternalEndSession()
-		void InternalEndSession() {
-			if (m_CurrentSession) {
-				WriteFooter();
-				m_OutputStream.close();
-				delete m_CurrentSession;
-				m_CurrentSession = nullptr;
-			}
-		}
+		}		
 
 		void WriteHeader()
 		{
@@ -128,6 +122,23 @@ namespace QAQ {
 			m_OutputStream << "]}";
 			m_OutputStream.flush();
 		}
+
+		// Note: you must already own lock on m_Mutex before
+		// calling InternalEndSession()
+		void InternalEndSession()
+		{
+			if (m_CurrentSession)
+			{
+				WriteFooter();
+				m_OutputStream.close();
+				delete m_CurrentSession;
+				m_CurrentSession = nullptr;
+			}
+		}
+	private:
+		std::mutex m_Mutex;
+		InstrumentationSession* m_CurrentSession;
+		std::ofstream m_OutputStream;
 	};
 
 	class InstrumentationTimer
@@ -192,7 +203,6 @@ namespace QAQ {
 }
 
 #define QAQ_PROFILE 0
-
 #if QAQ_PROFILE
 	// Resolve which function signature macro will be used. Note that this only
 	// is resolved when the (pre)compiler starts, so the syntax highlighting
@@ -217,14 +227,14 @@ namespace QAQ {
 
 	#define QAQ_PROFILE_BEGIN_SESSION(name, filepath) ::QAQ::Instrumentor::Get().BeginSession(name, filepath)
 	#define QAQ_PROFILE_END_SESSION() ::QAQ::Instrumentor::Get().EndSession()
-	#define HZ_PROFILE_SCOPE_LINE2(name, line) constexpr auto fixedName##line = ::Hazel::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
-												   ::Hazel::InstrumentationTimer timer##line(fixedName##line.Data)
-	#define HZ_PROFILE_SCOPE_LINE(name, line) HZ_PROFILE_SCOPE_LINE2(name, line)
-	#define HZ_PROFILE_SCOPE(name) HZ_PROFILE_SCOPE_LINE(name, __LINE__)
+	#define QAQ_PROFILE_SCOPE_LINE2(name, line) constexpr auto fixedName##line = ::QAQ::InstrumentorUtils::CleanupOutputString(name, "__cdecl ");\
+											   ::QAQ::InstrumentationTimer timer##line(fixedName##line.Data)
+	#define QAQ_PROFILE_SCOPE_LINE(name, line) QAQ_PROFILE_SCOPE_LINE2(name, line)
+	#define QAQ_PROFILE_SCOPE(name) QAQ_PROFILE_SCOPE_LINE(name, __LINE__)
 	#define QAQ_PROFILE_FUNCTION() QAQ_PROFILE_SCOPE(QAQ_FUNC_SIG)
 #else
 	#define QAQ_PROFILE_BEGIN_SESSION(name, filepath)
 	#define QAQ_PROFILE_END_SESSION()
 	#define QAQ_PROFILE_SCOPE(name)
 	#define QAQ_PROFILE_FUNCTION()
-#endif 
+#endif

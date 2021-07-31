@@ -3,17 +3,18 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "QAQ/Scene/SceneCamera.h"
-#include "QAQ/Scene/ScriptableEntity.h"
-
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
+
+#include "SceneCamera.h"
+#include "ScriptableEntity.h"
 
 namespace QAQ {
 
 	struct TagComponent
 	{
 		std::string Tag;
+
 		TagComponent() = default;
 		TagComponent(const TagComponent&) = default;
 		TagComponent(const std::string& tag)
@@ -27,6 +28,7 @@ namespace QAQ {
 		glm::vec3 Scale = { 1.0f, 1.0f, 1.0f };
 
 		TransformComponent() = default;
+		TransformComponent(const TransformComponent&) = default;
 		TransformComponent(const glm::vec3& translation)
 			: Translation(translation) {}
 
@@ -42,7 +44,7 @@ namespace QAQ {
 
 	struct SpriteRendererComponent
 	{
-		glm::vec4 Color{ 1.0f,1.0f ,1.0f ,1.0f };
+		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
 
 		SpriteRendererComponent() = default;
 		SpriteRendererComponent(const SpriteRendererComponent&) = default;
@@ -53,7 +55,7 @@ namespace QAQ {
 	struct CameraComponent
 	{
 		SceneCamera Camera;
-		bool Primary = true; //todo move to scene
+		bool Primary = true; // TODO: think about moving to Scene
 		bool FixedAspectRatio = false;
 
 		CameraComponent() = default;
@@ -70,8 +72,9 @@ namespace QAQ {
 		template<typename T>
 		void Bind()
 		{
-			InstantiateScript = []() {return static_cast<ScriptableEntity*>(new T()); };
+			InstantiateScript = []() { return static_cast<ScriptableEntity*>(new T()); };
 			DestroyScript = [](NativeScriptComponent* nsc) { delete nsc->Instance; nsc->Instance = nullptr; };
 		}
 	};
+
 }
