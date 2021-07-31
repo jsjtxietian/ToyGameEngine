@@ -23,6 +23,8 @@
 #include "QAQ/Scene/ScriptableEntity.h"
 #include "QAQ/Scene/Components.h"
 
+#include "QAQ/Utils/DynamicConstant.h"
+
 // ---Renderer------------------------
 #include "QAQ/Renderer/Renderer.h"
 #include "QAQ/Renderer/Renderer2D.h"
