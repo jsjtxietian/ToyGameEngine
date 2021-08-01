@@ -49,7 +49,9 @@ project "QAQ"
 		"Glad",
 		"ImGui",
 		"yaml-cpp",
-		"opengl32.lib"
+		"opengl32.lib",
+		"d3d11.lib",
+		"dxgi.lib"
 	}
 
 	filter "files:vendor/ImGuizmo/**.cpp"

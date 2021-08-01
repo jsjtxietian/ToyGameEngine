@@ -7,21 +7,6 @@
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f), m_SquareColor({0.2f, 0.3f, 0.8f, 1.0f})
 {
-	using namespace std::string_literals;
-	// data roundtrip tests
-	{
-		QAQ::Dcb::RawLayout s;
-		s.Add<QAQ::Dcb::Float>("woot"s);
-		s.Add<QAQ::Dcb::Float>("fuck"s);
-
-		auto b = QAQ::Dcb::Buffer(std::move(s));
-
-		auto exp = 42.0f;
-		b["woot"s] = exp;
-		float act = b["woot"s];
-		
-		QAQ_CORE_INFO(act);
-	}
 }
 
 void Sandbox2D::OnAttach()

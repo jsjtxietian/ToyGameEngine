@@ -24,6 +24,7 @@
 #include "QAQ/Scene/Components.h"
 
 #include "QAQ/Utils/DynamicConstant.h"
+#include "QAQ/Utils/LayoutCodex.h"
 
 // ---Renderer------------------------
 #include "QAQ/Renderer/Renderer.h"

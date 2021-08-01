@@ -5,34 +5,31 @@
 #include <memory>
 #include <optional>
 #include <string>
+#include <DirectXMath.h>
 #include "QAQ/Core/Base.h"
 
-
-namespace QAQ{
-
-
+namespace QAQ
+{
 
 // master list of leaf types that generates enum elements and various switches etc.
 #define LEAF_ELEMENT_TYPES \
 	X(Float)               \
+	X(Float2)              \
+	X(Float3)              \
+	X(Float4)              \
+	X(Matrix)              \
 	X(Bool)                \
 	X(Integer)
 
-	// X(Float2)              \
-	// X(Float3)              \
-	// X(Float4)              \
-	// X(Matrix)              \
-
 	namespace Dcb
 	{
-		// namespace dx = DirectX;
-
+		namespace dx = DirectX;
 		enum Type
 		{
 #define X(el) el,
 			LEAF_ELEMENT_TYPES
 #undef X
-			Struct,
+				Struct,
 			Array,
 			Empty,
 		};
@@ -51,38 +48,38 @@ namespace QAQ{
 			static constexpr const char *code = "F1";			// code used for generating signature of layout
 			static constexpr bool valid = true;					// metaprogramming flag to check validity of Map <param>
 		};
-		// template <>
-		// struct Map<Float2>
-		// {
-		// 	using SysType = dx::XMFLOAT2;
-		// 	static constexpr size_t hlslSize = sizeof(SysType);
-		// 	static constexpr const char *code = "F2";
-		// 	static constexpr bool valid = true;
-		// };
-		// template <>
-		// struct Map<Float3>
-		// {
-		// 	using SysType = dx::XMFLOAT3;
-		// 	static constexpr size_t hlslSize = sizeof(SysType);
-		// 	static constexpr const char *code = "F3";
-		// 	static constexpr bool valid = true;
-		// };
-		// template <>
-		// struct Map<Float4>
-		// {
-		// 	using SysType = dx::XMFLOAT4;
-		// 	static constexpr size_t hlslSize = sizeof(SysType);
-		// 	static constexpr const char *code = "F4";
-		// 	static constexpr bool valid = true;
-		// };
-		// template <>
-		// struct Map<Matrix>
-		// {
-		// 	using SysType = dx::XMFLOAT4X4;
-		// 	static constexpr size_t hlslSize = sizeof(SysType);
-		// 	static constexpr const char *code = "M4";
-		// 	static constexpr bool valid = true;
-		// };
+		template <>
+		struct Map<Float2>
+		{
+			using SysType = dx::XMFLOAT2;
+			static constexpr size_t hlslSize = sizeof(SysType);
+			static constexpr const char *code = "F2";
+			static constexpr bool valid = true;
+		};
+		template <>
+		struct Map<Float3>
+		{
+			using SysType = dx::XMFLOAT3;
+			static constexpr size_t hlslSize = sizeof(SysType);
+			static constexpr const char *code = "F3";
+			static constexpr bool valid = true;
+		};
+		template <>
+		struct Map<Float4>
+		{
+			using SysType = dx::XMFLOAT4;
+			static constexpr size_t hlslSize = sizeof(SysType);
+			static constexpr const char *code = "F4";
+			static constexpr bool valid = true;
+		};
+		template <>
+		struct Map<Matrix>
+		{
+			using SysType = dx::XMFLOAT4X4;
+			static constexpr size_t hlslSize = sizeof(SysType);
+			static constexpr const char *code = "M4";
+			static constexpr bool valid = true;
+		};
 		template <>
 		struct Map<Bool>
 		{
@@ -143,40 +140,40 @@ namespace QAQ{
 		public:
 			// get a string signature for this element (recursive); when called on the root
 			// element of a layout tree, generates a uniquely-identifying string for the layout
-			std::string GetSignature() const ;
+			std::string GetSignature() const;
 			// Check if element is "real"
 			bool Exists() const noexcept;
 			// calculate array indexing offset
-			std::pair<size_t, const LayoutElement *> CalculateIndexingOffset(size_t offset, size_t index) const ;
+			std::pair<size_t, const LayoutElement *> CalculateIndexingOffset(size_t offset, size_t index) const;
 			// [] only works for Structs; access member (child node in tree) by name
-			LayoutElement &operator[](const std::string &key) ;
-			const LayoutElement &operator[](const std::string &key) const ;
+			LayoutElement &operator[](const std::string &key);
+			const LayoutElement &operator[](const std::string &key) const;
 			// T() only works for Arrays; gets the array type layout object
 			// needed to further configure an array's type
-			LayoutElement &T() ;
-			const LayoutElement &T() const ;
+			LayoutElement &T();
+			const LayoutElement &T() const;
 			// offset based- functions only work after finalization!
-			size_t GetOffsetBegin() const ;
-			size_t GetOffsetEnd() const ;
+			size_t GetOffsetBegin() const;
+			size_t GetOffsetEnd() const;
 			// get size in bytes derived from offsets
-			size_t GetSizeInBytes() const ;
+			size_t GetSizeInBytes() const;
 			// only works for Structs; add LayoutElement to struct
-			LayoutElement &Add(Type addedType, std::string name) ;
+			LayoutElement &Add(Type addedType, std::string name);
 			template <Type typeAdded>
-			LayoutElement &Add(std::string key) 
+			LayoutElement &Add(std::string key)
 			{
 				return Add(typeAdded, std::move(key));
 			}
 			// only works for Arrays; set the type and the # of elements
-			LayoutElement &Set(Type addedType, size_t size) ;
+			LayoutElement &Set(Type addedType, size_t size);
 			template <Type typeAdded>
-			LayoutElement &Set(size_t size) 
+			LayoutElement &Set(size_t size)
 			{
 				return Set(typeAdded, size);
 			}
 			// returns offset of leaf types for read/write purposes w/ typecheck in Debug
 			template <typename T>
-			size_t Resolve() const 
+			size_t Resolve() const
 			{
 				switch (type)
 				{
@@ -195,13 +192,13 @@ namespace QAQ{
 		private:
 			// construct an empty layout element
 			LayoutElement() noexcept = default;
-			LayoutElement(Type typeIn) ;
+			LayoutElement(Type typeIn);
 			// sets all offsets for element and subelements, prepending padding when necessary
 			// returns offset directly after this element
-			size_t Finalize(size_t offsetIn) ;
+			size_t Finalize(size_t offsetIn);
 			// implementations for GetSignature for aggregate types
-			std::string GetSignatureForStruct() const ;
-			std::string GetSignatureForArray() const ;
+			std::string GetSignatureForStruct() const;
+			std::string GetSignatureForArray() const;
 			// implementations for Finalize for aggregate types
 			size_t FinalizeForStruct(size_t offsetIn);
 			size_t FinalizeForArray(size_t offsetIn);
@@ -243,7 +240,7 @@ namespace QAQ{
 
 		public:
 			size_t GetSizeInBytes() const noexcept;
-			std::string GetSignature() const ;
+			std::string GetSignature() const;
 
 		protected:
 			Layout(std::shared_ptr<LayoutElement> pRoot) noexcept;
@@ -259,10 +256,10 @@ namespace QAQ{
 		public:
 			RawLayout() noexcept;
 			// key into the root Struct
-			LayoutElement &operator[](const std::string &key) ;
+			LayoutElement &operator[](const std::string &key);
 			// add an element to the root Struct
 			template <Type type>
-			LayoutElement &Add(const std::string &key) 
+			LayoutElement &Add(const std::string &key)
 			{
 				return pRoot->Add<type>(key);
 			}
@@ -283,7 +280,7 @@ namespace QAQ{
 
 		public:
 			// key into the root Struct (const to disable mutation of the layout)
-			const LayoutElement &operator[](const std::string &key) const ;
+			const LayoutElement &operator[](const std::string &key) const;
 			// get a share on layout tree root
 			std::shared_ptr<LayoutElement> ShareRoot() const noexcept;
 
@@ -294,8 +291,9 @@ namespace QAQ{
 			std::shared_ptr<LayoutElement> RelinquishRoot() const noexcept;
 		};
 
-		// version of ConstElementRef that also allows writing to the bytes of Buffer
-		// see above in ConstElementRef for detailed description
+		// / proxy type that is emitted when keying/indexing into a Buffer
+		// implement conversions/assignment that allows manipulation of the
+		// raw bytes of the Buffer.
 		class ElementRef
 		{
 			friend class Buffer;
@@ -308,7 +306,7 @@ namespace QAQ{
 			public:
 				// conversion to read/write pointer to supported SysType
 				template <typename T>
-				operator T *() const 
+				operator T *() const
 				{
 					static_assert(ReverseMap<std::remove_const_t<T>>::valid, "Unsupported SysType used in pointer conversion");
 					return &static_cast<T &>(*ref);
@@ -322,11 +320,11 @@ namespace QAQ{
 		public:
 			// operator ConstElementRef() const noexcept;
 			bool Exists() const noexcept;
-			ElementRef operator[](const std::string &key) const ;
-			ElementRef operator[](size_t index) const ;
+			ElementRef operator[](const std::string &key) const;
+			ElementRef operator[](size_t index) const;
 			// optionally set value if not an empty Ref
 			template <typename S>
-			bool SetIfExists(const S &val) 
+			bool SetIfExists(const S &val)
 			{
 				if (Exists())
 				{
@@ -335,17 +333,17 @@ namespace QAQ{
 				}
 				return false;
 			}
-			Ptr operator&() const ;
+			Ptr operator&() const;
 			// conversion for reading/writing as a supported SysType
 			template <typename T>
-			operator T &() const 
+			operator T &() const
 			{
 				static_assert(ReverseMap<std::remove_const_t<T>>::valid, "Unsupported SysType used in conversion");
 				return *reinterpret_cast<T *>(pBytes + offset + pLayout->Resolve<T>());
 			}
 			// assignment for writing to as a supported SysType
 			template <typename T>
-			T &operator=(const T &rhs) const 
+			T &operator=(const T &rhs) const
 			{
 				static_assert(ReverseMap<std::remove_const_t<T>>::valid, "Unsupported SysType used in assignment");
 				return static_cast<T &>(*this) = rhs;
@@ -368,15 +366,15 @@ namespace QAQ{
 		{
 		public:
 			// various resources can be used to construct a Buffer
-			Buffer(RawLayout &&lay) ;
-			Buffer(const CookedLayout &lay) ;
-			Buffer(CookedLayout &&lay) ;
+			Buffer(RawLayout &&lay);
+			Buffer(const CookedLayout &lay);
+			Buffer(CookedLayout &&lay);
 			Buffer(const Buffer &) noexcept;
 			// have to be careful with this one...
 			// the buffer that has once been pilfered must not be used :x
 			Buffer(Buffer &&) noexcept;
 			// how you begin indexing into buffer (root is always Struct)
-			ElementRef operator[](const std::string &key) ;
+			ElementRef operator[](const std::string &key);
 			// if Buffer is const, you only get to index into the buffer with a read-only proxy
 			// ConstElementRef operator[](const std::string &key) const ;
 			// get the raw bytes
@@ -385,7 +383,7 @@ namespace QAQ{
 			size_t GetSizeInBytes() const noexcept;
 			const LayoutElement &GetRootLayoutElement() const noexcept;
 			// copy bytes from another buffer (layouts must match)
-			void CopyFrom(const Buffer &) ;
+			void CopyFrom(const Buffer &);
 			// return another sptr to the layout root
 			std::shared_ptr<LayoutElement> ShareLayoutRoot() const noexcept;
 
