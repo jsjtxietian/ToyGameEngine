@@ -1,9 +1,9 @@
 #pragma once
 
-#include "entt.hpp"
-
-
 #include "QAQ/Core/Timestep.h"
+#include "QAQ/Renderer/EditorCamera.h"
+
+#include "entt.hpp"
 
 namespace QAQ {
 
@@ -18,7 +18,8 @@ namespace QAQ {
 		Entity CreateEntity(const std::string& name = std::string());
 		void DestroyEntity(Entity entity);
 
-		void OnUpdate(Timestep ts);
+		void OnUpdateRuntime(Timestep ts);
+		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
 		void OnViewportResize(uint32_t width, uint32_t height);
 
 		Entity GetPrimaryCameraEntity();
