@@ -9,11 +9,13 @@
 
 #include <GLFW/glfw3.h>
 
-namespace QAQ {
+namespace QAQ
+{
 
-	Application* Application::s_Instance = nullptr;
+	Application *Application::s_Instance = nullptr;
 
-	Application::Application(const std::string& name)
+	Application::Application(const std::string &name, ApplicationCommandLineArgs args)
+		: m_CommandLineArgs(args)
 	{
 		QAQ_PROFILE_FUNCTION();
 
@@ -35,7 +37,7 @@ namespace QAQ {
 		Renderer::Shutdown();
 	}
 
-	void Application::PushLayer(Layer* layer)
+	void Application::PushLayer(Layer *layer)
 	{
 		QAQ_PROFILE_FUNCTION();
 
@@ -43,7 +45,7 @@ namespace QAQ {
 		layer->OnAttach();
 	}
 
-	void Application::PushOverlay(Layer* layer)
+	void Application::PushOverlay(Layer *layer)
 	{
 		QAQ_PROFILE_FUNCTION();
 
@@ -56,7 +58,7 @@ namespace QAQ {
 		m_Running = false;
 	}
 
-	void Application::OnEvent(Event& e)
+	void Application::OnEvent(Event &e)
 	{
 		QAQ_PROFILE_FUNCTION();
 
@@ -66,7 +68,7 @@ namespace QAQ {
 
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
 		{
-			if (e.Handled) 
+			if (e.Handled)
 				break;
 			(*it)->OnEvent(e);
 		}
@@ -89,7 +91,7 @@ namespace QAQ {
 				{
 					QAQ_PROFILE_SCOPE("LayerStack OnUpdate");
 
-					for (Layer* layer : m_LayerStack)
+					for (Layer *layer : m_LayerStack)
 						layer->OnUpdate(timestep);
 				}
 
@@ -97,7 +99,7 @@ namespace QAQ {
 				{
 					QAQ_PROFILE_SCOPE("LayerStack OnImGuiRender");
 
-					for (Layer* layer : m_LayerStack)
+					for (Layer *layer : m_LayerStack)
 						layer->OnImGuiRender();
 				}
 				m_ImGuiLayer->End();
@@ -107,13 +109,13 @@ namespace QAQ {
 		}
 	}
 
-	bool Application::OnWindowClose(WindowCloseEvent& e)
+	bool Application::OnWindowClose(WindowCloseEvent &e)
 	{
 		m_Running = false;
 		return true;
 	}
 
-	bool Application::OnWindowResize(WindowResizeEvent& e)
+	bool Application::OnWindowResize(WindowResizeEvent &e)
 	{
 		QAQ_PROFILE_FUNCTION();
 

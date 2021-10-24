@@ -15,3 +15,8 @@ Sandbox/*.json
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+
+# Directories
+QAQ/vendor/VulkanSDK
+QAQNut/assets/cache
+scripts/__pycache__ 

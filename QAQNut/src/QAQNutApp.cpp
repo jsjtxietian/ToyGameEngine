@@ -8,24 +8,24 @@
 
 #include "EditorLayer.h"
 
-namespace QAQ {
+namespace QAQ
+{
 	class QAQNut : public Application
 	{
 	public:
-		QAQNut()
-			:Application("QAQ Nut")
+		QAQNut(ApplicationCommandLineArgs args)
+			: Application("QAQNut", args)
 		{
 			PushLayer(new EditorLayer());
 		}
 
-		~QAQNut() {
+		~QAQNut()
+		{
 		}
 	};
 
-
-	Application* CreateApplication()
+	Application *CreateApplication(ApplicationCommandLineArgs args)
 	{
-		return new QAQNut();
+		return new QAQNut(args);
 	}
 }
-
