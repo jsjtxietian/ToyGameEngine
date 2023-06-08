@@ -3,6 +3,7 @@
 #include "QAQ.h"
 #include "Panels/SceneHierarchyPanel.h"
 #include "QAQ/Renderer/EditorCamera.h"
+#include "Panels/ContentBrowserPanel.h"
 
 namespace QAQ {
 
@@ -54,6 +55,7 @@ namespace QAQ {
 
 		// Panels
 		SceneHierarchyPanel m_SceneHierarchyPanel;
+		ContentBrowserPanel m_ContentBrowserPanel;
 	};
 
 }
