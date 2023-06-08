@@ -19,7 +19,7 @@ public:
 	}
 };
 
-QAQ::Application* QAQ::CreateApplication()
+QAQ::Application* QAQ::CreateApplication(ApplicationCommandLineArgs args)
 {
 	return new Sandbox();
 }
