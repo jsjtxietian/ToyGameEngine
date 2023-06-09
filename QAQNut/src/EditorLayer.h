@@ -25,6 +25,7 @@ namespace QAQ {
 
 		void NewScene();
 		void OpenScene();
+		void OpenScene(const std::filesystem::path& path);
 		void SaveSceneAs();
 	private:
 		QAQ::OrthographicCameraController m_CameraController;
