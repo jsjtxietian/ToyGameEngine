@@ -18,7 +18,6 @@ struct VertexOutput
 {
 	vec4 Color;
 	vec2 TexCoord;
-	float TexIndex;
 	float TilingFactor;
 };
 
@@ -29,7 +28,6 @@ void main()
 {
 	Output.Color = a_Color;
 	Output.TexCoord = a_TexCoord;
-	Output.TexIndex = a_TexIndex;
 	Output.TilingFactor = a_TilingFactor;
 	v_EntityID = a_EntityID;
 
@@ -51,6 +49,7 @@ struct VertexOutput
 };
 
 layout (location = 0) in VertexOutput Input;
+layout (location = 3) in flat float v_TexIndex;
 layout (location = 4) in flat int v_EntityID;
 
 layout (binding = 0) uniform sampler2D u_Textures[32];
@@ -59,7 +58,7 @@ void main()
 {
 	vec4 texColor = Input.Color;
 
-	switch(int(Input.TexIndex))
+	switch(int(v_TexIndex))
 	{
 		case  0: texColor *= texture(u_Textures[ 0], Input.TexCoord * Input.TilingFactor); break;
 		case  1: texColor *= texture(u_Textures[ 1], Input.TexCoord * Input.TilingFactor); break;
