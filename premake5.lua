@@ -32,6 +32,7 @@ group "Dependencies"
 	include "QAQ/vendor/Glad"
 	include "QAQ/vendor/imgui"
 	include "QAQ/vendor/yaml-cpp"
+	include "QAQ/vendor/Box2D"
 group ""
 
 include "QAQ"
