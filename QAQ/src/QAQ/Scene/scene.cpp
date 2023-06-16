@@ -1,14 +1,13 @@
 #include "qaqpch.h"
-#include "Scene.h"
 
+#include "Scene.h"
 #include "Components.h"
 #include "QAQ/Renderer/Renderer2D.h"
+#include "ScriptableEntity.h"
+#include "Entity.h"
 
 #include <glm/glm.hpp>
 
-#include "Entity.h"
-
-// Box2D
 #include "box2d/b2_world.h"
 #include "box2d/b2_body.h"
 #include "box2d/b2_fixture.h"
@@ -38,9 +37,15 @@ namespace QAQ
 	{
 	}
 
-	Entity Scene::CreateEntity(const std::string &name)
+	Entity Scene::CreateEntity(const std::string& name)
+	{
+		return CreateEntityWithUUID(UUID(), name);
+	}
+
+	Entity Scene::CreateEntityWithUUID(UUID uuid, const std::string& name)
 	{
 		Entity entity = {m_Registry.create(), this};
+		entity.AddComponent<IDComponent>(uuid);
 		entity.AddComponent<TransformComponent>();
 		auto &tag = entity.AddComponent<TagComponent>();
 		tag.Tag = name.empty() ? "Entity" : name;
@@ -215,7 +220,11 @@ namespace QAQ
 	template <typename T>
 	void Scene::OnComponentAdded(Entity entity, T &component)
 	{
-		static_assert(false);
+	}
+
+	template<>
+	void Scene::OnComponentAdded<IDComponent>(Entity entity, IDComponent& component)
+	{
 	}
 
 	template <>

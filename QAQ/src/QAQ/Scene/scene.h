@@ -2,6 +2,7 @@
 
 #include "QAQ/Core/Timestep.h"
 #include "QAQ/Renderer/EditorCamera.h"
+#include "QAQ/Core/UUID.h"
 
 #include "entt.hpp"
 
@@ -18,6 +19,7 @@ namespace QAQ {
 		~Scene();
 
 		Entity CreateEntity(const std::string& name = std::string());
+		Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
 		void DestroyEntity(Entity entity);
 
 		void OnRuntimeStart();

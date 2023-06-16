@@ -7,10 +7,18 @@
 #include <glm/gtx/quaternion.hpp>
 
 #include "SceneCamera.h"
-#include "ScriptableEntity.h"
 #include "QAQ/Renderer/Texture.h"
+#include "QAQ/Core/UUID.h"
 
 namespace QAQ {
+
+	struct IDComponent
+	{
+		UUID ID;
+
+		IDComponent() = default;
+		IDComponent(const IDComponent&) = default;
+	};
 
 	struct TagComponent
 	{
@@ -65,6 +73,8 @@ namespace QAQ {
 		CameraComponent(const CameraComponent&) = default;
 	};
 
+	class ScriptableEntity;
+	
 	struct NativeScriptComponent
 	{
 		ScriptableEntity* Instance = nullptr;
