@@ -23,9 +23,9 @@ Entities:
     TagComponent:
       Tag: Sprite
     TransformComponent:
-      Translation: [0.0495706201, 0.271503896, 0.0225147791]
-      Rotation: [0, 0, -0.235084534]
-      Scale: [0.361159712, 0.375572056, 0.848135769]
+      Translation: [0.444367409, 1.0746398, 0.0225147791]
+      Rotation: [0, 0, 0.689029992]
+      Scale: [0.36115998, 0.375571847, 0.848135769]
     SpriteRendererComponent:
       Color: [1, 1, 1, 1]
     Rigidbody2DComponent:
@@ -42,7 +42,7 @@ Entities:
     TagComponent:
       Tag: Camera
     TransformComponent:
-      Translation: [0, 0, 4.99711323]
+      Translation: [0, 0, 7.30000019]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
