@@ -28,10 +28,17 @@ namespace QAQ
 		}
 	};
 
+	struct ApplicationSpecification
+	{
+		std::string Name = "QAQ App";
+		std::string WorkingDirectory;
+		ApplicationCommandLineArgs CommandLineArgs;
+	};
+
 	class Application
 	{
 	public:
-		Application(const std::string &name = "QAQ App", ApplicationCommandLineArgs args = ApplicationCommandLineArgs());
+		Application(const ApplicationSpecification& specification);
 		virtual ~Application();
 
 		void OnEvent(Event &e);
@@ -47,7 +54,7 @@ namespace QAQ
 
 		static Application &Get() { return *s_Instance; }
 
-		ApplicationCommandLineArgs GetCommandLineArgs() const { return m_CommandLineArgs; }
+		const ApplicationSpecification& GetSpecification() const { return m_Specification; }
 
 	private:
 		void Run();
@@ -55,7 +62,7 @@ namespace QAQ
 		bool OnWindowResize(WindowResizeEvent &e);
 
 	private:
-		ApplicationCommandLineArgs m_CommandLineArgs;
+		ApplicationSpecification m_Specification;
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer *m_ImGuiLayer;
 		bool m_Running = true;

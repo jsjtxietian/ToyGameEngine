@@ -8,7 +8,8 @@
 class Sandbox : public QAQ::Application
 {
 public:
-	Sandbox(QAQ::ApplicationCommandLineArgs args)
+	Sandbox(const QAQ::ApplicationSpecification& specification)
+		: QAQ::Application(specification)
 	{
 		PushLayer(new Sandbox2D());
 		//PushLayer(new TestingLayer());
@@ -21,5 +22,10 @@ public:
 
 QAQ::Application* QAQ::CreateApplication(ApplicationCommandLineArgs args)
 {
-	return new Sandbox(args);
+	ApplicationSpecification spec;
+	spec.Name = "Sandbox";
+	spec.WorkingDirectory = "../QAQNut";
+	spec.CommandLineArgs = args;
+
+	return new Sandbox(spec);
 }

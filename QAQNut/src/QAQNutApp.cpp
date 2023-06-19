@@ -13,8 +13,8 @@ namespace QAQ
 	class QAQNut : public Application
 	{
 	public:
-		QAQNut(ApplicationCommandLineArgs args)
-			: Application("QAQNut", args)
+		QAQNut(const ApplicationSpecification& spec)
+			: Application(spec)
 		{
 			PushLayer(new EditorLayer());
 		}
@@ -26,6 +26,10 @@ namespace QAQ
 
 	Application *CreateApplication(ApplicationCommandLineArgs args)
 	{
-		return new QAQNut(args);
+		ApplicationSpecification spec;
+		spec.Name = "QAQlnut";
+		spec.CommandLineArgs = args;
+
+		return new QAQNut(spec);
 	}
 }
