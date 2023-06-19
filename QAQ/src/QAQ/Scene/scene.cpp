@@ -36,6 +36,7 @@ namespace QAQ
 
 	Scene::~Scene()
 	{
+		delete m_PhysicsWorld;
 	}
 
 	template<typename Component>
@@ -116,6 +117,26 @@ namespace QAQ
 
 	void Scene::OnRuntimeStart()
 	{
+		OnPhysics2DStart();
+	}
+	
+	void Scene::OnRuntimeStop()
+	{
+		OnPhysics2DStop();
+	}
+
+	void Scene::OnSimulationStart()
+	{
+		OnPhysics2DStart();
+	}
+
+	void Scene::OnSimulationStop()
+	{
+		OnPhysics2DStop();
+	}
+
+	void Scene::OnPhysics2DStart()
+	{
 		m_PhysicsWorld = new b2World({ 0.0f, -9.8f });
 
 		auto view = m_Registry.view<Rigidbody2DComponent>();
@@ -169,7 +190,7 @@ namespace QAQ
 		}
 	}
 
-	void Scene::OnRuntimeStop()
+	void Scene::OnPhysics2DStop()
 	{
 		delete m_PhysicsWorld;
 		m_PhysicsWorld = nullptr;
@@ -261,7 +282,41 @@ namespace QAQ
 		}
 	}
 
+	void Scene::OnUpdateSimulation(Timestep ts, EditorCamera& camera)
+	{
+		// Physics
+		{
+			const int32_t velocityIterations = 6;
+			const int32_t positionIterations = 2;
+			m_PhysicsWorld->Step(ts, velocityIterations, positionIterations);
+
+			// Retrieve transform from Box2D
+			auto view = m_Registry.view<Rigidbody2DComponent>();
+			for (auto e : view)
+			{
+				Entity entity = { e, this };
+				auto& transform = entity.GetComponent<TransformComponent>();
+				auto& rb2d = entity.GetComponent<Rigidbody2DComponent>();
+
+				b2Body* body = (b2Body*)rb2d.RuntimeBody;
+				const auto& position = body->GetPosition();
+				transform.Translation.x = position.x;
+				transform.Translation.y = position.y;
+				transform.Rotation.z = body->GetAngle();
+			}
+		}
+
+		// Render
+		RenderScene(camera);
+	}
+
 	void Scene::OnUpdateEditor(Timestep ts, EditorCamera &camera)
+	{
+		// Render
+		RenderScene(camera);
+	}
+
+	void Scene::RenderScene(EditorCamera& camera)
 	{
 		Renderer2D::BeginScene(camera);
 
@@ -272,7 +327,6 @@ namespace QAQ
 			{
 				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 				Renderer2D::DrawSprite(transform.GetTransform(), sprite, (int)entity);
-				// Renderer2D::DrawRect(transform.GetTransform(), glm::vec4(1,0,0,1), (int)entity);
 			}
 		}
 
