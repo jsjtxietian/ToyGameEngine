@@ -151,17 +151,12 @@ namespace QAQ {
 		MonoMethod* printCustomMessageFunc = mono_class_get_method_from_name(monoClass, "PrintCustomMessage", 1);
 		void* stringParam = monoString;
 		mono_runtime_invoke(printCustomMessageFunc, instance, &stringParam, nullptr);
-
-		// QAQ_CORE_ASSERT(false);
 	}
 
 	void ScriptEngine::ShutdownMono()
 	{
-		// NOTE(Yan): mono is a little confusing to shutdown, so maybe come back to this
-
 		// mono_domain_unload(s_Data->AppDomain);
 		s_Data->AppDomain = nullptr;
-
 		// mono_jit_cleanup(s_Data->RootDomain);
 		s_Data->RootDomain = nullptr;
 	}
