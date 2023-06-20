@@ -2,8 +2,10 @@
 **/bin/
 !vendor/premake/bin/
 bin-int/
+Intermediates/
 
 Sandbox/*.json
+**.csproj
 
 *.log
 

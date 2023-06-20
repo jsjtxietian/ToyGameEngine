@@ -1,11 +1,9 @@
 #include "qaqpch.h"
 #include "QAQ/Core/Application.h"
-
 #include "QAQ/Core/Log.h"
-
 #include "QAQ/Renderer/Renderer.h"
-
 #include "QAQ/Core/Input.h"
+#include "QAQ/Scripting/ScriptEngine.h"
 
 #include <GLFW/glfw3.h>
 
@@ -29,6 +27,7 @@ namespace QAQ
 		m_Window->SetEventCallback(QAQ_BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
+		ScriptEngine::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -39,6 +38,7 @@ namespace QAQ
 		QAQ_PROFILE_FUNCTION();
 
 		Renderer::Shutdown();
+		ScriptEngine::Shutdown();
 	}
 
 	void Application::PushLayer(Layer *layer)
