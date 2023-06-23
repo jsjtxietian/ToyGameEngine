@@ -8,7 +8,8 @@ Sandbox/*.json
 **.csproj
 
 *.log
-
+*.dll
+*.pdb
 
 # Visual Studio files and folder
 .vs/

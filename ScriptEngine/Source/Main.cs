@@ -15,7 +15,7 @@ namespace QAQ
 
 		public void PrintMessage()
 		{
-			Console.WriteLine("Hello World from C#!");
+			Console.WriteLine("Hello Damn from C#!");
 		}
 
 		public void PrintInt(int value)
