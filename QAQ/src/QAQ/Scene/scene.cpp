@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "Components.h"
 #include "QAQ/Renderer/Renderer2D.h"
+#include "QAQ/Scripting/ScriptEngine.h"
 #include "ScriptableEntity.h"
 #include "Entity.h"
 
@@ -116,22 +117,38 @@ namespace QAQ
 		entity.AddComponent<TransformComponent>();
 		auto &tag = entity.AddComponent<TagComponent>();
 		tag.Tag = name.empty() ? "Entity" : name;
+		m_EntityMap[uuid] = entity;
 		return entity;
 	}
 
 	void Scene::DestroyEntity(Entity entity)
 	{
+		m_EntityMap.erase(entity.GetUUID());
 		m_Registry.destroy(entity);
 	}
 
 	void Scene::OnRuntimeStart()
 	{
 		OnPhysics2DStart();
+
+		// Scripting
+		{
+			ScriptEngine::OnRuntimeStart(this);
+			// Instantiate all script entities
+
+			auto view = m_Registry.view<ScriptComponent>();
+			for (auto e : view)
+			{
+				Entity entity = { e, this };
+				ScriptEngine::OnCreateEntity(entity);
+			}
+		}
 	}
 	
 	void Scene::OnRuntimeStop()
 	{
 		OnPhysics2DStop();
+		ScriptEngine::OnRuntimeStop();
 	}
 
 	void Scene::OnSimulationStart()
@@ -209,6 +226,14 @@ namespace QAQ
 	{
 		// Update scripts
 		{
+			// C# Entity OnUpdate
+			auto view = m_Registry.view<ScriptComponent>();
+			for (auto e : view)
+			{
+				Entity entity = { e, this };
+				ScriptEngine::OnUpdateEntity(entity, ts);
+			}
+
 			m_Registry.view<NativeScriptComponent>().each([=](auto entity, auto &nsc)
 														  {
 															  // TODO: Move to Scene::OnScenePlay
@@ -373,6 +398,15 @@ namespace QAQ
 		CopyComponentIfExists(AllComponents{}, newEntity, entity);
 	}
 
+	Entity Scene::GetEntityByUUID(UUID uuid)
+	{
+		if (m_EntityMap.find(uuid) != m_EntityMap.end())
+			return { m_EntityMap.at(uuid), this };
+		
+		QAQ_CORE_ASSERT(false, "Unknown Entity UUID");
+		return {};
+	}
+
 	Entity Scene::GetPrimaryCameraEntity()
 	{
 		auto view = m_Registry.view<CameraComponent>();
@@ -415,6 +449,11 @@ namespace QAQ
 
 	template <>
 	void Scene::OnComponentAdded<TagComponent>(Entity entity, TagComponent &component)
+	{
+	}
+
+	template<>
+	void Scene::OnComponentAdded<ScriptComponent>(Entity entity, ScriptComponent& component)
 	{
 	}
 
