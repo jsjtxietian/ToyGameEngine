@@ -100,6 +100,14 @@ namespace QAQ {
 		}
 	};
 
+	struct ScriptComponent
+	{
+		std::string ClassName;
+
+		ScriptComponent() = default;
+		ScriptComponent(const ScriptComponent&) = default;
+	};
+
 
 	// Physics
 
@@ -157,7 +165,7 @@ namespace QAQ {
 
 	using AllComponents = 
 		ComponentGroup<TransformComponent, SpriteRendererComponent,
-			CircleRendererComponent, CameraComponent, NativeScriptComponent,
+			CircleRendererComponent, CameraComponent, NativeScriptComponent,ScriptComponent,
 			Rigidbody2DComponent, BoxCollider2DComponent, CircleCollider2DComponent>;
 
 }
