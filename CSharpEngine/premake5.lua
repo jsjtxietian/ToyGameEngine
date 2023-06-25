@@ -1,4 +1,4 @@
-project "ScriptEngine"
+project "CSharpEngine"
 	kind "SharedLib"
 	language "C#"
 	dotnetframework "4.7.2"
