@@ -3,8 +3,8 @@ project "CSharpEngine"
 	language "C#"
 	dotnetframework "4.7.2"
 
-	targetdir ("%{wks.location}/QAQNut/Resources/Scripts")
-	objdir ("%{wks.location}/QAQNut/Resources/Scripts/Intermediates")
+	targetdir ("../QAQNut/Resources/Scripts")
+	objdir ("../QAQNut/Resources/Scripts/Intermediates")
 
 	files 
 	{
