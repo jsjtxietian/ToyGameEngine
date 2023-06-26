@@ -34,6 +34,8 @@ namespace QAQ {
 		void OnUpdateSimulation(Timestep ts, EditorCamera& camera);
 		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
 		void OnViewportResize(uint32_t width, uint32_t height);
+		
+		bool IsRunning() const { return m_IsRunning; }
 
 		void DuplicateEntity(Entity entity);
 		Entity GetEntityByUUID(UUID uuid);
@@ -56,6 +58,7 @@ namespace QAQ {
 	private:
 		entt::registry m_Registry;
 		uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;
+		bool m_IsRunning = false;
 		
 		b2World* m_PhysicsWorld = nullptr;
 		std::unordered_map<UUID, entt::entity> m_EntityMap;
