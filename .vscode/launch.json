@@ -6,7 +6,7 @@
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/Debug-windows-x86_64/QAQnut/QAQnut.exe",
-            "args": [],
+            "args": ["assets/scenes/physics2d.scene"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/QAQNut",
             "environment": [],

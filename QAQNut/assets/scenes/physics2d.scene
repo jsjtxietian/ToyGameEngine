@@ -40,6 +40,8 @@ Entities:
       FixedAspectRatio: false
     ScriptComponent:
       ClassName: Sandbox.Camera
+      ScriptFields:
+        []
   - Entity: 4217836277314002696
     TagComponent:
       Tag: Sprite
@@ -83,7 +85,7 @@ Entities:
       RestitutionThreshold: 0.5
   - Entity: 5789806175670740177
     TagComponent:
-      Tag: Circle
+      Tag: Player
     TransformComponent:
       Translation: [1.22489464, 1.55996561, 0]
       Rotation: [0, 0, 0]
@@ -94,6 +96,10 @@ Entities:
       Fade: 0.127000004
     ScriptComponent:
       ClassName: Sandbox.Player
+      ScriptFields:
+        - Name: Speed
+          Type: Float
+          Data: 2
     Rigidbody2DComponent:
       BodyType: Dynamic
       FixedRotation: false
