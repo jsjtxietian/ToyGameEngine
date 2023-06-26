@@ -11,6 +11,7 @@
 #include "ImGuizmo.h"
 
 #include "QAQ/Math/Math.h"
+#include "QAQ/Scripting/ScriptEngine.h"
 
 namespace QAQ
 {
@@ -198,6 +199,14 @@ namespace QAQ
 
 				if (ImGui::MenuItem("Exit"))
 					Application::Get().Close();
+				ImGui::EndMenu();
+			}
+
+			if (ImGui::BeginMenu("Script"))
+			{
+				if (ImGui::MenuItem("Reload assembly", "Ctrl+R"))
+					ScriptEngine::ReloadAssembly();
+
 				ImGui::EndMenu();
 			}
 
@@ -428,8 +437,15 @@ namespace QAQ
 				m_GizmoType = ImGuizmo::OPERATION::ROTATE;
 			break;
 		case Key::R:
-			if (!ImGuizmo::IsUsing())
-				m_GizmoType = ImGuizmo::OPERATION::SCALE;
+			if (control)
+			{
+				ScriptEngine::ReloadAssembly();
+			}
+			else
+			{
+				if (!ImGuizmo::IsUsing())
+					m_GizmoType = ImGuizmo::OPERATION::SCALE;
+			}
 			break;
 		}
 	}

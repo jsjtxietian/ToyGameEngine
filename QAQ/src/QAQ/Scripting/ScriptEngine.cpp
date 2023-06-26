@@ -131,6 +131,9 @@ namespace QAQ
 		MonoAssembly* AppAssembly = nullptr;
 		MonoImage* AppAssemblyImage = nullptr;
 
+		std::filesystem::path CoreAssemblyFilepath;
+		std::filesystem::path AppAssemblyFilepath;
+
 		ScriptClass EntityClass;
 
 		std::unordered_map<std::string, Ref<ScriptClass>> EntityClasses;
@@ -148,12 +151,13 @@ namespace QAQ
 		s_Data = new ScriptEngineData();
 
 		InitMono();
+		ScriptGlue::RegisterFunctions();
+
 		LoadAssembly("Resources/Scripts/CSharpEngine.dll");
 		LoadAppAssembly("SandboxProject/Assets/Scripts/Binaries/Sandbox.dll");
 		LoadAssemblyClasses();
 
 		ScriptGlue::RegisterComponents();
-		ScriptGlue::RegisterFunctions();
 
 		// Retrieve and instantiate class (with constructor)
 		s_Data->EntityClass = ScriptClass("QAQ", "Entity", true);
@@ -178,10 +182,12 @@ namespace QAQ
 
 	void ScriptEngine::ShutdownMono()
 	{
-		// mono_domain_unload(s_Data->AppDomain);
-		s_Data->AppDomain = nullptr;
+		mono_domain_set(mono_get_root_domain(), false);
 
-		// mono_jit_cleanup(s_Data->RootDomain);
+		mono_domain_unload(s_Data->AppDomain);
+		s_Data->AppDomain = nullptr;
+		
+		mono_jit_cleanup(s_Data->RootDomain);
 		s_Data->RootDomain = nullptr;
 	}
 
@@ -191,6 +197,7 @@ namespace QAQ
 		s_Data->AppDomain = mono_domain_create_appdomain("QAQScriptRuntime", nullptr);
 		mono_domain_set(s_Data->AppDomain, true);
 
+		s_Data->CoreAssemblyFilepath = filepath;
 		s_Data->CoreAssembly = Utils::LoadMonoAssembly(filepath);
 		s_Data->CoreAssemblyImage = mono_assembly_get_image(s_Data->CoreAssembly);
 		// Utils::PrintAssemblyTypes(s_Data->CoreAssembly);
@@ -198,6 +205,7 @@ namespace QAQ
 
 	void ScriptEngine::LoadAppAssembly(const std::filesystem::path& filepath)
 	{
+		s_Data->AppAssemblyFilepath = filepath;
 		s_Data->AppAssembly = Utils::LoadMonoAssembly(filepath);
 		s_Data->AppAssemblyImage = mono_assembly_get_image(s_Data->AppAssembly);
 		Utils::PrintAssemblyTypes(s_Data->AppAssembly);
@@ -233,7 +241,7 @@ namespace QAQ
 			if (!isEntity)
 				continue;
 
-			Ref<ScriptClass> scriptClass =CreateRef<ScriptClass>(nameSpace, className);
+			Ref<ScriptClass> scriptClass = CreateRef<ScriptClass>(nameSpace, className);
 			s_Data->EntityClasses[fullName] = scriptClass;
 
 			// This routine is an iterator routine for retrieving the fields in a class.
@@ -258,11 +266,22 @@ namespace QAQ
 			}
 
 		}
+	}
 
-		auto& entityClasses = s_Data->EntityClasses;
+	void ScriptEngine::ReloadAssembly()
+	{
+		mono_domain_set(mono_get_root_domain(), false);
 
-		//mono_field_get_value()
+		mono_domain_unload(s_Data->AppDomain);
 
+		LoadAssembly(s_Data->CoreAssemblyFilepath);
+		LoadAppAssembly(s_Data->AppAssemblyFilepath);
+		LoadAssemblyClasses();
+
+		ScriptGlue::RegisterComponents();
+
+		// Retrieve and instantiate class
+		s_Data->EntityClass = ScriptClass("QAQ", "Entity", true);
 	}
 
 	MonoImage* ScriptEngine::GetCoreAssemblyImage()
