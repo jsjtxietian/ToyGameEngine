@@ -101,6 +101,26 @@ namespace QAQ {
 		return Input::IsKeyPressed(keycode);
 	}
 
+	static MonoObject* GetScriptInstance(UUID entityID)
+	{
+		return ScriptEngine::GetManagedInstance(entityID);
+	}
+
+	static uint64_t Entity_FindEntityByName(MonoString* name)
+	{
+		char* nameCStr = mono_string_to_utf8(name);
+
+		Scene* scene = ScriptEngine::GetSceneContext();
+		QAQ_CORE_ASSERT(scene);
+		Entity entity = scene->FindEntityByName(nameCStr);
+		mono_free(nameCStr);
+
+		if (!entity)
+			return 0;
+
+		return entity.GetUUID();
+	}
+
 	template<typename... Component>
 	static void RegisterComponent()
 	{
@@ -138,7 +158,10 @@ namespace QAQ {
 		QAQ_ADD_INTERNAL_CALL(NativeLog_Vector);
 		QAQ_ADD_INTERNAL_CALL(NativeLog_VectorDot);
 
+		QAQ_ADD_INTERNAL_CALL(GetScriptInstance);
 		QAQ_ADD_INTERNAL_CALL(Entity_HasComponent);
+		QAQ_ADD_INTERNAL_CALL(Entity_FindEntityByName);
+
 		QAQ_ADD_INTERNAL_CALL(TransformComponent_GetTranslation);
 		QAQ_ADD_INTERNAL_CALL(TransformComponent_SetTranslation);
 		

@@ -100,6 +100,8 @@ namespace QAQ
 
 		Ref<ScriptClass> GetScriptClass() { return m_ScriptClass; }
 
+		MonoObject* GetManagedObject() { return m_Instance; }
+
 		template<typename T>
 		T GetFieldValue(const std::string& name)
 		{
@@ -158,6 +160,7 @@ namespace QAQ
 		static ScriptFieldMap& GetScriptFieldMap(Entity entity);
 		
 		static MonoImage* GetCoreAssemblyImage();
+		static MonoObject* GetManagedInstance(UUID uuid);
 	private:
 		static void InitMono();
 		static void ShutdownMono();
