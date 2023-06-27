@@ -35,6 +35,7 @@ namespace QAQ {
 		void OnScenePlay();
 		void OnSceneSimulate();
 		void OnSceneStop();
+		void OnScenePause();
 
 		void OnDuplicateEntity();
 		// UI Panels
@@ -80,7 +81,7 @@ namespace QAQ {
 		SceneState m_SceneState = SceneState::Edit;
 
 		// Editor resources
-		Ref<Texture2D> m_IconPlay,m_IconSimulate, m_IconStop;
+		Ref<Texture2D> m_IconPlay,m_IconSimulate, m_IconStop,m_IconPause, m_IconStep;
 	};
 
 }
