@@ -55,11 +55,14 @@ namespace QAQ
 		static Application &Get() { return *s_Instance; }
 
 		const ApplicationSpecification& GetSpecification() const { return m_Specification; }
+		
+		void SubmitToMainThread(const std::function<void()>& function);
 
 	private:
 		void Run();
 		bool OnWindowClose(WindowCloseEvent &e);
 		bool OnWindowResize(WindowResizeEvent &e);
+		void ExecuteMainThreadQueue();
 
 	private:
 		ApplicationSpecification m_Specification;
@@ -69,6 +72,8 @@ namespace QAQ
 		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
+		std::vector<std::function<void()>> m_MainThreadQueue;
+		std::mutex m_MainThreadQueueMutex;
 
 	private:
 		static Application *s_Instance;
