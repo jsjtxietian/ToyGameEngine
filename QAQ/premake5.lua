@@ -43,7 +43,8 @@ project "QAQ"
 		"%{IncludeDir.ImGuizmo}",
 		"%{IncludeDir.VulkanSDK}",
 		"%{IncludeDir.Box2D}",
-		"%{IncludeDir.mono}"
+		"%{IncludeDir.mono}",
+		"%{IncludeDir.filewatch}"
 	}
 
 	links

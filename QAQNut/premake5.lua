@@ -20,7 +20,8 @@ project "QAQnut"
 		"%{wks.location}/QAQ/vendor",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}",
-		"%{IncludeDir.ImGuizmo}"
+		"%{IncludeDir.ImGuizmo}",
+		"%{IncludeDir.filewatch}"
 	}
 
 	links
